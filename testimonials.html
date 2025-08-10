@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Testimonials - Light & Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+      background: #111;
+      color: #eee;
+    }
+    header {
+      background: #000;
+      color: #fff;
+      padding: 15px 0;
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1300px;
+      margin: auto;
+      padding: 0 20px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
+    }
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #d97706;
+      font-weight: 700;
+    }
+    .navbar {
+      position: fixed;
+      background-color: #000;
+      width: 100%;
+      z-index: 10;
+    }
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #d97706;
+    }
+    .container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 20px;
+    }
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #e9bb24;
+    }
+    .contact-main-heading {
+  font-family: 'Playfair Display', serif;
+  color: #e9bb24;
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+    .testimonial-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .testimonial {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      gap: 30px;
+    }
+    .testimonial-image {
+      flex: 0 0 120px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .testimonial-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .testimonial-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .testimonial-content p {
+      font-size: 1.15em;
+      color: #f5f5f5;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .testimonial-content .name {
+      font-family: 'Playfair Display', serif;
+      color: #d97706;
+      font-size: 1em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 8px;
+    }
+    @media (max-width: 700px) {
+      .testimonial {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+      }
+      .testimonial-image {
+        margin-bottom: 15px;
+      }
+    }
+    .client-carousel-section {
+      background: #111;
+      padding: 60px 0;
+    }
+    .client-carousel {
+      display: flex;
+      overflow: hidden;
+      scroll-behavior: smooth;
+    }
+    .client-item {
+      min-width: 200px;
+      margin-right: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .client-item img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .client-name {
+      font-family: 'Playfair Display', serif;
+      color: #d97706;
+      font-size: 1em;
+      font-weight: 700;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container">
+    <div class="logo">
+      <img src="images/logo.jpg" alt="Brand Logo">
+      <span class="brand-name">Light & Style</span>
+    </div>
+    <nav>
+      <a href="projects.html">Projects</a>
+      <a href="products.html">Products</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="testimonials.html#contact">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<br><br><br>
+<section class="testimonial-section">
+  <div class="container">
+    <h3>Testimonials</h3>
+    <div class="testimonial-list">
+      <div class="testimonial">
+        <div class="testimonial-image">
+          <img src="images/testimonial1.jpg" alt="Customer">
+        </div>
+        <div class="testimonial-content">
+          <p>
+            "Absolutely loved the collection and the service! The team helped me choose the perfect chandelier for my living room. Highly recommended for anyone looking for quality lighting."
+          </p>
+          <span class="name">Anonymous</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-image">
+          <img src="images/testimonial2.jpg" alt="Customer">
+        </div>
+        <div class="testimonial-content">
+          <p>
+            "Very professional and friendly staff. The boutique has a wide range of products and the ambience is wonderful. Will visit again for sure!"
+          </p>
+          <span class="name">Anonymous</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-image">
+          <img src="images/testimonial3.jpg" alt="Customer">
+        </div>
+        <div class="testimonial-content">
+          <p>
+            "Great experience from start to finish. The installation was quick and the lights look stunning. Thank you Light & Style!"
+          </p>
+          <span class="name">Anonymous</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="client-carousel-section">
+  <div class="container">
+    <h3>Our Clients</h3>
+    <div class="client-carousel">
+      <div class="client-item">
+        <img src="images/client1.png" alt="Client 1 Logo">
+        <span class="client-name">Client One</span>
+      </div>
+      <div class="client-item">
+        <img src="images/client2.png" alt="Client 2 Logo">
+        <span class="client-name">Client Two</span>
+      </div>
+      <div class="client-item">
+        <img src="images/client3.png" alt="Client 3 Logo">
+        <span class="client-name">Client Three</span>
+      </div>
+      <div class="client-item">
+        <img src="images/client4.png" alt="Client 4 Logo">
+        <span class="client-name">Client Four</span>
+      </div>
+      <!-- Add more client items as needed -->
+    </div>
+  </div>
+</section>
+<script>
+  // Simple infinite scroll for the carousel
+  const carousel = document.querySelector('.client-carousel');
+  let scrollAmount = 0;
+  function autoScroll() {
+    scrollAmount += 1;
+    if (scrollAmount >= carousel.scrollWidth / 2) {
+      scrollAmount = 0;
+      carousel.scrollLeft = 0;
+    } else {
+      carousel.scrollLeft = scrollAmount;
+    }
+    requestAnimationFrame(autoScroll);
+  }
+  autoScroll();
+</script>
+<!-- Contact & Enquiry Section -->
+<section id="contact" class="contact-enquiry">
+    <h2 class="contact-main-heading">Get in Touch</h2>
+  <div class="container contact-enquiry-container">
+
+    <!-- Left Column -->
+    <div class="contact-left">
+      <div class="shop-brief">
+        <h3>About Light N Style</h3>
+        <p>
+          Light N Style is a family-run lighting boutique in the heart of Bangalore, offering a curated selection of elegant lighting solutions for homes and businesses. With decades of experience, we pride ourselves on quality, service, and a personal touch.
+        </p>
+      </div>
+      <div class="enquiry-form">
+        <h3>Send Enquiry</h3>
+        <form action="sendmail.php" method="POST">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <input type="text" placeholder="Phone Number" />
+          <textarea placeholder="Your Message"></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="contact-right">
+      <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>
+          120/5, Infantry Road, Bangalore - 560001<br>
+          Phone: 080-41130090 / 41132190<br>
+          Email: neha@lightnstyle.in
+        </p>
+      </div>
+      <div class="family-photo">
+        <h3>Meet Our Family</h3>
+        <img src="images/family.jpeg" alt="Light N Style Family">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Add this just before </body> -->
+
+</body>
+</html>

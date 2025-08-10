@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Light & Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    .file-input {
+  margin-bottom: 15px;
+}
+
+.file-input input[type="file"] {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.file-input small {
+  color: #666;
+  font-size: 0.85em;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-wrapper">
+
+      <!-- Header sits inside hero -->
+      <header class="navbar">
+        <div class="container">
+          <div class="logo">
+            <img src="images/logo.jpg" alt="Brand Logo">
+            <span class="brand-name">Light & Style</span>
+          </div>
+          <nav>
+
+            <a href="#product">Products</a>
+            <a href="#projects">Projects</a>
+            <a href="testimonials.html">Testimonials</a>
+            <a href="#contact">Contact us</a>
+          </nav>
+        </div>
+      </header>
+
+      <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="images/hero1.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/hero2.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/hero3.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/hero4.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/hero5.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/hero6.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/hero7.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/hero8.jpeg" alt=""></div>
+        </div>
+      </div>
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-text">
+        <h4>Transforming Spaces with <br><span class="highlight">Exquisite Lighting </span></h4>
+      </div>
+
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+<section id="about" class="about-section">
+  <div class="container">
+    <h3>About Light & Style</h3>
+    <p>
+      At Light & Style, we believe lighting is more than just function—it’s an expression of taste, mood, and style. Our collections range from grand chandeliers to modern minimalist designs, transforming spaces into breathtaking works of art. With decades of craftsmanship and innovation, we bring brilliance and elegance into your interiors.
+    </p>
+    <h3 style="margin-top: 50px; font-size: x-large;">Our Clients</h3>
+    <div class="clients-scroll">
+      <div class="client-item">
+        <img src="images/decorative/d6.jpeg" alt="Client 1">
+        <p>Brigade Misty Greens</p>
+      </div>
+      <div class="client-item">
+        <img src="images/client2.png" alt="Client 2">
+        <p>Client Two</p>
+      </div>
+      <div class="client-item">
+        <img src="images/client3.png" alt="Client 3">
+        <p>Client Three</p>
+      </div>
+      <div class="client-item">
+        <img src="images/client4.png" alt="Client 4">
+        <p>Client Four</p>
+      </div>
+      <div class="client-item">
+        <img src="images/client5.png" alt="Client 5">
+        <p>Client Five</p>
+      </div>
+      <div class="client-item">
+        <img src="images/client6.png" alt="Client 6">
+        <p>Client Six</p>
+      </div>
+      <div class="client-item">
+        <img src="images/client7.png" alt="Client 7">
+        <p>Client Seven</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+  <div class="container">
+    <h4>Our Projects</h4>
+
+    <div class="categories">
+
+      <a href="residential.html" class="category-link">
+        <div class="category">
+          <div class="category-images">
+            <img src="images/residential.jpeg" alt="Residential">
+          </div>
+          <h3>Residential</h3>
+        </div>
+      </a>
+
+      
+      <a href="decorative.html" class="category-link">
+        <div class="category">
+          <div class="category-images">
+            <img src="images/decorative.jpeg" alt="Decorative">
+          </div>
+          <h3>Decorative</h3>
+        </div>
+      </a>
+
+      <a href="commercial.html" class="category-link">
+        <div class="category">
+          <div class="category-images">
+            <img src="images/commercial.png" alt="Commercial">
+          </div>
+          <h3>Commercial</h3>
+        </div>
+      </a>
+
+      
+
+
+      <a href="outdoor.html" class="category-link">
+        <div class="category">
+          <div class="category-images">
+            <img src="images/outdoor.jpeg" alt="Outdoor">
+          </div>
+          <h3>Outdoor</h3>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Explore Products Section -->
+<section class="explore-products" id="product">
+  <div class="container explore-products-container">
+    <div class="explore-text">
+      <h4>Explore Our Products</h4>
+      <p>Discover a range of lighting products that redefine spaces with elegance and functionality.</p>
+      <a href="products.html" class="btn">View Products</a>
+    </div>
+    <div class="explore-image">
+      <img src="images/products.jpeg" alt="Explore Products">
+    </div>
+  </div>
+</section>
+
+
+<!-- Contact & Enquiry Section -->
+<section id="contact" class="contact-enquiry">
+  <div class="container contact-enquiry-container">
+
+    <!-- Left Column -->
+    <div class="contact-left">
+      <div class="shop-brief">
+        <h3>About Light N Style</h3>
+        <p>
+          Light N Style is a family-run lighting boutique in the heart of Bangalore, offering a curated selection of elegant lighting solutions for homes and businesses. With decades of experience, we pride ourselves on quality, service, and a personal touch.
+        </p>
+      </div>
+      <div class="enquiry-form">
+        <h3>Send Enquiry</h3>
+        <form id="enquiryForm" onsubmit="return sendEmail(event)">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="text" name="phone" placeholder="Phone Number" />
+          <textarea name="message" placeholder="Your Message"></textarea>
+          <div class="file-input">
+            <input type="file" id="attachments" name="attachments" multiple />
+            <small>Attach up to 3 files (max 5MB each)</small>
+          </div>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="contact-right">
+      <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>
+          120/5, Infantry Road, Bangalore - 560001<br>
+          Phone: 080-41130090 / 41132190<br>
+          Email: neha@lightnstyle.in
+        </p>
+      </div>
+      <div class="family-photo">
+        <h3>Meet Our Family</h3>
+        <img src="images/family.jpeg" alt="Light N Style Family">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Initialize EmailJS
+    (function() {
+      emailjs.init("SL67cZHfeqT4Y3D9k"); // Replace with your EmailJS public key
+    })();
+
+    // Function to send email
+    async function sendEmail(e) {
+      e.preventDefault();
+      
+      const form = document.getElementById('enquiryForm');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const fileInput = document.getElementById('attachments');
+      
+      // Validate file attachments
+      const files = fileInput.files;
+      if (files.length > 3) {
+        alert('Please select a maximum of 3 files');
+        return false;
+      }
+
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].size > 5 * 1024 * 1024) {
+          alert('Each file must be less than 5MB');
+          return false;
+        }
+      }
+
+      // Disable the submit button while sending
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      try {
+        // Create FormData object to handle file uploads
+        const formData = new FormData();
+        
+        // Add form fields directly to FormData
+        formData.append('name', form.name.value);
+        formData.append('email', form.email.value);
+        formData.append('phone', form.phone.value);
+        formData.append('message', form.message.value);
+        
+        // Add files if any
+        const files = fileInput.files;
+        for (let i = 0; i < files.length; i++) {
+          formData.append('attachments[]', files[i]);
+        }
+
+        // Send the email using our PHP endpoint
+        const response = await fetch('send-email.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to send email');
+        }
+
+        alert('Thank you! Your message has been sent.');
+        form.reset();
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Sorry, there was an error sending your message: ' + error.message);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send';
+      }
+
+      return false;
+    }
+  </script>
+</body>
+</html>

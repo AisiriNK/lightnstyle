@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Decorative - Light & Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+      background: #111;
+      color: #eee;
+    }
+
+    header {
+      background: #000;
+      color: #fff;
+      padding: 15px 0;
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1300px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #d97706;
+      font-weight: 700;
+    }
+
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #d97706;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #d97706;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+    }
+
+    .product-card {
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+      aspect-ratio: 3 / 4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Modal overlay */
+    .specs-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.specs-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.specs-content img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.close-overlay {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+
+    .specs-image {
+      flex: 1 1 300px;
+    }
+
+    .specs-image img {
+      width: 100%;
+      height: auto;
+      max-height: 450px;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .specs-details {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .specs-details h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #d97706;
+    }
+
+    .specs-details p {
+      font-size: 16px;
+      margin: 8px 0;
+      color: #ddd;
+    }
+
+    .close-overlay {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      color: #eee;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    @media (max-width: 992px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .specs-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .specs-image img {
+        max-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container">
+    <div class="logo">
+      <img src="images/logo.jpg" alt="Brand Logo">
+      <span class="brand-name">Light & Style</span>
+    </div>
+    <nav>
+      <a href="index.html#projects">Back to Projects</a>
+      <a href="index.html#contact">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<section class="category-detail">
+  <div class="container">
+    <h3>Decorative Projects</h3>
+    <div class="products-grid">
+      <!-- Product Card 1 -->
+      <div class="product-card" data-img="images\decorative\d1.jpeg">
+        <img src="images\decorative\d1.jpeg" alt="Decorative 1">
+      </div>
+
+      <div class="product-card" data-img="images\decorative\d2.jpeg">
+        <img src="images\decorative\d2.jpeg" alt="Decorative 1">
+      </div>
+      
+      <div class="product-card" data-img="images\decorative\d3.jpeg">
+        <img src="images\decorative\d3.jpeg" alt="Decorative 1">
+      </div>
+      <div class="product-card" data-img="images\decorative\d4.jpeg">
+        <img src="images\decorative\d4.jpeg" alt="Decorative 1">
+      </div>
+      <div class="product-card" data-img="images\decorative\d5.jpeg">
+        <img src="images\decorative\d5.jpeg" alt="Decorative 1">
+      </div>
+      <div class="product-card" data-img="images\decorative\d6.jpeg">
+        <img src="images\decorative\d6.jpeg" alt="Decorative 1">
+      </div>
+      <div class="product-card" data-img="images\decorative\d7.jpeg">
+        <img src="images\decorative\d7.jpeg" alt="Decorative 1">
+      </div>
+      <div class="product-card" data-img="images\decorative\d8.jpeg">
+        <img src="images\decorative\d8.jpeg" alt="Decorative 1">
+      </div>
+      <div class="product-card" data-img="images\decorative\d9.jpeg">
+        <img src="images\decorative\d9.jpeg" alt="Decorative 1">
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+<!-- Overlay Modal -->
+<div class="specs-overlay" id="specsOverlay">
+  <div class="specs-content">
+    <span class="close-overlay" id="closeOverlay">&times;</span>
+    <div class="specs-image">
+      <img src="" alt="" id="specsImage">
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Handle product card click
+  document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const img = card.getAttribute('data-img');
+    document.getElementById('specsImage').src = img;
+    document.getElementById('specsOverlay').style.display = 'flex';
+  });
+});
+
+document.getElementById('closeOverlay').addEventListener('click', () => {
+  document.getElementById('specsOverlay').style.display = 'none';
+});
+
+
+
+  document.getElementById('closeOverlay').addEventListener('click', () => {
+    document.getElementById('specsOverlay').style.display = 'none';
+  });
+</script>
+<!-- Contact & Enquiry Section -->
+<section class="contact-enquiry">
+  <div class="container contact-enquiry-container">
+    
+    <!-- Enquiry Form -->
+    <div class="enquiry-form">
+      <h3>Send Enquiry</h3>
+      <form action="sendmail.php" method="POST">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <input type="text" placeholder="Phone Number" />
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h3>Contact Us</h3>
+      <p>Light N Style<br>
+      120/5, Infantry Road, Bangalore - 560001<br>
+      Phone: 080-41130090 / 41132190<br>
+      Email: neha@lightnstyle.in</p>
+    </div>
+
+  </div>
+</section>
+</body>
+</html>
