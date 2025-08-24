@@ -379,41 +379,16 @@
       <div id="suggestions" class="suggestions"></div>
       <select id="categorySelect">
         <option value="">All Categories</option>
-        <option value="Chandelier">Chandelier</option>
+        <!-- Categories will be loaded dynamically -->
       </select>
     </div>
     
+    <div id="loadingMessage" style="text-align: center; color: #d97706; font-size: 18px; margin: 40px 0;">
+      Loading products...
+    </div>
 
-    <div class="products-grid">
-      <!-- Product Card 1 -->
-      <div class="product-card" data-name="Elegant Gold Chandelier" data-img="images/chandelier1.jpeg" data-specs="Size: 24 inches|Material: Crystal + Brass|Light Source: LED|Finish: Antique Gold|Price: ₹15,000">
-        <img src="images/chandelier1.jpeg" alt="Elegant Chandelier">
-        <div class="product-info"></div>
-      </div>
-
-      <!-- Product Card 2 -->
-      <div class="product-card" data-name="Modern Ring Chandelier" data-img="images/chandelier2.jpeg" data-specs="LED, Dimmable|Color Temp: 3000K-6000K|Material: Aluminum + Acrylic|Diameter: 20 inches|Price: ₹10,500">
-        <img src="images/chandelier2.jpeg" alt="Modern Chandelier">
-        <div class="product-info"></div>
-      </div>
-
-      <!-- Product Card 3 -->
-      <div class="product-card" data-name="Classic Crystal Chandelier" data-img="images/chandelier3.jpeg" data-specs="Height: 36 inches|Width: 24 inches|Material: K9 Crystal|Finish: Chrome|Price: ₹22,000">
-        <img src="images/chandelier3.jpeg" alt="Classic Chandelier">
-        <div class="product-info"></div>
-      </div>
-
-      <!-- Product Card 4 -->
-      <div class="product-card" data-name="Elegant Gold Chandelier" data-img="images/chandelier1.jpeg" data-specs="Size: 24 inches|Material: Crystal + Brass|Light Source: LED|Finish: Antique Gold|Price: ₹15,000" data-category="Chandelier">
-        <img src="images/chandelier1.jpeg" alt="Elegant Chandelier">
-        <div class="product-info"></div>
-      </div>
-
-      <!-- Product Card 5 -->
-      <div class="product-card" data-name="Elegant Gold Chandelier" data-img="images/chandelier1.jpeg" data-specs="Size: 24 inches|Material: Crystal + Brass|Light Source: LED|Finish: Antique Gold|Price: ₹15,000">
-        <img src="images/chandelier1.jpeg" alt="Elegant Chandelier">
-        <div class="product-info"></div>
-      </div>
+    <div class="products-grid" id="productsGrid">
+      <!-- Products will be loaded dynamically from database -->
     </div>
   </div>
 </section>
@@ -433,86 +408,158 @@
 </div>
 
 <script>
-  const productCards = document.querySelectorAll('.product-card');
+  let allProducts = [];
+  let productNames = [];
+  
   const searchInput = document.getElementById('searchInput');
   const categorySelect = document.getElementById('categorySelect');
   const suggestionsDiv = document.getElementById('suggestions');
+  const productsGrid = document.getElementById('productsGrid');
+  const loadingMessage = document.getElementById('loadingMessage');
 
-  // Collect all product names once
-  const productNames = Array.from(productCards).map(card =>
-    card.getAttribute('data-name')
-  );
-
-  // Fill product info for every card dynamically
-  productCards.forEach(card => {
-    const name = card.getAttribute('data-name');
-    const specs = card.getAttribute('data-specs').split('|');
-
-    const infoDiv = card.querySelector('.product-info');
-    if (infoDiv) {
-      infoDiv.innerHTML = "";
-      const title = document.createElement('h4');
-      title.textContent = name;
-      infoDiv.appendChild(title);
-
-      specs.slice(0,2).forEach(line => {
-        const p = document.createElement('p');
-        p.textContent = line;
-        infoDiv.appendChild(p);
-      });
+  // Load categories from database
+  async function loadCategories() {
+    try {
+      const response = await fetch('api/categories-test.php');
+      const data = await response.json();
+      
+      if (data.success) {
+        data.categories.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category;
+          option.textContent = category;
+          categorySelect.appendChild(option);
+        });
+      }
+    } catch (error) {
+      console.error('Error loading categories:', error);
     }
-  });
+  }
 
-  // Handle overlay on click
-  productCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const name = card.getAttribute('data-name');
-      const img = card.getAttribute('data-img');
-      const specs = card.getAttribute('data-specs').split('|');
+  // Load products from database
+  async function loadProducts(search = '', category = '') {
+    try {
+      loadingMessage.style.display = 'block';
+      productsGrid.innerHTML = '';
+      
+      const params = new URLSearchParams();
+      if (search) params.append('search', search);
+      if (category) params.append('category', category);
+      
+      // Try database API first, fallback to test API
+      let response;
+      try {
+        response = await fetch(`api/products.php?${params}`);
+        if (!response.ok) {
+          throw new Error('Database API failed');
+        }
+      } catch (error) {
+        console.log('Database API failed, using test data:', error.message);
+        response = await fetch(`api/products-test.php?${params}`);
+      }
+      const data = await response.json();
+      
+      if (data.success) {
+        allProducts = data.products;
+        productNames = data.products.map(product => product.name);
+        displayProducts(data.products);
+      } else {
+        productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products</p>';
+      }
+    } catch (error) {
+      console.error('Error loading products:', error);
+      productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products</p>';
+    } finally {
+      loadingMessage.style.display = 'none';
+    }
+  }
 
-      document.getElementById('specsTitle').textContent = name;
-      document.getElementById('specsImage').src = img;
+  // Display products in the grid
+  function displayProducts(products) {
+    productsGrid.innerHTML = '';
+    
+    if (products.length === 0) {
+      productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">No products found</p>';
+      return;
+    }
 
-      const detailsContainer = document.getElementById('specsDetails');
-      detailsContainer.innerHTML = '';
-      specs.forEach(line => {
-        const p = document.createElement('p');
-        p.textContent = line;
-        detailsContainer.appendChild(p);
-      });
-
-      document.getElementById('specsOverlay').style.display = 'flex';
+    products.forEach(product => {
+      const productCard = document.createElement('div');
+      productCard.className = 'product-card';
+      productCard.dataset.id = product.id;
+      productCard.dataset.name = product.name;
+      productCard.dataset.category = product.category || '';
+      
+      // Build specs string
+      const specs = [
+        product.material ? `Material: ${product.material}` : '',
+        product.wattage ? `Wattage: ${product.wattage}W` : '',
+        product.size ? `Size: ${product.size}` : '',
+        product.finish ? `Finish: ${product.finish}` : ''
+      ].filter(spec => spec !== '');
+      
+      productCard.innerHTML = `
+        <img src="${product.image_url || 'images/placeholder.jpg'}" alt="${product.name}" onerror="this.src='images/placeholder.jpg'">
+        <div class="product-info">
+          <h4>${product.name}</h4>
+          <p>${product.category || 'General'}</p>
+          <p>${specs.slice(0, 2).join(' | ')}</p>
+        </div>
+      `;
+      
+      // Add click event for modal
+      productCard.addEventListener('click', () => showProductModal(product, specs));
+      
+      productsGrid.appendChild(productCard);
     });
-  });
+  }
 
-  document.getElementById('closeOverlay').addEventListener('click', () => {
-    document.getElementById('specsOverlay').style.display = 'none';
-  });
+  // Show product details modal
+  function showProductModal(product, specs) {
+    document.getElementById('specsTitle').textContent = product.name;
+    document.getElementById('specsImage').src = product.image_url || 'images/placeholder.jpg';
+    
+    const detailsContainer = document.getElementById('specsDetails');
+    detailsContainer.innerHTML = '';
+    
+    // Add category
+    if (product.category) {
+      const categoryP = document.createElement('p');
+      categoryP.innerHTML = `<strong>Category:</strong> ${product.category}`;
+      detailsContainer.appendChild(categoryP);
+    }
+    
+    // Add all specs
+    specs.forEach(spec => {
+      if (spec) {
+        const p = document.createElement('p');
+        p.innerHTML = `<strong>${spec.split(':')[0]}:</strong> ${spec.split(':')[1]}`;
+        detailsContainer.appendChild(p);
+      }
+    });
+    
+    document.getElementById('specsOverlay').style.display = 'flex';
+  }
 
+  // Filter products based on search and category
   function filterProducts() {
     const searchTerm = searchInput.value.toLowerCase();
     const selectedCategory = categorySelect.value;
-
-    productCards.forEach(card => {
-      const name = card.getAttribute('data-name').toLowerCase();
-      const category = card.getAttribute('data-category') || '';
-
-      const matchesSearch = name.includes(searchTerm);
-      const matchesCategory =
-        selectedCategory === '' || category === selectedCategory;
-
-      if (matchesSearch && matchesCategory) {
-        card.style.display = 'flex';
-      } else {
-        card.style.display = 'none';
-      }
+    
+    const filteredProducts = allProducts.filter(product => {
+      const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+      const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
+      return matchesSearch && matchesCategory;
     });
+    
+    displayProducts(filteredProducts);
   }
 
   // Handle live suggestions
   searchInput.addEventListener('input', () => {
     const term = searchInput.value.toLowerCase();
     suggestionsDiv.innerHTML = '';
+    
     if (term === '') {
       suggestionsDiv.style.display = 'none';
       filterProducts();
@@ -521,10 +568,11 @@
 
     const matches = productNames.filter(name =>
       name.toLowerCase().includes(term)
-    );
+    ).slice(0, 5); // Limit to 5 suggestions
 
     if (matches.length === 0) {
       suggestionsDiv.style.display = 'none';
+      filterProducts();
       return;
     }
 
@@ -543,14 +591,27 @@
     filterProducts();
   });
 
-  // Hide suggestions on blur (optional)
+  // Hide suggestions on click outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.filters')) {
       suggestionsDiv.style.display = 'none';
     }
   });
 
+  // Handle category change
   categorySelect.addEventListener('change', filterProducts);
+
+  // Close modal
+  document.getElementById('closeOverlay').addEventListener('click', () => {
+    document.getElementById('specsOverlay').style.display = 'none';
+  });
+
+  // Initialize page
+  document.addEventListener('DOMContentLoaded', () => {
+    loadCategories();
+    loadProducts();
+  });
+</script>
 </script>
 
 
