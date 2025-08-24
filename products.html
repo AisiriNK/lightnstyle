@@ -374,14 +374,26 @@
     <h3>Products</h3>
 
     
-    <div class="filters">
-      <input type="text" id="searchInput" placeholder="Search by name...">
-      <div id="suggestions" class="suggestions"></div>
+    <div class="filters" style="justify-content: space-between; align-items: center;">
       <select id="categorySelect">
         <option value="">All Categories</option>
         <!-- Categories will be loaded dynamically -->
       </select>
+      <button id="exploreMoreBtn" class="btn" style="margin-left:auto; background:#d97706; color:#fff; padding:10px 22px; border-radius:6px; font-weight:600; font-size:16px; cursor:pointer;">Explore More</button>
     </div>
+<!-- Catalogue Overlay -->
+<div id="catalogueOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:2000; justify-content:center; align-items:center;">
+  <div style="background:#222; color:#fff; border-radius:12px; padding:40px 30px; max-width:500px; width:90%; box-shadow:0 8px 32px rgba(0,0,0,0.5); position:relative;">
+    <span id="closeCatalogueOverlay" style="position:absolute; top:18px; right:24px; font-size:28px; cursor:pointer; color:#fff;">&times;</span>
+    <h2 style="color:#d97706; text-align:center; margin-bottom:24px; font-family:'Playfair Display',serif;">Catalogues</h2>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li style="margin-bottom:18px;"><a href="https://collection.cloudinary.com/dm19o9hcn/f01671c44ca7b2951d4b3ab959f0d5cf?" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Decorative Catalogue</a></li>
+      <li style="margin-bottom:18px;"><a href="https://collection.cloudinary.com/dm19o9hcn/87d64fdc2c182d21a3f65e5492986b78" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Commercial Catalogue</a></li>
+      <li style="margin-bottom:18px;"><a href="catalogues/outdoor.pdf" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Outdoor Catalogue</a></li>
+      <li style="margin-bottom:18px;"><a href="catalogues/all-products.pdf" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">All Products Catalogue</a></li>
+    </ul>
+  </div>
+</div>
     
     <div id="loadingMessage" style="text-align: center; color: #d97706; font-size: 18px; margin: 40px 0;">
       Loading products...
@@ -401,19 +413,50 @@
       <img src="" alt="" id="specsImage">
     </div>
     <div class="specs-details">
-      <h3 id="specsTitle"></h3>
-      <div id="specsDetails"></div>
+  <h3 id="specsTitle"></h3>
+  <div id="specsDetails"></div>
+  <button id="enquireProductBtn" style="margin-top:20px; background:#d97706; color:#fff; padding:10px 22px; border-radius:6px; font-weight:600; font-size:16px; cursor:pointer;">Enquire</button>
     </div>
   </div>
 </div>
 
+<!-- Product Enquiry Modal -->
+<div id="productEnquiryModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:3000; justify-content:center; align-items:center;">
+  <div style="background:#222; color:#fff; border-radius:12px; padding:40px 30px; max-width:500px; width:90%; box-shadow:0 8px 32px rgba(0,0,0,0.5); position:relative;">
+    <span id="closeEnquiryModal" style="position:absolute; top:18px; right:24px; font-size:28px; cursor:pointer; color:#fff;">&times;</span>
+    <h2 style="color:#d97706; text-align:center; margin-bottom:24px; font-family:'Playfair Display',serif;">Product Enquiry</h2>
+    <p id="productEnquiryName" style="text-align:center; margin-bottom:20px; font-weight:600;"></p>
+    <form id="productEnquiryForm" onsubmit="return sendProductEnquiry(event)">
+      <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #444; border-radius:5px; background:#1a1a1a; color:#fff;" />
+      <input type="email" name="email" placeholder="Your Email" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #444; border-radius:5px; background:#1a1a1a; color:#fff;" />
+      <input type="text" name="phone" placeholder="Phone Number" style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #444; border-radius:5px; background:#1a1a1a; color:#fff;" />
+      <textarea name="message" placeholder="Your Message about this product" style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #444; border-radius:5px; background:#1a1a1a; color:#fff; min-height:80px; resize:vertical;"></textarea>
+      <div class="file-input" style="margin-bottom:15px;">
+        <input type="file" name="attachments[]" id="productAttachments" accept="image/*" multiple style="display:block; margin-bottom:5px; color:#fff;" />
+        <small style="color:#999; font-size:0.85em;">You can attach up to 3 images (max 5MB each)</small>
+      </div>
+      <button type="submit" style="width:100%; background:#d97706; color:#fff; padding:12px; border:none; border-radius:5px; font-weight:600; font-size:16px; cursor:pointer;">Send Enquiry</button>
+    </form>
+  </div>
+</div>
+
 <script>
+  // Show catalogue overlay on button click
+  document.getElementById('exploreMoreBtn').addEventListener('click', function() {
+    document.getElementById('catalogueOverlay').style.display = 'flex';
+  });
+
+  // Close catalogue overlay
+  document.getElementById('closeCatalogueOverlay').addEventListener('click', function() {
+    document.getElementById('catalogueOverlay').style.display = 'none';
+  });
+
+  // Close enquiry modal
+  document.getElementById('closeEnquiryModal').addEventListener('click', function() {
+    document.getElementById('productEnquiryModal').style.display = 'none';
+  });
   let allProducts = [];
-  let productNames = [];
-  
-  const searchInput = document.getElementById('searchInput');
   const categorySelect = document.getElementById('categorySelect');
-  const suggestionsDiv = document.getElementById('suggestions');
   const productsGrid = document.getElementById('productsGrid');
   const loadingMessage = document.getElementById('loadingMessage');
 
@@ -442,9 +485,8 @@
       loadingMessage.style.display = 'block';
       productsGrid.innerHTML = '';
       
-      const params = new URLSearchParams();
-      if (search) params.append('search', search);
-      if (category) params.append('category', category);
+  const params = new URLSearchParams();
+  if (category) params.append('category', category);
       
       // Try database API first, fallback to test API
       let response;
@@ -502,8 +544,6 @@
         <img src="${product.image_url || 'images/placeholder.jpg'}" alt="${product.name}" onerror="this.src='images/placeholder.jpg'">
         <div class="product-info">
           <h4>${product.name}</h4>
-          <p>${product.category || 'General'}</p>
-          <p>${specs.slice(0, 2).join(' | ')}</p>
         </div>
       `;
       
@@ -539,64 +579,24 @@
     });
     
     document.getElementById('specsOverlay').style.display = 'flex';
+    // Add event listener for Enquire button
+    const enquireBtn = document.getElementById('enquireProductBtn');
+    enquireBtn.onclick = function() {
+      showProductEnquiryModal(product);
+    };
   }
 
   // Filter products based on search and category
   function filterProducts() {
-    const searchTerm = searchInput.value.toLowerCase();
     const selectedCategory = categorySelect.value;
-    
     const filteredProducts = allProducts.filter(product => {
-      const matchesSearch = product.name.toLowerCase().includes(searchTerm);
       const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
-      return matchesSearch && matchesCategory;
+      return matchesCategory;
     });
-    
     displayProducts(filteredProducts);
   }
 
   // Handle live suggestions
-  searchInput.addEventListener('input', () => {
-    const term = searchInput.value.toLowerCase();
-    suggestionsDiv.innerHTML = '';
-    
-    if (term === '') {
-      suggestionsDiv.style.display = 'none';
-      filterProducts();
-      return;
-    }
-
-    const matches = productNames.filter(name =>
-      name.toLowerCase().includes(term)
-    ).slice(0, 5); // Limit to 5 suggestions
-
-    if (matches.length === 0) {
-      suggestionsDiv.style.display = 'none';
-      filterProducts();
-      return;
-    }
-
-    matches.forEach(name => {
-      const div = document.createElement('div');
-      div.textContent = name;
-      div.addEventListener('click', () => {
-        searchInput.value = name;
-        suggestionsDiv.style.display = 'none';
-        filterProducts();
-      });
-      suggestionsDiv.appendChild(div);
-    });
-
-    suggestionsDiv.style.display = 'block';
-    filterProducts();
-  });
-
-  // Hide suggestions on click outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.filters')) {
-      suggestionsDiv.style.display = 'none';
-    }
-  });
 
   // Handle category change
   categorySelect.addEventListener('change', filterProducts);
@@ -607,6 +607,89 @@
   });
 
   // Initialize page
+// Show product enquiry modal
+function showProductEnquiryModal(product) {
+  document.getElementById('productEnquiryName').textContent = `Enquiry for: ${product.name}`;
+  document.getElementById('productEnquiryModal').style.display = 'flex';
+  
+  // Store product data for form submission
+  window.currentProduct = product;
+}
+
+// Send product enquiry email using same functionality as contact form
+async function sendProductEnquiry(e) {
+  e.preventDefault();
+  
+  const form = document.getElementById('productEnquiryForm');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const fileInput = document.getElementById('productAttachments');
+  
+  // Validate file attachments
+  const files = fileInput.files;
+  if (files.length > 3) {
+    alert('Please select a maximum of 3 files');
+    return false;
+  }
+
+  for (let i = 0; i < files.length; i++) {
+    if (files[i].size > 5 * 1024 * 1024) {
+      alert('Each file must be less than 5MB');
+      return false;
+    }
+  }
+
+  // Disable the submit button while sending
+  submitButton.disabled = true;
+  submitButton.textContent = 'Sending...';
+
+  try {
+    // Create FormData object to handle file uploads
+    const formData = new FormData();
+    
+    // Add form fields
+    formData.append('name', form.name.value);
+    formData.append('email', form.email.value);
+    formData.append('phone', form.phone.value);
+    
+    // Enhance message with product information
+    const originalMessage = form.message.value;
+    const productMessage = `Product Enquiry for: ${window.currentProduct.name}\n\n${originalMessage}`;
+    formData.append('message', productMessage);
+    
+    // Add product image URL as additional info
+    formData.append('product_name', window.currentProduct.name);
+    formData.append('product_image_url', window.currentProduct.image_url || 'images/placeholder.jpg');
+    
+    // Add files if any
+    for (let i = 0; i < files.length; i++) {
+      formData.append('attachments[]', files[i]);
+    }
+
+    // Send the email using the same PHP endpoint
+    const response = await fetch('send-email.php', {
+      method: 'POST',
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || 'Failed to send email');
+    }
+
+    alert('Thank you! Your product enquiry has been sent.');
+    form.reset();
+    document.getElementById('productEnquiryModal').style.display = 'none';
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Sorry, there was an error sending your enquiry: ' + error.message);
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = 'Send Enquiry';
+  }
+
+  return false;
+}
   document.addEventListener('DOMContentLoaded', () => {
     loadCategories();
     loadProducts();

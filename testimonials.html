@@ -169,6 +169,55 @@
       font-weight: 700;
       text-align: center;
     }
+    .client-marquee-wrapper {
+      overflow: hidden;
+      width: 100%;
+      background: #111;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .client-marquee {
+      display: flex;
+      align-items: center;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+    }
+    .client-item {
+      min-width: 180px;
+      margin: 0 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .client-item img {
+      max-width: 120px;
+      height: auto;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      background: #222;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .client-name {
+      font-family: 'Playfair Display', serif;
+      color: #d97706;
+      font-size: 1em;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 2px;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (max-width: 700px) {
+      .client-item {
+        min-width: 120px;
+        margin: 0 12px;
+      }
+      .client-marquee {
+        animation-duration: 18s;
+      }
+    }
   </style>
 </head>
 <body>
@@ -199,7 +248,9 @@
         </div>
         <div class="testimonial-content">
           <p>
-            "Absolutely loved the collection and the service! The team helped me choose the perfect chandelier for my living room. Highly recommended for anyone looking for quality lighting."
+            "From living with tubelights for close to 50 years to the new age lighting for the new house was a very pleasant experience taken through by Light&Style.
+
+Our Architect had referred and insisted to visit Light & Style to get a first hand experience. To make the shopping easy with decision-making our In store executive Mr Naveen was very helpful. We were there at the store for about 5 hrs, and Naveen had his suggestions coming in all through. Delivery & Installation was also spot on with their in house electrician Krishnamurthy."
           </p>
           <span class="name">Anonymous</span>
         </div>
@@ -210,7 +261,17 @@
         </div>
         <div class="testimonial-content">
           <p>
-            "Very professional and friendly staff. The boutique has a wide range of products and the ambience is wonderful. Will visit again for sure!"
+            "We are getting the K LITE products through Light & style for the past One and Half year. Overall experience is good. Their Support is good interms of Quality, Service & Material delivery."
+          <span class="name">Anonymous</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-image">
+          <img src="images/testimonial3.jpg" alt="Customer">
+        </div>
+        <div class="testimonial-content">
+          <p>
+            "The service at L&S has been excellent and we appreciate the whole team for their efforts till date."
           </p>
           <span class="name">Anonymous</span>
         </div>
@@ -221,7 +282,21 @@
         </div>
         <div class="testimonial-content">
           <p>
-            "Great experience from start to finish. The installation was quick and the lights look stunning. Thank you Light & Style!"
+            "Loved the lighting collection at Light and Style!
+Beautiful designs, great quality, and seamless service.
+The team really helped me pick lights that matched my home perfectly.
+Highly recommend them for stylish, modern lighting!"
+          </p>
+          <span class="name">Anonymous</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-image">
+          <img src="images/testimonial3.jpg" alt="Customer">
+        </div>
+        <div class="testimonial-content">
+          <p>
+            "The service at L&S has been excellent and we appreciate the whole team for their efforts till date."
           </p>
           <span class="name">Anonymous</span>
         </div>
@@ -232,24 +307,80 @@
 <section class="client-carousel-section">
   <div class="container">
     <h3>Our Clients</h3>
-    <div class="client-carousel">
-      <div class="client-item">
-        <img src="images/client1.png" alt="Client 1 Logo">
-        <span class="client-name">Client One</span>
+    <div class="client-marquee-wrapper">
+      <div class="client-marquee">
+        <div class="client-item">
+          <img src="images/clients/Brigade.png" alt="Client 1 Logo">
+          <span class="client-name">Brigade</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/Prestige.png" alt="Client 2 Logo">
+          <span class="client-name">Prestige</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/Vaswani.png" alt="Client 3 Logo">
+          <span class="client-name">Vaswani</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/OrangeCounty.png" alt="Client 4 Logo">
+          <span class="client-name">Orange County Resort</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/Sobha.png" alt="Client 5 Logo">
+          <span class="client-name">Sobha Builders</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/assertz.png" alt="Client 6 Logo">
+          <span class="client-name">Assetz Group</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/WhiteMeadows.jpg" alt="Client 7 Logo">
+          <span class="client-name">White Meadows</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/Subha.jpg" alt="Client 8 Logo">
+          <span class="client-name">Subha Builders</span>
+        </div>
+        <div class="client-item">
+          <span class="client-name" style="font-size:1.2em;color:#e9bb24;">And there's more</span>
+        </div>
+        <!-- Repeat for seamless scroll -->
+        <div class="client-item">
+          <img src="images/clients/Brigade.png" alt="Client 1 Logo">
+          <span class="client-name">Brigade</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/Prestige.png" alt="Client 2 Logo">
+          <span class="client-name">Prestige</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/Vaswani.png" alt="Client 3 Logo">
+          <span class="client-name">Vaswani</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/OrangeCounty.png" alt="Client 4 Logo">
+          <span class="client-name">Orange County Resort</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/Sobha.png" alt="Client 5 Logo">
+          <span class="client-name">Sobha builders</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/assertz.png" alt="Client 6 Logo">
+          <span class="client-name">Assetz group</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/WhiteMeadows.jpg" alt="Client 7 Logo">
+          <span class="client-name">White Meadows</span>
+        </div>
+        <div class="client-item">
+          <img src="images/clients/subha.jpg" alt="Client 8 Logo">
+          <span class="client-name">Subha builders</span>
+        </div>
+        <div class="client-item">
+          <span class="client-name" style="font-size:1.2em;color:#e9bb24;">And there's more</span>
+        </div>
       </div>
-      <div class="client-item">
-        <img src="images/client2.png" alt="Client 2 Logo">
-        <span class="client-name">Client Two</span>
-      </div>
-      <div class="client-item">
-        <img src="images/client3.png" alt="Client 3 Logo">
-        <span class="client-name">Client Three</span>
-      </div>
-      <div class="client-item">
-        <img src="images/client4.png" alt="Client 4 Logo">
-        <span class="client-name">Client Four</span>
-      </div>
-      <!-- Add more client items as needed -->
     </div>
   </div>
 </section>

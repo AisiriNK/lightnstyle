@@ -1,16 +1,7 @@
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-hea// Add attachments if any
-if (!empty($attachments)) {
-    $email_data['attachment'] = array_map(function($attachment) {
-        return [
-            'name' => $attachment['name'],
-            'content' => $attachment['content'],
-            'type' => mime_content_type($attachment['name'])
-        ];
-    }, $attachments);
-}'Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 // Check if it's a POST request
@@ -24,14 +15,19 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $data = [];
 $attachments = [];
 
-if (isset($_POST['formData'])) {
-    $data = json_decode($_POST['formData'], true);
-    if (!$data) {
+// Handle both JSON and form data
+$contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+if (strpos($contentType, 'application/json') !== false) {
+    // Handle JSON data
+    $input = json_decode(file_get_contents('php://input'), true);
+    if (!$input) {
         http_response_code(400);
-        echo json_encode(['error' => 'Invalid form data']);
+        echo json_encode(['error' => 'Invalid JSON data']);
         exit;
     }
+    $data = $input;
 } else {
+    // Handle form data
     $data = $_POST;
 }
 
@@ -69,7 +65,7 @@ if (isset($_FILES['attachments'])) {
 }
 
 // Brevo API configuration
-$api_key = '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';
+$api_key = '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';
 $api_url = 'https://api.brevo.com/v3/smtp/email';
 
 // Prepare email data
@@ -98,9 +94,6 @@ $email_data = [
         'attachments' => $attachments,
         'attachmentsLength' => count($attachments)
     ]
-            </body>
-        </html>
-    "
 ];
 
 // Add attachments if any
