@@ -63,10 +63,11 @@ if (isset($_FILES['attachments'])) {
         ];
     }
 }
+$env = parse_ini_file(__DIR__ . '/.env'); // parses KEY=VALUE pairs
+$api_key = $env['BREVO_API_KEY'];
 
 // Brevo API configuration
-$api_key = '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';
-$api_url = 'https://api.brevo.com/v3/smtp/email';
+$api_url = $env['BREVO_API_URL'];
 
 // Prepare email data
 $email_data = [
@@ -92,6 +93,7 @@ $email_data = [
         'phone' => $_POST['phone'] ?? '',
         'message' => $_POST['message'] ?? '',
         'attachmentsCount' => count($attachments)
+
     ]
 ];
 
