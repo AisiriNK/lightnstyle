@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Outdoor - Light & Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+      background: #111;
+      color: #eee;
+    }
+
+    header {
+      background: #000;
+      color: #fff;
+      padding: 15px 0;
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1300px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #d97706;
+      font-weight: 700;
+    }
+
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #d97706;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #d97706;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+    }
+
+    .product-card {
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+      aspect-ratio: 3 / 4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Modal overlay */
+    .specs-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.specs-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.specs-content img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.close-overlay {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+
+    .specs-image {
+      flex: 1 1 300px;
+    }
+
+    .specs-image img {
+      width: 100%;
+      height: auto;
+      max-height: 450px;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .specs-details {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .specs-details h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #d97706;
+    }
+
+    .specs-details p {
+      font-size: 16px;
+      margin: 8px 0;
+      color: #ddd;
+    }
+
+    .close-overlay {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      color: #eee;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    @media (max-width: 992px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .specs-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .specs-image img {
+        max-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container">
+    <div class="logo">
+      <img src="images/logo.jpg" alt="Brand Logo">
+      <span class="brand-name">Light & Style</span>
+    </div>
+    <nav>
+      <a href="index.html#projects">Back to Projects</a>
+      <a href="index.html#contact">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<section class="category-detail">
+  <div class="container">
+    <h3>Outdoor Projects</h3>
+    <div class="products-grid">
+      <!-- Product Card 1 -->
+      <div class="product-card" data-img="images/outdoor/o1.jpeg"></div>
+
+      <div class="product-card" data-img="images/outdoor/o2.jpeg"></div>
+
+      <div class="product-card" data-img="images/outdoor/o3.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o4.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o5.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o6.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o7.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o8.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o9.jpeg"></div>
+    <div class="product-card" data-img="images/outdoor/o10.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o11.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o12.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o13.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o14.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o15.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o16.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o17.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o18.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o19.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o20.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o21.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o22.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o23.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o24.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o25.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o26.jpeg"></div>
+      <div class="product-card" data-img="images/outdoor/o27.jpeg"></div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Overlay Modal -->
+<div class="specs-overlay" id="specsOverlay">
+  <div class="specs-content">
+    <span class="close-overlay" id="closeOverlay">&times;</span>
+    <div class="specs-image">
+      <img id="specsImage" src="" alt="Outdoor Project" />
+    </div>
+  </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const img = card.getAttribute('data-img');
+      document.getElementById('specsImage').src = img;
+      document.getElementById('specsOverlay').style.display = 'flex';
+    });
+  });
+
+  document.getElementById('closeOverlay').addEventListener('click', () => {
+    document.getElementById('specsOverlay').style.display = 'none';
+    document.getElementById('specsImage').src = '';
+  });
+});
+</script>
+<!-- Contact & Enquiry Section -->
+<section id="contact" class="contact-enquiry">
+  <div class="container contact-enquiry-container">
+
+    <!-- Left Column -->
+    <div class="contact-left">
+      <div class="shop-brief">
+        <h3>About Light N Style</h3>
+        <p>
+          Light N Style is a family-run lighting boutique in the heart of Bangalore, offering a curated selection of elegant lighting solutions for homes and businesses. With decades of experience, we pride ourselves on quality, service, and a personal touch.
+        </p>
+      </div>
+      <div class="enquiry-form">
+        <h3>Send Enquiry</h3>
+        <form id="enquiryForm" onsubmit="return sendEmail(event)">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="text" name="phone" placeholder="Phone Number" />
+          <textarea name="message" placeholder="Your Message"></textarea>
+          <div class="file-input">
+            <input type="file" id="attachments" name="attachments" multiple />
+            <small>Attach up to 3 files (max 5MB each)</small>
+          </div>
+          <button type="submit">Send</button>
+        </form>
+
+        <div class="form-status"></div>
+
+<script>
+async function sendEmail(e) {
+      e.preventDefault();
+      
+      const form = document.getElementById('enquiryForm');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const fileInput = document.getElementById('attachments');
+      
+      // Validate file attachments
+      const files = fileInput.files;
+      if (files.length > 3) {
+        alert('Please select a maximum of 3 files');
+        return false;
+      }
+
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].size > 5 * 1024 * 1024) {
+          alert('Each file must be less than 5MB');
+          return false;
+        }
+      }
+
+      // Disable the submit button while sending
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      try {
+        // Create FormData object to handle file uploads
+        const formData = new FormData();
+        
+        // Add form fields directly to FormData
+        formData.append('name', form.name.value);
+        formData.append('email', form.email.value);
+        formData.append('phone', form.phone.value);
+        formData.append('message', form.message.value);
+        
+        // Add files if any
+        const files = fileInput.files;
+        for (let i = 0; i < files.length; i++) {
+          formData.append('attachments[]', files[i]);
+        }
+
+        // Send the email using our PHP endpoint
+        const response = await fetch('send-email.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to send email');
+        }
+
+        alert('Thank you! Your message has been sent.');
+        form.reset();
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Sorry, there was an error sending your message: ' + error.message);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send';
+      }
+
+      return false;
+    }
+
+
+</script>
+
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="contact-right">
+      <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>
+          120/5, Infantry Road, Bangalore - 560001<br>
+          Phone: 080-41130090 / 41132190<br>
+          Email: neha@lightnstyle.in
+        </p>
+      </div>
+      <div class="family-photo">
+        <h3>Meet Our Family</h3>
+        <img src="images/family.jpeg" alt="Light N Style Family">
+      </div>
+    </div>
+
+  </div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Insert images into each product card
+  document.querySelectorAll('.product-card').forEach(card => {
+    const imgSrc = card.getAttribute('data-img');
+    if (imgSrc) {
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      img.alt = "Outdoor Project";
+      card.appendChild(img);
+    }
+
+    // Click to open overlay
+    card.addEventListener('click', () => {
+      document.getElementById('specsImage').src = imgSrc;
+      document.getElementById('specsOverlay').style.display = 'flex';
+    });
+  });
+
+  // Close overlay
+  document.getElementById('closeOverlay').addEventListener('click', () => {
+    document.getElementById('specsOverlay').style.display = 'none';
+    document.getElementById('specsImage').src = '';
+  });
+});
+</script>
+
+</body>
+</html>

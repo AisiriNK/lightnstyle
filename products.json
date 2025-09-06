@@ -1,0 +1,424 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "GLL-0898-80",
+      "category": "Wall Light",
+      "material": "Brass+Mirror+Natural Stone",
+      "wattage": "LED",
+      "size": "Dia800mm",
+      "finish": "Brass Gold",
+      "image_url": "images/products/GLL-0898-80.jpg"
+    },
+    {
+      "id": 2,
+      "name": "GLL-3983 Rose/Leaf",
+      "category": "Wall Light",
+      "material": "Brass+Stone",
+      "wattage": "LED",
+      "size": "S/M/L",
+      "finish": "Brass Gold",
+      "image_url": "images/products/GLL-3983.jpg"
+    },
+    {
+      "id": 3,
+      "name": "HCT2823",
+      "category": "Wall Light",
+      "material": "Resin Body",
+      "wattage": "G9",
+      "size": "L240mm W130mm",
+      "finish": "Off White, Fruit Green, Orange",
+      "image_url": "images/products/HCT2823.jpg"
+    },
+    {
+      "id": 4,
+      "name": "HCT2614",
+      "category": "Wall Light",
+      "material": "Resin Body",
+      "wattage": "G9",
+      "size": "L140mm W16.5mm",
+      "finish": "Orange, Gray, Green",
+      "image_url": "images/products/HCT2614.jpg"
+    },
+    {
+      "id": 5,
+      "name": "HCT2825",
+      "category": "Wall Light",
+      "material": "Resin Body",
+      "wattage": "G9",
+      "size": "Dia100mm H200mm",
+      "finish": "Black, Cream",
+      "image_url": "images/products/HCT2825.jpg"
+    },
+    {
+      "id": 6,
+      "name": "2847",
+      "category": "Wall Light",
+      "material": "Ceramic",
+      "wattage": "LED 3 in 1",
+      "size": "Dia270mm",
+      "finish": "White + Black",
+      "image_url": "images/products/2847.jpg"
+    },
+    {
+      "id": 7,
+      "name": "ALS257/B1",
+      "category": "Wall Light",
+      "material": "Wood + Metal",
+      "wattage": "LED",
+      "size": "H580mm W160mm",
+      "finish": "Gold, Black",
+      "image_url": "images/products/ALS257-B1.jpg"
+    },
+    {
+      "id": 8,
+      "name": "A-3",
+      "category": "Wall Light",
+      "material": "Wood + Metal",
+      "wattage": "G14 Holder",
+      "size": "H530mm W130mm",
+      "finish": "NA",
+      "image_url": "images/products/A-3.jpg"
+    },
+    {
+      "id": 9,
+      "name": "BD4003A",
+      "category": "Wall Light",
+      "material": "Concrete",
+      "wattage": "G4",
+      "size": "H200mm L300mm",
+      "finish": "Gray",
+      "image_url": "images/products/BD4003A.jpg"
+    },
+    {
+      "id": 10,
+      "name": "BD4004A",
+      "category": "Wall Light",
+      "material": "Concrete",
+      "wattage": "G4",
+      "size": "H300mm W300mm",
+      "finish": "Gray",
+      "image_url": "images/products/BD4004A.jpg"
+    },
+    {
+      "id": 11,
+      "name": "GLS-EB 247",
+      "category": "Wall Light",
+      "material": "Aluminum",
+      "wattage": "LED",
+      "size": "600mm / 800mm / 1200mm",
+      "finish": "Black Brass Finish",
+      "image_url": "images/products/GLS-EB-247.jpg"
+    },
+    {
+      "id": 12,
+      "name": "ALSYB",
+      "category": "Wall Light",
+      "material": "Stainless Steel + Fiberglass",
+      "wattage": "LED",
+      "size": "D300mm / D600mm / D800mm",
+      "finish": "Black",
+      "image_url": "images/products/ALSYB.jpg"
+    },
+    {
+      "id": 13,
+      "name": "YB1200",
+      "category": "Wall Light",
+      "material": "Stainless Steel + Fiberglass",
+      "wattage": "LED",
+      "size": "1200mm",
+      "finish": "Black",
+      "image_url": "images/products/YB1200.jpg"
+    },
+    {
+      "id": 14,
+      "name": "B6202",
+      "category": "Wall Light",
+      "material": "Metal + Glass",
+      "wattage": "G9",
+      "size": "W140mm H620mm",
+      "finish": "Golden",
+      "image_url": "images/products/B6202.jpg"
+    },
+    {
+      "id": 15,
+      "name": "1969-1",
+      "category": "Wall Light",
+      "material": "Marble",
+      "wattage": "LED",
+      "size": "Plate Dia160mm",
+      "finish": "Golden + White",
+      "image_url": "images/products/1969-1.jpg"
+    },
+    {
+      "id": 16,
+      "name": "1969-2",
+      "category": "Wall Light",
+      "material": "Marble",
+      "wattage": "LED",
+      "size": "Plate H200mm Dia160mm",
+      "finish": "Golden + White",
+      "image_url": "images/products/1969-2.jpg"
+    },
+    {
+      "id": 17,
+      "name": "1969-3",
+      "category": "Wall Light",
+      "material": "Marble",
+      "wattage": "LED",
+      "size": "Plate H350mm Dia160mm",
+      "finish": "Golden + White",
+      "image_url": "images/products/1969-3.jpg"
+    },
+    {
+      "id": 18,
+      "name": "1969-5",
+      "category": "Wall Light",
+      "material": "Marble",
+      "wattage": "LED",
+      "size": "Plate H560mm Dia160mm",
+      "finish": "Golden + White",
+      "image_url": "images/products/1969-5.jpg"
+    },
+    {
+      "id": 19,
+      "name": "ALS264-B2",
+      "category": "Wall Light",
+      "material": "Metal + Glass",
+      "wattage": "LED",
+      "size": "L400mm",
+      "finish": "Gun Black, Golden",
+      "image_url": "images/products/ALS264-B2.jpg"
+    },
+    {
+      "id": 20,
+      "name": "B8008",
+      "category": "Wall Light",
+      "material": "Metal + Glass",
+      "wattage": "G9",
+      "size": "H300mm W230mm",
+      "finish": "Red",
+      "image_url": "images/products/B8008.jpg"
+    },
+    {
+      "id": 21,
+      "name": "LM-X9069",
+      "category": "Ceiling Light",
+      "material": "Metal + Glass",
+      "wattage": "27W, 54W, 60W",
+      "size": "D370mm / D470mm / D570mm",
+      "finish": "Wooden",
+      "image_url": "images/products/LM-X9069.jpeg"
+    },
+    {
+      "id": 22,
+      "name": "LM-X9024-30",
+      "category": "Ceiling Light",
+      "material": "Metal",
+      "wattage": "7W",
+      "size": "D300mm H100mm",
+      "finish": "Walnut",
+      "image_url": "images/products/LM-X9024-30.jpeg"
+    },
+    {
+      "id": 23,
+      "name": "LM8993",
+      "category": "Ceiling Light",
+      "material": "Metal + Acrylic",
+      "wattage": "27W, 36W",
+      "size": "D400mm H70mm / D500mm H70mm",
+      "finish": "Yellow + Cream",
+      "image_url": "images/products/LM8993.jpeg"
+    },
+    {
+      "id": 24,
+      "name": "LM-X9010",
+      "category": "Ceiling Light",
+      "material": "Metal + Glass",
+      "wattage": "NA",
+      "size": "D320mm H100mm / D470mm H100mm",
+      "finish": "Walnut",
+      "image_url": "images/products/LM-X9010.jpeg"
+    },
+    {
+      "id": 25,
+      "name": "LM9082-50B",
+      "category": "Ceiling Light",
+      "material": "Metal + Acrylic",
+      "wattage": "36W",
+      "size": "D500mm H70mm",
+      "finish": "Walnut",
+      "image_url": "images/products/LM9082-50B.jpeg"
+    },
+    {
+      "id": 26,
+      "name": "LM9065",
+      "category": "Ceiling Light",
+      "material": "NA",
+      "wattage": "NA",
+      "size": "D400mm / D500mm",
+      "finish": "Walnut",
+      "image_url": "images/products/LM9065.jpeg"
+    },
+    {
+      "id": 27,
+      "name": "LM9040-1",
+      "category": "Ceiling Light",
+      "material": "Wood + Acrylic",
+      "wattage": "NA",
+      "size": "370mm x 370mm",
+      "finish": "Wooden + White",
+      "image_url": "images/products/LM9040-1.jpeg"
+    },
+    {
+      "id": 28,
+      "name": "A-2",
+      "category": "Pendant",
+      "material": "Wood + Metal",
+      "wattage": "NA",
+      "size": "Dia 350mm H300mm",
+      "finish": "As per image",
+      "image_url": "images/products/A-2.jpeg"
+    },
+    {
+      "id": 29,
+      "name": "HCT2370",
+      "category": "Ceiling Light",
+      "material": "Acrylic",
+      "wattage": "36W",
+      "size": "Dia 450mm H75mm",
+      "finish": "Green, Off White",
+      "image_url": "images/products/HCT2370.jpeg"
+    },
+    {
+      "id": 30,
+      "name": "LM712",
+      "category": "Ceiling Light",
+      "material": "Mild Steel",
+      "wattage": "24W, 36W",
+      "size": "Dia 320mm / 520mm",
+      "finish": "Black, White",
+      "image_url": "images/products/LM712.jpeg"
+    },
+    {
+      "id": 31,
+      "name": "LM3080",
+      "category": "Ceiling Light",
+      "material": "Wood + Acrylic + Mild Steel",
+      "wattage": "18W, 24W, 36W",
+      "size": "Dia 300mm / 400mm / 500mm",
+      "finish": "White, Gray, Green, Yellow",
+      "image_url": "images/products/LM3080.jpeg"
+    },
+    {
+      "id": 32,
+      "name": "LM8302",
+      "category": "Ceiling Light",
+      "material": "Acrylic + Metal",
+      "wattage": "21W, 36W, 60W",
+      "size": "33 / 43 / 53 cm",
+      "finish": "White + Wooden",
+      "image_url": "images/products/LM8302.jpeg"
+    },
+    {
+      "id": 33,
+      "name": "LM1054-6",
+      "category": "Pendant",
+      "material": "Wood + Mild Steel",
+      "wattage": "NA",
+      "size": "D750mm H280mm",
+      "finish": "Wooden + White",
+      "image_url": "images/products/LM1054-6.jpeg"
+    },
+    {
+      "id": 34,
+      "name": "LM412",
+      "category": "Ceiling Light",
+      "material": "Wood + Leather",
+      "wattage": "27W, 36W, 84W",
+      "size": "42 / 56 / 72 cm",
+      "finish": "Light Wooden",
+      "image_url": "images/products/LM412.jpeg"
+    },
+    {
+      "id": 35,
+      "name": "LM9253",
+      "category": "Ceiling Light",
+      "material": "Iron + Wood",
+      "wattage": "30W",
+      "size": "Dia 500mm",
+      "finish": "Wooden",
+      "image_url": "images/products/LM9253.jpeg"
+    },
+    {
+      "id": 36,
+      "name": "HCT1269-40",
+      "category": "Ceiling Light",
+      "material": "Mild Steel + Acrylic",
+      "wattage": "24W",
+      "size": "Dia 400mm",
+      "finish": "White",
+      "image_url": "images/products/HCT1269-40.jpeg"
+    },
+    {
+      "id": 37,
+      "name": "HCT2431",
+      "category": "Ceiling Light",
+      "material": "Mild Steel + Silicone",
+      "wattage": "28W, 52W",
+      "size": "L600mm / 1200mm",
+      "finish": "Black + White",
+      "image_url": "images/products/HCT2431.jpeg"
+    },
+    {
+      "id": 38,
+      "name": "LM8952-50",
+      "category": "Ceiling Light",
+      "material": "Wood + Acrylic",
+      "wattage": "48W",
+      "size": "Dia 500mm",
+      "finish": "Wooden + White",
+      "image_url": "images/products/LM8952-50.jpeg"
+    },
+    {
+      "id": 39,
+      "name": "LM8962",
+      "category": "Ceiling Light",
+      "material": "Acrylic",
+      "wattage": "27W, 36W",
+      "size": "400mm / 500mm",
+      "finish": "Wooden",
+      "image_url": "images/products/LM8962.jpeg"
+    },
+    {
+      "id": 40,
+      "name": "LM605",
+      "category": "Ceiling Light",
+      "material": "Metal + Acrylic",
+      "wattage": "27W, 36W",
+      "size": "400mm / 500mm",
+      "finish": "White + Wood color",
+      "image_url": "images/products/LM605.jpeg"
+    },
+    {
+      "id": 41,
+      "name": "LM8958",
+      "category": "Ceiling Light",
+      "material": "Acrylic + Mild Steel",
+      "wattage": "60W",
+      "size": "H500mm W400mm",
+      "finish": "NA",
+      "image_url": "images/products/LM8958.jpeg"
+    },
+    {
+      "id": 42,
+      "name": "X2222",
+      "category": "Chandelier",
+      "material": "Mild Steel + Glass",
+      "wattage": "NA",
+      "size": "Dia 850mm",
+      "finish": "Golden",
+      "image_url": "images/products/X2222.jpeg"
+    }
+  ]
+}

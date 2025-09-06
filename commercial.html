@@ -297,6 +297,106 @@
       <div class="product-card" data-img="images\commercial\c15.jpeg">
         <img src="images\commercial\c15.jpeg" alt="Commercial 11">
       </div>
+
+      <div class="product-card" data-img="images/commercial/c16.jpeg">
+        <img src="images/commercial/c16.jpeg" alt="Commercial 16">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c17.jpeg">
+        <img src="images/commercial/c17.jpeg" alt="Commercial 17">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c18.jpeg">
+        <img src="images/commercial/c18.jpeg" alt="Commercial 18">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c19.jpeg">
+        <img src="images/commercial/c19.jpeg" alt="Commercial 19">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c20.jpeg">
+        <img src="images/commercial/c20.jpeg" alt="Commercial 20">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c21.jpeg">
+        <img src="images/commercial/c21.jpeg" alt="Commercial 21">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c22.jpeg">
+        <img src="images/commercial/c22.jpeg" alt="Commercial 22">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c23.jpeg">
+        <img src="images/commercial/c23.jpeg" alt="Commercial 23">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c24.jpeg">
+        <img src="images/commercial/c24.jpeg" alt="Commercial 24">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c25.jpeg">
+        <img src="images/commercial/c25.jpeg" alt="Commercial 25">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c26.jpeg">
+        <img src="images/commercial/c26.jpeg" alt="Commercial 26">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c27.jpeg">
+        <img src="images/commercial/c27.jpeg" alt="Commercial 27">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c28.jpeg">
+        <img src="images/commercial/c28.jpeg" alt="Commercial 28">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c29.jpeg">
+        <img src="images/commercial/c29.jpeg" alt="Commercial 29">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c30.jpeg">
+        <img src="images/commercial/c30.jpeg" alt="Commercial 30">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c31.jpeg">
+        <img src="images/commercial/c31.jpeg" alt="Commercial 31">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c32.jpeg">
+        <img src="images/commercial/c32.jpeg" alt="Commercial 32">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c33.jpeg">
+        <img src="images/commercial/c33.jpeg" alt="Commercial 33">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c34.jpeg">
+        <img src="images/commercial/c34.jpeg" alt="Commercial 34">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c35.jpeg">
+        <img src="images/commercial/c35.jpeg" alt="Commercial 35">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c36.jpeg">
+        <img src="images/commercial/c36.jpeg" alt="Commercial 36">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c37.jpeg">
+        <img src="images/commercial/c37.jpeg" alt="Commercial 37">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c38.jpeg">
+        <img src="images/commercial/c38.jpeg" alt="Commercial 38">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c39.jpeg">
+        <img src="images/commercial/c39.jpeg" alt="Commercial 39">
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c40.jpeg">
+        <img src="images/commercial/c40.jpeg" alt="Commercial 40">
+      </div>
     </div>
   </div>
 </section>
@@ -333,28 +433,120 @@ document.getElementById('closeOverlay').addEventListener('click', () => {
   });
 </script>
 <!-- Contact & Enquiry Section -->
-<section class="contact-enquiry">
+<section id="contact" class="contact-enquiry">
   <div class="container contact-enquiry-container">
-    
-    <!-- Enquiry Form -->
-    <div class="enquiry-form">
-      <h3>Send Enquiry</h3>
-      <form action="sendmail.php" method="POST">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <input type="text" placeholder="Phone Number" />
-        <textarea placeholder="Your Message"></textarea>
-        <button type="submit">Send</button>
-      </form>
+
+    <!-- Left Column -->
+    <div class="contact-left">
+      <div class="shop-brief">
+        <h3>About Light N Style</h3>
+        <p>
+          Light N Style is a family-run lighting boutique in the heart of Bangalore, offering a curated selection of elegant lighting solutions for homes and businesses. With decades of experience, we pride ourselves on quality, service, and a personal touch.
+        </p>
+      </div>
+      <div class="enquiry-form">
+        <h3>Send Enquiry</h3>
+        <form id="enquiryForm" onsubmit="return sendEmail(event)">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="text" name="phone" placeholder="Phone Number" />
+          <textarea name="message" placeholder="Your Message"></textarea>
+          <div class="file-input">
+            <input type="file" id="attachments" name="attachments" multiple />
+            <small>Attach up to 3 files (max 5MB each)</small>
+          </div>
+          <button type="submit">Send</button>
+        </form>
+
+        <div class="form-status"></div>
+
+<script>
+async function sendEmail(e) {
+      e.preventDefault();
+      
+      const form = document.getElementById('enquiryForm');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const fileInput = document.getElementById('attachments');
+      
+      // Validate file attachments
+      const files = fileInput.files;
+      if (files.length > 3) {
+        alert('Please select a maximum of 3 files');
+        return false;
+      }
+
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].size > 5 * 1024 * 1024) {
+          alert('Each file must be less than 5MB');
+          return false;
+        }
+      }
+
+      // Disable the submit button while sending
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      try {
+        // Create FormData object to handle file uploads
+        const formData = new FormData();
+        
+        // Add form fields directly to FormData
+        formData.append('name', form.name.value);
+        formData.append('email', form.email.value);
+        formData.append('phone', form.phone.value);
+        formData.append('message', form.message.value);
+        
+        // Add files if any
+        const files = fileInput.files;
+        for (let i = 0; i < files.length; i++) {
+          formData.append('attachments[]', files[i]);
+        }
+
+        // Send the email using our PHP endpoint
+        const response = await fetch('send-email.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to send email');
+        }
+
+        alert('Thank you! Your message has been sent.');
+        form.reset();
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Sorry, there was an error sending your message: ' + error.message);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send';
+      }
+
+      return false;
+    }
+
+
+</script>
+
+      </div>
     </div>
 
-    <!-- Contact Info -->
-    <div class="contact-info">
-      <h3>Contact Us</h3>
-      <p>Light N Style<br>
-      120/5, Infantry Road, Bangalore - 560001<br>
-      Phone: 080-41130090 / 41132190<br>
-      Email: neha@lightnstyle.in</p>
+    <!-- Right Column -->
+    <div class="contact-right">
+      <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>
+          120/5, Infantry Road, Bangalore - 560001<br>
+          Phone: 080-41130090 / 41132190<br>
+          Email: neha@lightnstyle.in
+        </p>
+      </div>
+      <div class="family-photo">
+        <h3>Meet Our Family</h3>
+        <img src="images/family.jpeg" alt="Light N Style Family">
+      </div>
     </div>
 
   </div>

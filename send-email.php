@@ -91,8 +91,7 @@ $email_data = [
         'email' => $_POST['email'] ?? '',
         'phone' => $_POST['phone'] ?? '',
         'message' => $_POST['message'] ?? '',
-        'attachments' => $attachments,
-        'attachmentsLength' => count($attachments)
+        'attachmentsCount' => count($attachments)
     ]
 ];
 

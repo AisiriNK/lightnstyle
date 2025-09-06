@@ -387,8 +387,8 @@
     <span id="closeCatalogueOverlay" style="position:absolute; top:18px; right:24px; font-size:28px; cursor:pointer; color:#fff;">&times;</span>
     <h2 style="color:#d97706; text-align:center; margin-bottom:24px; font-family:'Playfair Display',serif;">Catalogues</h2>
     <ul style="list-style:none; padding:0; margin:0;">
-      <li style="margin-bottom:18px;"><a href="https://collection.cloudinary.com/dm19o9hcn/f01671c44ca7b2951d4b3ab959f0d5cf?" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Decorative Catalogue</a></li>
-      <li style="margin-bottom:18px;"><a href="https://collection.cloudinary.com/dm19o9hcn/87d64fdc2c182d21a3f65e5492986b78" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Commercial Catalogue</a></li>
+      <li style="margin-bottom:18px;"><a href="https://drive.google.com/file/d/1P_wM7bf7-xdoZBrsFacEvKiP8NNx4Uxr/view?usp=drive_link" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Decorative Catalogue</a></li>
+      <li style="margin-bottom:18px;"><a href="https://drive.google.com/file/d/1mqrpIbb3mg_Kd7eo3edfmqZhJUdtABHg/view?usp=drive_link" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Commercial Catalogue</a></li>
       <li style="margin-bottom:18px;"><a href="catalogues/outdoor.pdf" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Outdoor Catalogue</a></li>
       <li style="margin-bottom:18px;"><a href="catalogues/all-products.pdf" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">All Products Catalogue</a></li>
     </ul>
@@ -463,11 +463,12 @@
   // Load categories from database
   async function loadCategories() {
     try {
-      const response = await fetch('api/categories-test.php');
+      const response = await fetch('products.json');
       const data = await response.json();
-      
-      if (data.success) {
-        data.categories.forEach(category => {
+
+      if (data.products) {
+        const categories = [...new Set(data.products.map(p => p.category))];
+        categories.forEach(category => {
           const option = document.createElement('option');
           option.value = category;
           option.textContent = category;
@@ -484,32 +485,21 @@
     try {
       loadingMessage.style.display = 'block';
       productsGrid.innerHTML = '';
-      
-  const params = new URLSearchParams();
-  if (category) params.append('category', category);
-      
-      // Try database API first, fallback to test API
-      let response;
-      try {
-        response = await fetch(`api/products.php?${params}`);
-        if (!response.ok) {
-          throw new Error('Database API failed');
-        }
-      } catch (error) {
-        console.log('Database API failed, using test data:', error.message);
-        response = await fetch(`api/products-test.php?${params}`);
-      }
+
+      const response = await fetch('products.json');
       const data = await response.json();
-      
-      if (data.success) {
+
+      if (data.products) {
         allProducts = data.products;
-        productNames = data.products.map(product => product.name);
-        displayProducts(data.products);
+        let filtered = allProducts;
+        if (category) {
+          filtered = filtered.filter(product => product.category === category);
+        }
+        displayProducts(filtered);
       } else {
         productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products</p>';
       }
     } catch (error) {
-      console.error('Error loading products:', error);
       productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products</p>';
     } finally {
       loadingMessage.style.display = 'none';
@@ -658,8 +648,20 @@ async function sendProductEnquiry(e) {
     
     // Add product image URL as additional info
     formData.append('product_name', window.currentProduct.name);
-    formData.append('product_image_url', window.currentProduct.image_url || 'images/placeholder.jpg');
+    //formData.append('product_image_url', window.currentProduct.image_url || 'images/placeholder.jpg');
     
+    // Convert product image URL into actual file
+    if (window.currentProduct.image_url) {
+      try {
+        const response = await fetch(window.currentProduct.image_url);
+        const blob = await response.blob();
+        const file = new File([blob], "product-image.jpg", { type: blob.type });
+        formData.append('attachments[]', file);
+      } catch (err) {
+        console.error("Failed to fetch product image:", err);
+      }
+  }
+
     // Add files if any
     for (let i = 0; i < files.length; i++) {
       formData.append('attachments[]', files[i]);
@@ -747,47 +749,48 @@ async function sendProductEnquiry(e) {
 
     <script>
       // Function to send email
-      async function sendEmail(e) {
-        e.preventDefault();
-        
-        const form = document.getElementById('enquiryForm');
-        const submitButton = form.querySelector('button[type="submit"]');
-        const fileInput = document.getElementById('attachments');
-        
-        // Validate file attachments
-        const files = fileInput.files;
-        if (files.length > 3) {
-          alert('Please select a maximum of 3 files');
-          return false;
-        }
+      // Function to send email (Contact Enquiry)
+async function sendEmail(e) {
+  e.preventDefault();
 
-        for (let i = 0; i < files.length; i++) {
-          if (files[i].size > 5 * 1024 * 1024) {
-            alert('Each file must be less than 5MB');
-            return false;
-          }
-        }
-  
+  const form = document.getElementById('enquiryForm');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const fileInput = document.getElementById('attachments');
+
+  // Validate file attachments
+  const files = fileInput.files;
+  if (files.length > 3) {
+    alert('Please select a maximum of 3 files');
+    return false;
+  }
+  for (let i = 0; i < files.length; i++) {
+    if (files[i].size > 5 * 1024 * 1024) {
+      alert('Each file must be less than 5MB');
+      return false;
+    }
+  }
+
   // Disable the submit button while sending
   submitButton.disabled = true;
   submitButton.textContent = 'Sending...';
 
   try {
-    // Prepare form data
-    const formData = {
-      name: form.name.value,
-      email: form.email.value,
-      phone: form.phone.value,
-      message: form.message.value
-    };
+    // Build FormData
+    const formData = new FormData();
+    formData.append('name', form.name.value);
+    formData.append('email', form.email.value);
+    formData.append('phone', form.phone.value);
+    formData.append('message', form.message.value);
 
-    // Send the email using our PHP endpoint
+    // Add file attachments
+    for (let i = 0; i < files.length; i++) {
+      formData.append('attachments[]', files[i]);
+    }
+
+    // Send to PHP
     const response = await fetch('send-email.php', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData)
+      body: formData
     });
 
     const result = await response.json();
@@ -800,7 +803,7 @@ async function sendProductEnquiry(e) {
     form.reset();
   } catch (error) {
     console.error('Error:', error);
-    alert('Sorry, there was an error sending your message. Please try again.');
+    alert('Sorry, there was an error sending your message: ' + error.message);
   } finally {
     submitButton.disabled = false;
     submitButton.textContent = 'Send';
@@ -808,6 +811,7 @@ async function sendProductEnquiry(e) {
 
   return false;
 }
+
     </script>
 </body>
 </html>
