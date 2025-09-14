@@ -419,6 +419,586 @@
       "size": "Dia 850mm",
       "finish": "Golden",
       "image_url": "images/products/X2222.jpeg"
+    },
+    {
+      "id": 43,
+      "name": "3129-H",
+      "category": "Chandelier",
+      "material": "Glass + Metal",
+      "wattage": "LED",
+      "size": "400/700/1100MM",
+      "finish": "Golden",
+      "image_url": "images/products/3129-H.jpeg"
+    },
+    {
+      "id": 44,
+      "name": "MM6530",
+      "category": "Chandelier",
+      "material": "Neon + Metal",
+      "wattage": "LED",
+      "size": "H1000mm",
+      "finish": "White+Golden",
+      "image_url": "images/products/MM6530.jpeg"
+    },
+    {
+      "id": 45,
+      "name": "GWTT01-25",
+      "category": "Chandelier",
+      "material": "Glass",
+      "wattage": "LED",
+      "size": "NA",
+      "finish": "Brass",
+      "image_url": "images/products/GWTT01-25.jpeg"
+    },
+    {
+      "id": 46,
+      "name": "GWTT02-18",
+      "category": "Chandelier",
+      "material": "Glass",
+      "wattage": "LED RGB",
+      "size": "NA",
+      "finish": "Brass",
+      "image_url": "images/products/GWTT02-18.jpeg"
+    },
+    {
+      "id": 47,
+      "name": "HCT1420",
+      "category": "Chandelier",
+      "material": "Metal + Acrylic",
+      "wattage": "51W LED",
+      "size": "L1200MM",
+      "finish": "Black",
+      "image_url": "images/products/HCT1420.jpeg"
+    },
+    {
+      "id": 48,
+      "name": "HCT-9-017-20 Head",
+      "category": "Chandelier",
+      "material": "Metal + Glass",
+      "wattage": "G9 Holder",
+      "size": "Dia900mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT-9-017-20 Head.jpeg"
+    },
+    {
+      "id": 49,
+      "name": "HCT-9-016-10 Head",
+      "category": "Chandelier",
+      "material": "Metal + Glass",
+      "wattage": "G9 Holder",
+      "size": "Dia450mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT-9-016-10 Head.jpeg"
+    },
+    {
+      "id": 50,
+      "name": "HCT-9-018-8 Head",
+      "category": "Chandelier",
+      "material": "Metal + Glass",
+      "wattage": "G9 Holder",
+      "size": "L1000mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT-9-018-8 Head.jpeg"
+    },
+    {
+      "id": 51,
+      "name": "HCT-9-004",
+      "category": "Chandelier",
+      "material": "Metal + Glass",
+      "wattage": "G9 Holder",
+      "size": "Dia1200mm H530mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT-9-004.jpeg"
+    },
+    {
+      "id": 52,
+      "name": "Planter Hanging",
+      "category": "Pendant Light",
+      "material": "Metal + Earthenpot",
+      "wattage": "GU10",
+      "size": "Plate L",
+      "finish": "Black",
+      "image_url": "images/products/Planter Hanging.jpeg"
+    },
+    {
+      "id": 53,
+      "name": "JC-2420",
+      "category": "Chandelier",
+      "material": "Metal",
+      "wattage": "LED",
+      "size": "L950mm D200mm",
+      "finish": "Golden",
+      "image_url": "images/products/JC-2420.jpeg"
+    },
+    {
+      "id": 54,
+      "name": "5712",
+      "category": "Pendant Light",
+      "material": "Metal + Flexible Neck",
+      "wattage": "LED",
+      "size": "D500mm",
+      "finish": "Golden",
+      "image_url": "images/products/5712.jpeg"
+    },
+    {
+      "id": 55,
+      "name": "D1612-1",
+      "category": "Pendant Light",
+      "material": "Metal",
+      "wattage": "LED",
+      "size": "L950mm D300mm",
+      "finish": "Wooden",
+      "image_url": "images/products/D1612-1.jpeg"
+    },
+    {
+      "id": 56,
+      "name": "GLS EB 247 CH",
+      "category": "Pendant Light",
+      "material": "Aluminum",
+      "wattage": "LED",
+      "size": "1200mm",
+      "finish": "Black + Brass Finish",
+      "image_url": "images/products/GLS EB 247 CH.jpeg"
+    },
+    {
+      "id": 57,
+      "name": "HCT257 D120",
+      "category": "Pendant Light",
+      "material": "Mild Steel + Acrylic",
+      "wattage": "LED 3 in 1",
+      "size": "L1200mm",
+      "finish": "Black , Golden",
+      "image_url": "images/products/HCT257 D120.jpeg"
+    },
+    {
+      "id": 58,
+      "name": "HCT257 D3",
+      "category": "Pendant Light",
+      "material": "Mild Steel + Acrylic",
+      "wattage": "LED 3 in 1",
+      "size": "Plate D80mm H600mm",
+      "finish": "Black , Golden",
+      "image_url": "images/products/HCT257 D3.jpeg"
+    },
+    {
+      "id": 59,
+      "name": "5237",
+      "category": "Pendant Light",
+      "material": "Metal + Glass",
+      "wattage": "E27 Holder",
+      "size": "L1000mm",
+      "finish": "Golden",
+      "image_url": "images/products/5237.jpeg"
+    },
+    {
+      "id": 60,
+      "name": "D8004",
+      "category": "Pendant Light",
+      "material": "Metal + Glass",
+      "wattage": "G9",
+      "size": "L1030mm",
+      "finish": "Golden",
+      "image_url": "images/products/D8004.jpeg"
+    },
+    {
+      "id": 61,
+      "name": "JC-24047",
+      "category": "Pendant Light",
+      "material": "Glass + Leather",
+      "wattage": "G9",
+      "size": "Ball Dia150mm, Belt L7600mm",
+      "finish": "Tan Brown",
+      "image_url": "images/products/JC-24047.jpeg"
+    },
+     {
+      "id": 62,
+      "name": "HCT1538-13",
+      "category": "Chandelier",
+      "material": "Mild Steel + Acrylic",
+      "wattage": "G9",
+      "size": "600x400mm",
+      "finish": "Gold",
+      "image_url": "images/products/HCT1538-13.jpeg"
+    },
+    {
+      "id": 63,
+      "name": "LM8937-6",
+      "category": "Chandelier",
+      "material": "Wood + Glass + Metal",
+      "wattage": "E27 Holder",
+      "size": "W860mm H440mm",
+      "finish": "Walnut + Gold",
+      "image_url": "images/products/LM8937-6.jpeg"
+    },
+    {
+      "id": 64,
+      "name": "GL-8811",
+      "category": "Chandelier",
+      "material": "Mild Steel + Acrylic",
+      "wattage": "E27",
+      "size": "D200-400-600-800mm",
+      "finish": "Golden",
+      "image_url": "images/products/GL-8811.jpeg"
+    },
+    {
+      "id": 65,
+      "name": "GL-648",
+      "category": "Chandelier",
+      "material": "Mild Steel + Acrylic",
+      "wattage": "LED",
+      "size": "Dia350mm / Dia500mm",
+      "finish": "Golden",
+      "image_url": "images/products/GL-648.jpeg"
+    },
+    {
+      "id": 66,
+      "name": "B-301 (Set of 12)",
+      "category": "Pendant Light",
+      "material": "Mild Steel",
+      "wattage": "LED",
+      "size": "Dia150mm H250mm",
+      "finish": "Brass",
+      "image_url": "images/products/B-301 (Set of 12).jpeg"
+    },
+    {
+      "id": 67,
+      "name": "HCT283-L1600",
+      "category": "Floor Lamp",
+      "material": "Metal + Glass",
+      "wattage": "LED",
+      "size": "L1600mm",
+      "finish": "Gun Black",
+      "image_url": "images/products/HCT283-L1600.jpeg"
+    },
+    {
+      "id": 68,
+      "name": "HCT282-L7",
+      "category": "Floor Lamp",
+      "material": "Metal + Glass",
+      "wattage": "LED",
+      "size": "200x200x1600mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT282-L7.jpeg"
+    },
+    {
+      "id": 69,
+      "name": "JC-2519B-1",
+      "category": "Floor Lamp",
+      "material": "Glass",
+      "wattage": "NA",
+      "size": "NA",
+      "finish": "Rose Gold",
+      "image_url": "images/products/JC-2519B-1.jpeg"
+    },
+    {
+      "id": 70,
+      "name": "HCT9046-L5",
+      "category": "Floor Lamp",
+      "material": "Mild Steel",
+      "wattage": "15W LED",
+      "size": "H1800mm",
+      "finish": "Chrome",
+      "image_url": "images/products/HCT9046-L5.jpeg"
+    },
+    {
+      "id": 71,
+      "name": "GL-157",
+      "category": "Floor Lamp",
+      "material": "Metal",
+      "wattage": "G9",
+      "size": "H1620mm",
+      "finish": "Golden + Black",
+      "image_url": "images/products/GL-157.jpeg"
+    },
+    {
+      "id": 72,
+      "name": "JC-2323",
+      "category": "Floor Lamp",
+      "material": "Metal",
+      "wattage": "LED",
+      "size": "H1100mm",
+      "finish": "Golden",
+      "image_url": "images/products/JC-2323.jpeg"
+    },
+    {
+      "id": 73,
+      "name": "A-5",
+      "category": "Floor Lamp",
+      "material": "Wood + Metal",
+      "wattage": "E14 Holder",
+      "size": "H1450mm D350mm",
+      "finish": "NA",
+      "image_url": "images/products/A-5.jpeg"
+    },
+    {
+      "id": 74,
+      "name": "TLB-F",
+      "category": "Floor Lamp",
+      "material": "Fabric Washable",
+      "wattage": "E27 Holder",
+      "size": "1620mm",
+      "finish": "White",
+      "image_url": "images/products/TLB-F.jpeg"
+    },
+    {
+      "id": 75,
+      "name": "HCT1494",
+      "category": "Floor Lamp",
+      "material": "Steel + Aluminum",
+      "wattage": "36W LED 3 in 1",
+      "size": "H1500mm",
+      "finish": "Black + White",
+      "image_url": "images/products/HCT1494.jpeg"
+    },
+    {
+      "id": 76,
+      "name": "HCT9161",
+      "category": "Floor Lamp",
+      "material": "Steel + Aluminum",
+      "wattage": "15W LED RGB",
+      "size": "1400mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT9161.jpeg"
+    },
+    {
+      "id": 77,
+      "name": "HCT9951",
+      "category": "Floor Lamp",
+      "material": "Aluminum + PMMA",
+      "wattage": "16W LED Warm White",
+      "size": "L1500mm W1000mm",
+      "finish": "NA",
+      "image_url": "images/products/HCT9951.jpeg"
+    },
+    {
+      "id": 78,
+      "name": "HCT282-T2",
+      "category": "Table Lamp",
+      "material": "Metal + Glass",
+      "wattage": "LED",
+      "size": "200x200x400mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT282-T2.jpeg"
+    },
+    {
+      "id": 79,
+      "name": "203",
+      "category": "Table Lamp",
+      "material": "Fabric",
+      "wattage": "E27",
+      "size": "H470mm W250mm",
+      "finish": "Pink, Blue",
+      "image_url": "images/products/203.jpeg"
+    },
+    {
+      "id": 80,
+      "name": "HCT-9-029",
+      "category": "Table Lamp",
+      "material": "Metal + Glass",
+      "wattage": "G9",
+      "size": "H600mm W350mm",
+      "finish": "Golden",
+      "image_url": "images/products/HCT-9-029.jpeg"
+    },
+    {
+      "id": 81,
+      "name": "JC-2422",
+      "category": "Table Lamp",
+      "material": "Metal",
+      "wattage": "LED",
+      "size": "H400mm D200mm",
+      "finish": "Golden",
+      "image_url": "images/products/JC-2422.jpeg"
+    },
+    {
+      "id": 82,
+      "name": "ALS264-T2",
+      "category": "Table Lamp",
+      "material": "Metal",
+      "wattage": "LED 3 in 1",
+      "size": "H500mm",
+      "finish": "Gun Black, Golden",
+      "image_url": "images/products/ALS264-T2.jpeg"
+    },
+    {
+      "id": 83,
+      "name": "HCT284-A",
+      "category": "Pendant Light",
+      "material": "Glass + Metal",
+      "wattage": "E27 Holder",
+      "size": "NA",
+      "finish": "Gun Black",
+      "image_url": "images/products/HCT284-A.jpeg"
+    },
+    {
+      "id": 84,
+      "name": "HCT284-B",
+      "category": "Pendant Light",
+      "material": "Glass + Metal",
+      "wattage": "E27 Holder",
+      "size": "NA",
+      "finish": "Gun Black",
+      "image_url": "images/products/HCT284-B.jpeg"
+    },
+    {
+      "id": 85,
+      "name": "HCT282-D1",
+      "category": "Pendant Light",
+      "material": "Metal + Glass",
+      "wattage": "LED",
+      "size": "200x200x200mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT282-D1.jpeg"
+    },
+    {
+      "id": 86,
+      "name": "HCT282-D2",
+      "category": "Pendant Light",
+      "material": "Metal + Glass",
+      "wattage": "LED",
+      "size": "200x200x400mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT282-D2.jpeg"
+    },
+    {
+      "id": 87,
+      "name": "HCT282-D3",
+      "category": "Pendant Light",
+      "material": "Metal + Glass",
+      "wattage": "LED",
+      "size": "200x200x600mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT282-D3.jpeg"
+    },
+    {
+      "id": 88,
+      "name": "HCT282-D4",
+      "category": "Pendant Light",
+      "material": "Metal + Glass",
+      "wattage": "LED",
+      "size": "200x200x800mm",
+      "finish": "Black",
+      "image_url": "images/products/HCT282-D4.jpeg"
+    },
+    {
+      "id": 89,
+      "name": "HCT-KY002",
+      "category": "Pendant Light",
+      "material": "Metal",
+      "wattage": "LED",
+      "size": "L900mm",
+      "finish": "Golden",
+      "image_url": "images/products/HCT-KY002.jpeg"
+    },
+    {
+      "id": 90,
+      "name": "HCT-KY004",
+      "category": "Pendant Light",
+      "material": "Metal + Acrylic",
+      "wattage": "LED",
+      "size": "H800mm",
+      "finish": "Red",
+      "image_url": "images/products/HCT-KY004.jpeg"
+    },
+    {
+      "id": 91,
+      "name": "HCT-K150",
+      "category": "Pendant Light",
+      "material": "Resin + Wood",
+      "wattage": "G9",
+      "size": "H300mm D150mm",
+      "finish": "Black / Pink / Orange",
+      "image_url": "images/products/HCT-K150.jpeg"
+    },
+    {
+      "id": 92,
+      "name": "JC-2503",
+      "category": "Pendant Light",
+      "material": "Glass",
+      "wattage": "LED",
+      "size": "L330mm H270mm",
+      "finish": "Purple+Blue / Blue+Green / Green+Purple",
+      "image_url": "images/products/JC-2503.jpeg"
+    },
+    {
+      "id": 93,
+      "name": "JC-2519A-1",
+      "category": "Pendant Light",
+      "material": "Glass",
+      "wattage": "E27 Holder",
+      "size": "NA",
+      "finish": "Gun Black / Rose Gold",
+      "image_url": "images/products/JC-2519A-1.jpeg"
+    },
+    {
+      "id": 94,
+      "name": "JC-2522",
+      "category": "Pendant Light",
+      "material": "Glass + Metal",
+      "wattage": "E27 Holder",
+      "size": "NA",
+      "finish": "Amber + Golden",
+      "image_url": "images/products/JC-2522.jpeg"
+    },
+    {
+      "id": 95,
+      "name": "JC-2509-1",
+      "category": "Pendant Light",
+      "material": "Glass",
+      "wattage": "NA",
+      "size": "NA",
+      "finish": "White / Gradual White / Clear",
+      "image_url": "images/products/JC-2509-1.jpeg"
+    },
+    {
+      "id": 96,
+      "name": "KT4213",
+      "category": "Pendant Light",
+      "material": "Marble + Wood",
+      "wattage": "E27 Holder",
+      "size": "D120mm H170mm",
+      "finish": "Beige",
+      "image_url": "images/products/KT4213.jpeg"
+    },
+    {
+      "id": 97,
+      "name": "KT4214",
+      "category": "Pendant Light",
+      "material": "Marble + Wood",
+      "wattage": "E27 Holder",
+      "size": "D95mm H180mm",
+      "finish": "Beige",
+      "image_url": "images/products/KT4214.jpeg"
+    },
+    {
+      "id": 98,
+      "name": "KT4210",
+      "category": "Pendant Light",
+      "material": "Marble + Wood",
+      "wattage": "G9",
+      "size": "D150mm H150mm",
+      "finish": "Beige",
+      "image_url": "images/products/KT4210.jpeg"
+    },
+    {
+      "id": 99,
+      "name": "KT4217",
+      "category": "Pendant Light",
+      "material": "Marble + Wood",
+      "wattage": "G9",
+      "size": "D160mm H230mm",
+      "finish": "Beige",
+      "image_url": "images/products/KT4217.jpeg"
+    },
+    {
+      "id": 100,
+      "name": "MC-013",
+      "category": "Pendant Light",
+      "material": "Handmade Polystyrene",
+      "wattage": "E27 Holder",
+      "size": "D300mm H500mm",
+      "finish": "Terracotta",
+      "image_url": "images/products/MC-013.jpeg"
     }
   ]
 }
