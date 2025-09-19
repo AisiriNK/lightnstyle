@@ -44,7 +44,7 @@
     .brand-name {
       font-family: 'Playfair Display', serif;
       font-size: 24px;
-      color: #d97706;
+      color: #e9bb24;
       font-weight: 700;
     }
 
@@ -63,7 +63,7 @@
     }
 
     nav a:hover {
-      color: #d97706;
+      color: #e9bb24;
     }
 
     .container {
@@ -78,7 +78,7 @@
       font-size: 36px;
       text-align: center;
       margin-bottom: 30px;
-      color: #d97706;
+      color: #e9bb24;
     }
 
     /* Filters - optional future expansion */
@@ -135,7 +135,7 @@
     .product-info h4 {
       font-family: 'Playfair Display', serif;
       font-size: 18px;
-      color: #d97706;
+      color: #e9bb24;
       margin: 10px 0 8px;
     }
 
@@ -203,7 +203,7 @@
       font-weight: 700;
       font-size: 28px;
       margin-bottom: 20px;
-      color: #d97706;
+      color: #e9bb24;
     }
 
     .specs-details p {
@@ -299,7 +299,7 @@
 
 .filters input:focus,
 .filters select:focus {
-  border-color: #d97706;
+  border-color: #e9bb24;
   box-shadow: 0 0 5px rgba(217, 119, 6, 0.5);
 }
 
@@ -335,7 +335,7 @@
 
 .suggestions div:hover {
   background: #333;
-  color: #d97706;
+  color: #e9bb24;
 }
 
 .file-input {
@@ -361,9 +361,12 @@
       <img src="images/logo.jpg" alt="Brand Logo">
       <span class="brand-name">Light & Style</span>
     </div>
+    <h3 style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; font-size: 34px; color: #e9bb24; font-family: 'Playfair Display', serif; font-weight: 700;">
+      Products
+    </h3>
     <nav>
-      <a href="index.html#home">Back to Home</a>
-      <a href="#enquiry">Contact Us</a>
+      <a href="index.html#home" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Back to Home</a>
+      <a href="#contact" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Contact Us</a>
     </nav>
   </div>
 </header>
@@ -371,7 +374,7 @@
 <br><br><br>
 <section class="category-detail">
   <div class="container">
-    <h3>Products</h3>
+   <!-- <h3>Products</h3> -->
 
     
     <div class="filters" style="justify-content: space-between; align-items: center;">
@@ -379,23 +382,23 @@
         <option value="">All Categories</option>
         <!-- Categories will be loaded dynamically -->
       </select>
-      <button id="exploreMoreBtn" class="btn" style="margin-left:auto; background:#d97706; color:#fff; padding:10px 22px; border-radius:6px; font-weight:600; font-size:16px; cursor:pointer;">Explore More</button>
+      <!--<button id="exploreMoreBtn" class="btn" style="margin-left:auto; background:#e9bb24; color:#fff; padding:10px 22px; border-radius:6px; font-weight:600; font-size:16px; cursor:pointer;">Explore More</button> -->
     </div>
 <!-- Catalogue Overlay -->
 <div id="catalogueOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:2000; justify-content:center; align-items:center;">
   <div style="background:#222; color:#fff; border-radius:12px; padding:40px 30px; max-width:500px; width:90%; box-shadow:0 8px 32px rgba(0,0,0,0.5); position:relative;">
     <span id="closeCatalogueOverlay" style="position:absolute; top:18px; right:24px; font-size:28px; cursor:pointer; color:#fff;">&times;</span>
-    <h2 style="color:#d97706; text-align:center; margin-bottom:24px; font-family:'Playfair Display',serif;">Catalogues</h2>
+    <h2 style="color:#e9bb24; text-align:center; margin-bottom:24px; font-family:'Playfair Display',serif;">Catalogues</h2>
     <ul style="list-style:none; padding:0; margin:0;">
-      <li style="margin-bottom:18px;"><a href="https://drive.google.com/file/d/1P_wM7bf7-xdoZBrsFacEvKiP8NNx4Uxr/view?usp=drive_link" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Decorative Catalogue</a></li>
-      <li style="margin-bottom:18px;"><a href="https://drive.google.com/file/d/1mqrpIbb3mg_Kd7eo3edfmqZhJUdtABHg/view?usp=drive_link" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Commercial Catalogue</a></li>
-      <li style="margin-bottom:18px;"><a href="catalogues/outdoor.pdf" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Outdoor Catalogue</a></li>
-      <li style="margin-bottom:18px;"><a href="catalogues/all-products.pdf" target="_blank" style="color:#fff; background:#d97706; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">All Products Catalogue</a></li>
+      <li style="margin-bottom:18px;"><a href="https://drive.google.com/file/d/1P_wM7bf7-xdoZBrsFacEvKiP8NNx4Uxr/view?usp=drive_link" target="_blank" style="color:#fff; background:#e9bb24; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Decorative Catalogue</a></li>
+      <li style="margin-bottom:18px;"><a href="https://drive.google.com/file/d/1mqrpIbb3mg_Kd7eo3edfmqZhJUdtABHg/view?usp=drive_link" target="_blank" style="color:#fff; background:#e9bb24; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Commercial Catalogue</a></li>
+      <li style="margin-bottom:18px;"><a href="catalogues/outdoor.pdf" target="_blank" style="color:#fff; background:#e9bb24; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">Outdoor Catalogue</a></li>
+      <li style="margin-bottom:18px;"><a href="catalogues/all-products.pdf" target="_blank" style="color:#fff; background:#e9bb24; padding:10px 18px; border-radius:5px; text-decoration:none; display:inline-block;">All Products Catalogue</a></li>
     </ul>
   </div>
 </div>
     
-    <div id="loadingMessage" style="text-align: center; color: #d97706; font-size: 18px; margin: 40px 0;">
+    <div id="loadingMessage" style="text-align: center; color: #e9bb24; font-size: 18px; margin: 40px 0;">
       Loading products...
     </div>
 
@@ -415,7 +418,7 @@
     <div class="specs-details">
   <h3 id="specsTitle"></h3>
   <div id="specsDetails"></div>
-  <button id="enquireProductBtn" style="margin-top:20px; background:#d97706; color:#fff; padding:10px 22px; border-radius:6px; font-weight:600; font-size:16px; cursor:pointer;">Enquire</button>
+  <button id="enquireProductBtn" style="margin-top:20px; background:#e9bb24; color:#fff; padding:10px 22px; border-radius:6px; font-weight:600; font-size:16px; cursor:pointer;">Enquire</button>
     </div>
   </div>
 </div>
@@ -424,7 +427,7 @@
 <div id="productEnquiryModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:3000; justify-content:center; align-items:center;">
   <div style="background:#222; color:#fff; border-radius:12px; padding:40px 30px; max-width:500px; width:90%; box-shadow:0 8px 32px rgba(0,0,0,0.5); position:relative;">
     <span id="closeEnquiryModal" style="position:absolute; top:18px; right:24px; font-size:28px; cursor:pointer; color:#fff;">&times;</span>
-    <h2 style="color:#d97706; text-align:center; margin-bottom:24px; font-family:'Playfair Display',serif;">Product Enquiry</h2>
+    <h2 style="color:#e9bb24; text-align:center; margin-bottom:24px; font-family:'Playfair Display',serif;">Product Enquiry</h2>
     <p id="productEnquiryName" style="text-align:center; margin-bottom:20px; font-weight:600;"></p>
     <form id="productEnquiryForm" onsubmit="return sendProductEnquiry(event)">
       <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #444; border-radius:5px; background:#1a1a1a; color:#fff;" />
@@ -435,21 +438,21 @@
         <input type="file" name="attachments[]" id="productAttachments" accept="image/*" multiple style="display:block; margin-bottom:5px; color:#fff;" />
         <small style="color:#999; font-size:0.85em;">You can attach up to 3 images (max 5MB each)</small>
       </div>
-      <button type="submit" style="width:100%; background:#d97706; color:#fff; padding:12px; border:none; border-radius:5px; font-weight:600; font-size:16px; cursor:pointer;">Send Enquiry</button>
+      <button type="submit" style="width:100%; background:#e9bb24; color:#fff; padding:12px; border:none; border-radius:5px; font-weight:600; font-size:16px; cursor:pointer;">Send Enquiry</button>
     </form>
   </div>
 </div>
 
 <script>
   // Show catalogue overlay on button click
-  document.getElementById('exploreMoreBtn').addEventListener('click', function() {
-    document.getElementById('catalogueOverlay').style.display = 'flex';
-  });
+  //document.getElementById('exploreMoreBtn').addEventListener('click', function() {
+  //  document.getElementById('catalogueOverlay').style.display = 'flex';
+  //});
 
   // Close catalogue overlay
-  document.getElementById('closeCatalogueOverlay').addEventListener('click', function() {
-    document.getElementById('catalogueOverlay').style.display = 'none';
-  });
+  //document.getElementById('closeCatalogueOverlay').addEventListener('click', function() {
+  //  document.getElementById('catalogueOverlay').style.display = 'none';
+  //});
 
   // Close enquiry modal
   document.getElementById('closeEnquiryModal').addEventListener('click', function() {
@@ -495,6 +498,7 @@
         if (category) {
           filtered = filtered.filter(product => product.category === category);
         }
+        filtered = shuffleArray(filtered); // Shuffle products before displaying
         displayProducts(filtered);
       } else {
         productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products</p>';
@@ -505,6 +509,15 @@
       loadingMessage.style.display = 'none';
     }
   }
+
+  // Shuffle array function
+  function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
   // Display products in the grid
   function displayProducts(products) {
@@ -707,9 +720,9 @@ async function sendProductEnquiry(e) {
     <!-- Left Column -->
     <div class="contact-left">
       <div class="shop-brief">
-        <h3>About Light N Style</h3>
+        <h3>About Light & Style</h3>
         <p>
-          Light N Style is a family-run lighting boutique in the heart of Bangalore, offering a curated selection of elegant lighting solutions for homes and businesses. With decades of experience, we pride ourselves on quality, service, and a personal touch.
+          Light & Style is a family-run lighting boutique in the heart of Bangalore, offering a curated selection of elegant lighting solutions for homes and businesses. With decades of experience, we pride ourselves on quality, service, and a personal touch.
         </p>
       </div>
       <div class="enquiry-form">
@@ -740,7 +753,7 @@ async function sendProductEnquiry(e) {
       </div>
       <div class="family-photo">
         <h3>Meet Our Family</h3>
-        <img src="images/family.jpeg" alt="Light N Style Family">
+        <img src="images/family.jpeg" alt="Light & Style Family">
       </div>
     </div>
 

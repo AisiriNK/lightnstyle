@@ -22,6 +22,12 @@
   color: #666;
   font-size: 0.85em;
 }
+  /* Increase font size for navigation links */
+  .navigation {
+    font-size: 2.25em;
+  }
+
+
   </style>
 </head>
 
@@ -40,10 +46,10 @@
           </div>
           <nav>
 
-            <a href="#product" style="font-family: 'Playfair Display', serif;">Products</a>
-            <a href="#projects">Projects</a>
-            <a href="testimonials.html">Testimonials</a>
-            <a href="#contact">Contact us</a>
+            <a class="navigation" href="#product" style="font-family: 'Playfair Display', serif; font-size: larger;">Products</a>
+            <a class="navigation" href="#projects" style="font-family: 'Playfair Display', serif; font-size: larger;">Projects</a>
+            <a class="navigation" href="testimonials.html" style="font-family: 'Playfair Display', serif; font-size: larger;">Testimonials</a>
+            <a class="navigation" href="#contact" style="font-family: 'Playfair Display', serif; font-size: larger;">Contact us</a>
           </nav>
         </div>
       </header>
@@ -53,7 +59,7 @@
           <div class="swiper-slide"><img src="images/hero1.jpeg" alt=""></div>
           <div class="swiper-slide"><img src="images/hero9.jpeg" alt=""></div>
           <div class="swiper-slide"><img src="images/hero3.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/hero10.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/hero11.jpeg" alt=""></div>
           <div class="swiper-slide"><img src="images/hero5.jpeg" alt=""></div>
           <div class="swiper-slide"><img src="images/hero6.jpeg" alt=""></div>
           <div class="swiper-slide"><img src="images/hero7.jpeg" alt=""></div>
@@ -85,7 +91,7 @@
           <div class="category-images">
             <img src="images/residential.jpeg" alt="Residential">
           </div>
-          <h3>Residential</h3>
+          <h3 style="font-family: 'Playfair Display', serif;font-size: 1.3em;">Residential</h3>
         </div>
       </a>
 
@@ -95,7 +101,7 @@
           <div class="category-images">
             <img src="images/decorative.jpeg" alt="Decorative">
           </div>
-          <h3>Decorative</h3>
+          <h3 style="font-family: 'Playfair Display', serif;font-size: 1.3em;">Decorative</h3>
         </div>
       </a>
 
@@ -104,7 +110,7 @@
           <div class="category-images">
             <img src="images/commercial.png" alt="Commercial">
           </div>
-          <h3>Commercial</h3>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.3em;">Commercial</h3>
         </div>
       </a>
 
@@ -116,7 +122,7 @@
           <div class="category-images">
             <img src="images/outdoor.jpeg" alt="Outdoor">
           </div>
-          <h3>Outdoor</h3>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.3em;">Outdoor</h3>
         </div>
       </a>
 
@@ -129,7 +135,7 @@
   <div class="container explore-products-container">
     <div class="explore-text">
       <h4>Explore Our Products</h4>
-      <p>Discover a range of lighting products that redefine spaces with elegance and functionality.</p>
+      <p>Light & Style has over 25 years of experience in designing and developing best-selling lighting and interiors ranges making them the go-to brand for stylish lighting solutions. The company's innovative designs assist in accentuating the commercial and private spaces as per individual's needs. <br><br> Passionately driven by product design but extremely motivated by customer experience, is what Light & Style is primarily about.</p>
       <a href="products.html" class="btn">View Products</a>
     </div>
     <div class="explore-image">
@@ -145,10 +151,12 @@
 
     <!-- Left Column -->
     <div class="contact-left">
-      <div class="shop-brief">
-        <h3>About Light N Style</h3>
+      <div class="contact-info">
+        <h3>Contact Us</h3>
         <p>
-          Light N Style is a family-run lighting boutique in the heart of Bangalore, offering a curated selection of elegant lighting solutions for homes and businesses. With decades of experience, we pride ourselves on quality, service, and a personal touch.
+          120/5, Infantry Road, Bangalore - 560001<br>
+          Phone: 080-41130090 / 41132190<br>
+          Email: neha@lightnstyle.in
         </p>
       </div>
       <div class="enquiry-form">
@@ -160,6 +168,7 @@
           <textarea name="message" placeholder="Your Message"></textarea>
           <div class="file-input">
             <input type="file" id="attachments" name="attachments" multiple />
+            <p> Have a design in mind? Share your reference images — we’ll craft a light that’s uniquely yours.</p>
             <small>Attach up to 3 files (max 5MB each)</small>
           </div>
           <button type="submit">Send</button>
@@ -169,17 +178,15 @@
 
     <!-- Right Column -->
     <div class="contact-right">
-      <div class="contact-info">
-        <h3>Contact Us</h3>
-        <p>
-          120/5, Infantry Road, Bangalore - 560001<br>
-          Phone: 080-41130090 / 41132190<br>
-          Email: neha@lightnstyle.in
+      <div class="shop-brief">
+        <h3>About Light & Style</h3>
+        <p style="text-align: justify;">
+          Sushil Bhandari has embarked on this journey in the lighting industry for over 2 decades beginning from the grassroots level and ascending to a level of expertise in the details of lighting products. Moving forward, he brought in his brother Hitesh and together they built a team to cater the needs of Architects and the top builders of Karnataka. The journey has been marked by a relentless pursuit of excellence couples with a deep rooted passion for lighting solutions and designs. We strive to give the most innovative solutions in one of the fastest evolving industries in the world.
         </p>
       </div>
       <div class="family-photo">
         <h3>Meet Our Family</h3>
-        <img src="images/family.jpeg" alt="Light N Style Family">
+        <img src="images/family.jpeg" alt="Light & Style Family">
       </div>
     </div>
 

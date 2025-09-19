@@ -134,7 +134,7 @@ body {
 }
 
 .navbar nav a:hover {
-  color: #d97706;
+  color: #e9bb24;
 }
 
 /* SWIPER NAV BUTTONS */
@@ -199,7 +199,7 @@ body {
 }
 
 .category:hover h3{
-color: #d97706;
+color: #e9bb24;
 }
 
 .category-images img {
@@ -348,7 +348,7 @@ color: #d97706;
 }
 
 .modal-content button {
-  background: #d97706;
+  background: #e9bb24;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -377,7 +377,7 @@ color: #d97706;
 
 .contact h3 {
   font-family: 'Playfair Display', serif;
-  color: #d97706;
+  color: #e9bb24;
   margin-bottom: 15px;
 }
 
@@ -507,7 +507,7 @@ color: #d97706;
 }
 
 .enquiry-form button:hover {
-  background: #d97706;
+  background: #e9bb24;
 }
 
 .family-photo {

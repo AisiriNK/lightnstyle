@@ -72,13 +72,13 @@ $api_url = $env['BREVO_API_URL'];
 // Prepare email data
 $email_data = [
     'sender' => [
-        'name' => 'Light N Style',
+        'name' => 'Light & Style',
         'email' => 'lightnstyle040@gmail.com'
     ],
     'to' => [
         [
             'email' => 'aisirink27@gmail.com',
-            'name' => 'Light N Style'
+            'name' => 'Light & Style'
         ]
     ],
     'replyTo' => [

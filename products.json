@@ -77,7 +77,7 @@
       "material": "Wood + Metal",
       "wattage": "G14 Holder",
       "size": "H530mm W130mm",
-      "finish": "NA",
+      "finish": "Matte",
       "image_url": "images/products/A-3.jpg"
     },
     {
@@ -235,7 +235,7 @@
       "name": "LM-X9010",
       "category": "Ceiling Light",
       "material": "Metal + Glass",
-      "wattage": "NA",
+      "wattage": "9W",
       "size": "D320mm H100mm / D470mm H100mm",
       "finish": "Walnut",
       "image_url": "images/products/LM-X9010.jpeg"
@@ -254,8 +254,8 @@
       "id": 26,
       "name": "LM9065",
       "category": "Ceiling Light",
-      "material": "NA",
-      "wattage": "NA",
+      "material": "Wood + Glass + Metal",
+      "wattage": "9W",
       "size": "D400mm / D500mm",
       "finish": "Walnut",
       "image_url": "images/products/LM9065.jpeg"
@@ -265,7 +265,7 @@
       "name": "LM9040-1",
       "category": "Ceiling Light",
       "material": "Wood + Acrylic",
-      "wattage": "NA",
+      "wattage": "9W",
       "size": "370mm x 370mm",
       "finish": "Wooden + White",
       "image_url": "images/products/LM9040-1.jpeg"
@@ -273,9 +273,9 @@
     {
       "id": 28,
       "name": "A-2",
-      "category": "Pendant",
+      "category": "Pendant Light",
       "material": "Wood + Metal",
-      "wattage": "NA",
+      "wattage": "9W",
       "size": "Dia 350mm H300mm",
       "finish": "As per image",
       "image_url": "images/products/A-2.jpeg"
@@ -323,9 +323,9 @@
     {
       "id": 33,
       "name": "LM1054-6",
-      "category": "Pendant",
+      "category": "Pendant Light",
       "material": "Wood + Mild Steel",
-      "wattage": "NA",
+      "wattage": "9W",
       "size": "D750mm H280mm",
       "finish": "Wooden + White",
       "image_url": "images/products/LM1054-6.jpeg"
@@ -407,18 +407,8 @@
       "material": "Acrylic + Mild Steel",
       "wattage": "60W",
       "size": "H500mm W400mm",
-      "finish": "NA",
+      "finish": "Matte",
       "image_url": "images/products/LM8958.jpeg"
-    },
-    {
-      "id": 42,
-      "name": "X2222",
-      "category": "Chandelier",
-      "material": "Mild Steel + Glass",
-      "wattage": "NA",
-      "size": "Dia 850mm",
-      "finish": "Golden",
-      "image_url": "images/products/X2222.jpeg"
     },
     {
       "id": 43,
@@ -446,7 +436,7 @@
       "category": "Chandelier",
       "material": "Glass",
       "wattage": "LED",
-      "size": "NA",
+      "size": "Dia900mm",
       "finish": "Brass",
       "image_url": "images/products/GWTT01-25.jpeg"
     },
@@ -456,7 +446,7 @@
       "category": "Chandelier",
       "material": "Glass",
       "wattage": "LED RGB",
-      "size": "NA",
+      "size": "Dia900mm",
       "finish": "Brass",
       "image_url": "images/products/GWTT02-18.jpeg"
     },
@@ -591,16 +581,6 @@
       "image_url": "images/products/5237.jpeg"
     },
     {
-      "id": 60,
-      "name": "D8004",
-      "category": "Pendant Light",
-      "material": "Metal + Glass",
-      "wattage": "G9",
-      "size": "L1030mm",
-      "finish": "Golden",
-      "image_url": "images/products/D8004.jpeg"
-    },
-    {
       "id": 61,
       "name": "JC-24047",
       "category": "Pendant Light",
@@ -685,8 +665,8 @@
       "name": "JC-2519B-1",
       "category": "Floor Lamp",
       "material": "Glass",
-      "wattage": "NA",
-      "size": "NA",
+      "wattage": "9W",
+      "size": "1620mm",
       "finish": "Rose Gold",
       "image_url": "images/products/JC-2519B-1.jpeg"
     },
@@ -727,7 +707,7 @@
       "material": "Wood + Metal",
       "wattage": "E14 Holder",
       "size": "H1450mm D350mm",
-      "finish": "NA",
+      "finish": "Matte",
       "image_url": "images/products/A-5.jpeg"
     },
     {
@@ -767,7 +747,7 @@
       "material": "Aluminum + PMMA",
       "wattage": "16W LED Warm White",
       "size": "L1500mm W1000mm",
-      "finish": "NA",
+      "finish": "Metallic Grey",
       "image_url": "images/products/HCT9951.jpeg"
     },
     {
@@ -826,7 +806,7 @@
       "category": "Pendant Light",
       "material": "Glass + Metal",
       "wattage": "E27 Holder",
-      "size": "NA",
+      "size": "H300mm D150mm",
       "finish": "Gun Black",
       "image_url": "images/products/HCT284-A.jpeg"
     },
@@ -836,7 +816,7 @@
       "category": "Pendant Light",
       "material": "Glass + Metal",
       "wattage": "E27 Holder",
-      "size": "NA",
+      "size": "H300mm D150mm",
       "finish": "Gun Black",
       "image_url": "images/products/HCT284-B.jpeg"
     },
@@ -881,16 +861,6 @@
       "image_url": "images/products/HCT282-D4.jpeg"
     },
     {
-      "id": 89,
-      "name": "HCT-KY002",
-      "category": "Pendant Light",
-      "material": "Metal",
-      "wattage": "LED",
-      "size": "L900mm",
-      "finish": "Golden",
-      "image_url": "images/products/HCT-KY002.jpeg"
-    },
-    {
       "id": 90,
       "name": "HCT-KY004",
       "category": "Pendant Light",
@@ -926,7 +896,7 @@
       "category": "Pendant Light",
       "material": "Glass",
       "wattage": "E27 Holder",
-      "size": "NA",
+      "size": "Dia 350mm H300mm",
       "finish": "Gun Black / Rose Gold",
       "image_url": "images/products/JC-2519A-1.jpeg"
     },
@@ -936,7 +906,7 @@
       "category": "Pendant Light",
       "material": "Glass + Metal",
       "wattage": "E27 Holder",
-      "size": "NA",
+      "size": "H300mm D150mm",
       "finish": "Amber + Golden",
       "image_url": "images/products/JC-2522.jpeg"
     },
@@ -945,8 +915,8 @@
       "name": "JC-2509-1",
       "category": "Pendant Light",
       "material": "Glass",
-      "wattage": "NA",
-      "size": "NA",
+      "wattage": "9W",
+      "size": "L330mm H270mm",
       "finish": "White / Gradual White / Clear",
       "image_url": "images/products/JC-2509-1.jpeg"
     },
