@@ -231,6 +231,107 @@
         max-height: 300px;
       }
     }
+    
+    /* Family Carousel Styles */
+    .family-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .family-carousel-container {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    .family-carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+    
+    .family-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    
+    .family-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(233, 187, 36, 0.8);
+      color: #000;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    
+    .carousel-nav:hover {
+      background: #e9bb24;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .carousel-nav.prev {
+      left: 10px;
+    }
+    
+    .carousel-nav.next {
+      right: 10px;
+    }
+    
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #666;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .carousel-dot.active {
+      background: #e9bb24;
+      transform: scale(1.2);
+    }
+    
+    .carousel-dot:hover {
+      background: #e9bb24;
+    }
+    
+    @media (max-width: 768px) {
+      .family-carousel-container {
+        height: 250px;
+      }
+      
+      .carousel-nav {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -346,7 +447,7 @@
       <div class="product-card" data-img="images/commercial/c17.jpeg">
         <img src="images/commercial/c17.jpeg" alt="Commercial 17">
         <div class="product-location">Bangalore</div>
-      </div>
+      </div> 
 
       <div class="product-card" data-img="images/commercial/c18.jpeg">
         <img src="images/commercial/c18.jpeg" alt="Commercial 18">
@@ -414,26 +515,208 @@
       </div>
 
       <div class="product-card" data-img="images/commercial/c31.jpeg">
+        <img src="images/commercial/c31.jpeg" alt="Commercial 31">
+        <div class="product-location">Bangalore</div>
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c32.jpeg">
+        <img src="images/commercial/c32.jpeg" alt="Commercial 32">
+        <div class="product-location">Bangalore</div>
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c33.jpeg">
+        <img src="images/commercial/c33.jpeg" alt="Commercial 33">
+        <div class="product-location">Bangalore</div>
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c34.jpeg">
+        <img src="images/commercial/c34.jpeg" alt="Commercial 34">
+        <div class="product-location">Bangalore</div>
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c35.jpeg">
+        <img src="images/commercial/c35.jpeg" alt="Commercial 35">
+        <div class="product-location">Bangalore</div>
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c36.jpeg">
+        <img src="images/commercial/c36.jpeg" alt="Commercial 36">
+        <div class="product-location">Bangalore</div>
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c37.jpeg">
+        <img src="images/commercial/c37.jpeg" alt="Commercial 37">
+        <div class="product-location">Bangalore</div>
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c39.jpeg">
+        <img src="images/commercial/c39.jpeg" alt="Commercial 39">
+        <div class="product-location">Bangalore</div>
+      </div>
+
+      <div class="product-card" data-img="images/commercial/c40.jpeg">
+        <img src="images/commercial/c40.jpeg" alt="Commercial 40">
+        <div class="product-location">Bangalore</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Overlay Modal -->
+<div class="specs-overlay" id="specsOverlay">
+  <div class="specs-content">
+    <span class="close-overlay" id="closeOverlay">&times;</span>
+    <div class="specs-image">
+      <img src="" alt="" id="specsImage">
+    </div>
+  </div>
+</div>
+
 <script>
   // Handle product card click
   document.querySelectorAll('.product-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const img = card.getAttribute('data-img');
-    document.getElementById('specsImage').src = img;
-    document.getElementById('specsOverlay').style.display = 'flex';
+    card.addEventListener('click', () => {
+      const img = card.getAttribute('data-img');
+      document.getElementById('specsImage').src = img;
+      document.getElementById('specsOverlay').style.display = 'flex';
+    });
   });
-});
-
-document.getElementById('closeOverlay').addEventListener('click', () => {
-  document.getElementById('specsOverlay').style.display = 'none';
-});
-
-
 
   document.getElementById('closeOverlay').addEventListener('click', () => {
     document.getElementById('specsOverlay').style.display = 'none';
   });
 </script>
+
+<script>
+  // Family Carousel Functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.family-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const familyCarouselElement = document.getElementById('familyCarousel');
+    let autoSlideInterval;
+
+    function showSlide(index) {
+      if (!familyCarouselElement || slides.length === 0) return;
+      
+      currentSlideIndex = index;
+      familyCarouselElement.style.transform = `translateX(-${index * 100}%)`;
+      
+      // Update dots
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+      showSlide(currentSlideIndex);
+    }
+
+    function previousSlide() {
+      currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+      showSlide(currentSlideIndex);
+    }
+
+    function currentSlide(index) {
+      showSlide(index - 1);
+    }
+
+    // Make functions globally accessible for onclick handlers
+    window.nextSlide = nextSlide;
+    window.previousSlide = previousSlide;
+    window.currentSlide = currentSlide;
+
+    // Start auto-advance carousel every 4 seconds
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(nextSlide, 4000);
+    }
+
+    function stopAutoSlide() {
+      clearInterval(autoSlideInterval);
+    }
+
+    // Pause auto-slide on hover, resume on mouse leave
+    if (familyCarouselElement) {
+      familyCarouselElement.addEventListener('mouseenter', stopAutoSlide);
+      familyCarouselElement.addEventListener('mouseleave', startAutoSlide);
+    }
+
+    // Initialize carousel
+    showSlide(0);
+    startAutoSlide();
+  });
+</script>
+
+<script>
+  async function sendEmail(e) {
+    e.preventDefault();
+    
+    const form = document.getElementById('enquiryForm');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const fileInput = document.getElementById('attachments');
+    
+    // Validate file attachments
+    const files = fileInput.files;
+    if (files.length > 3) {
+      alert('Please select a maximum of 3 files');
+      return false;
+    }
+
+    for (let i = 0; i < files.length; i++) {
+      if (files[i].size > 5 * 1024 * 1024) {
+        alert('Each file must be less than 5MB');
+        return false;
+      }
+    }
+
+    // Disable the submit button while sending
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
+    try {
+      // Create FormData object to handle file uploads
+      const formData = new FormData();
+      
+      // Add form fields directly to FormData
+      formData.append('name', form.name.value);
+      formData.append('email', form.email.value);
+      formData.append('phone', form.phone.value);
+      formData.append('message', form.message.value);
+      
+      // Add files if any
+      const files = fileInput.files;
+      for (let i = 0; i < files.length; i++) {
+        formData.append('attachments[]', files[i]);
+      }
+
+      // Send the email using our PHP endpoint
+      const response = await fetch('send-email.php', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send email');
+      }
+
+      alert('Thank you! Your message has been sent.');
+      form.reset();
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Sorry, there was an error sending your message: ' + error.message);
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Send';
+    }
+
+    return false;
+  }
+</script>
+
 <!-- Contact & Enquiry Section -->
 <section id="contact" class="contact-enquiry">
   <div class="container contact-enquiry-container">
@@ -459,79 +742,6 @@ document.getElementById('closeOverlay').addEventListener('click', () => {
           </div>
           <button type="submit">Send</button>
         </form>
-
-        <div class="form-status"></div>
-
-<script>
-async function sendEmail(e) {
-      e.preventDefault();
-      
-      const form = document.getElementById('enquiryForm');
-      const submitButton = form.querySelector('button[type="submit"]');
-      const fileInput = document.getElementById('attachments');
-      
-      // Validate file attachments
-      const files = fileInput.files;
-      if (files.length > 3) {
-        alert('Please select a maximum of 3 files');
-        return false;
-      }
-
-      for (let i = 0; i < files.length; i++) {
-        if (files[i].size > 5 * 1024 * 1024) {
-          alert('Each file must be less than 5MB');
-          return false;
-        }
-      }
-
-      // Disable the submit button while sending
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
-
-      try {
-        // Create FormData object to handle file uploads
-        const formData = new FormData();
-        
-        // Add form fields directly to FormData
-        formData.append('name', form.name.value);
-        formData.append('email', form.email.value);
-        formData.append('phone', form.phone.value);
-        formData.append('message', form.message.value);
-        
-        // Add files if any
-        const files = fileInput.files;
-        for (let i = 0; i < files.length; i++) {
-          formData.append('attachments[]', files[i]);
-        }
-
-        // Send the email using our PHP endpoint
-        const response = await fetch('send-email.php', {
-          method: 'POST',
-          body: formData
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(result.error || 'Failed to send email');
-        }
-
-        alert('Thank you! Your message has been sent.');
-        form.reset();
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Sorry, there was an error sending your message: ' + error.message);
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send';
-      }
-
-      return false;
-    }
-
-
-</script>
-
       </div>
     </div>
 
@@ -547,11 +757,27 @@ async function sendEmail(e) {
       </div>
       <div class="family-photo">
         <h3>Meet Our Family</h3>
-        <img src="images/family.jpeg" alt="Light & Style Family">
+        <div class="family-carousel-container">
+          <div class="family-carousel" id="familyCarousel">
+            <div class="family-slide">
+              <img src="images/family2.jpeg" alt="Light & Style Family - Photo 1">
+            </div>
+            <div class="family-slide">
+              <img src="images/family3.jpeg" alt="Light & Style Family - Photo 2">
+            </div>
+          </div>
+          <button class="carousel-nav prev" onclick="previousSlide()">&#8249;</button>
+          <button class="carousel-nav next" onclick="nextSlide()">&#8250;</button>
+        </div>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="currentSlide(1)"></span>
+          <span class="carousel-dot" onclick="currentSlide(2)"></span>
+        </div>
       </div>
     </div>
 
   </div>
 </section>
+
 </body>
 </html>
