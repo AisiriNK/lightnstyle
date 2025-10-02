@@ -9,6 +9,546 @@
   <link rel="stylesheet" href="style.css" />
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
+    /* Enhanced Animations and Effects */
+    
+    /* Loading Animation */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+    }
+
+    .loading-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader {
+      width: 80px;
+      height: 80px;
+      border: 4px solid rgba(255,255,255,0.1);
+      border-top: 4px solid #e9bb24;
+      border-radius: 50%;
+      animation: spin 1.2s linear infinite;
+      box-shadow: 0 0 20px rgba(233, 187, 36, 0.3);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Page entrance animations */
+    .page-content {
+      opacity: 0;
+      animation: pageLoad 1s ease 0.5s forwards;
+    }
+
+    @keyframes pageLoad {
+      to { opacity: 1; }
+    }
+
+    /* Subtle section reveals */
+    .section-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .section-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Global Animation Classes */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: fadeInLeft 0.8s ease forwards;
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(30px);
+      animation: fadeInRight 0.8s ease forwards;
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.95);
+      animation: scaleIn 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Staggered Animation Delays */
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in:nth-child(3) { animation-delay: 0.3s; }
+    .fade-in:nth-child(4) { animation-delay: 0.4s; }
+    .fade-in:nth-child(5) { animation-delay: 0.5s; }
+
+    /* Glowing Text Effect */
+    .highlight {
+      background: linear-gradient(45deg, #e9bb24, #f0d04a, #e9bb24);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Typewriter Effect for Hero Text */
+    .typewriter {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: typing 3s steps(40, end) forwards;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    /* Delay for the second line */
+    .typewriter-line2 {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: typing 2.5s steps(30, end) 1.5s forwards;
+    }
+
+    /* Navigation Hover Effects */
+    .navigation {
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .navigation::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: #e9bb24;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .navigation:hover::after {
+      width: 80%;
+    }
+
+    .navigation:hover {
+      color: #e9bb24;
+      background: rgba(233, 187, 36, 0.05);
+    }
+
+    /* Logo Animation */
+    .logo {
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
+    }
+
+    .logo img {
+      transition: all 0.3s ease;
+    }
+
+    .brand-name {
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover .brand-name {
+      color: #e9bb24;
+    }
+
+    /* Category Card Animations - Subtle with Goldish Effect */
+    .category {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: slideInUp 0.6s ease forwards;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Subtle gold border effect on hover */
+    .category::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      background: linear-gradient(45deg, rgba(233, 187, 36, 0.3), rgba(240, 208, 74, 0.3), rgba(233, 187, 36, 0.3));
+      background-size: 300% 300%;
+      z-index: -1;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      animation: subtleGradient 4s ease infinite;
+    }
+
+    /* Subtle inner glow */
+    .category::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(233, 187, 36, 0.05), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    @keyframes subtleGradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Staggered animation delays for each category */
+    .category-link:nth-child(1) .category { animation-delay: 0.1s; }
+    .category-link:nth-child(2) .category { animation-delay: 0.2s; }
+    .category-link:nth-child(3) .category { animation-delay: 0.3s; }
+    .category-link:nth-child(4) .category { animation-delay: 0.4s; }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .category:hover::before {
+      opacity: 1;
+    }
+
+    .category:hover::after {
+      opacity: 1;
+    }
+
+    .category:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(233, 187, 36, 0.15);
+      border-color: rgba(233, 187, 36, 0.3);
+    }
+
+    .category-images {
+      overflow: hidden;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .category-images img {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: scale(1);
+      filter: brightness(0.95) saturate(1.1);
+    }
+
+    .category:hover .category-images img {
+      transform: scale(1.05);
+      filter: brightness(1.05) saturate(1.2) contrast(1.1);
+    }
+
+    .category h3 {
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .category:hover h3 {
+      color: #e9bb24;
+      transform: translateY(-1px);
+      text-shadow: 0 0 8px rgba(233, 187, 36, 0.3);
+    }
+
+    /* Section Titles Animation */
+    .section-title {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    /* Button Effects - Better and Elegant */
+    .btn {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, #e9bb24, #f0d04a);
+    }
+
+    /* Gradient border effect */
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #e9bb24, #f0d04a, #e9bb24, #f0d04a);
+      background-size: 400% 400%;
+      z-index: -1;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      animation: gradientRotate 3s ease infinite;
+    }
+
+    /* Glow effect */
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: inherit;
+      border-radius: inherit;
+      filter: blur(15px);
+      opacity: 0;
+      z-index: -2;
+      transition: opacity 0.4s ease;
+    }
+
+    @keyframes gradientRotate {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    .btn:hover::after {
+      opacity: 0.6;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #f0d04a, #e9bb24);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 
+        0 8px 25px rgba(233, 187, 36, 0.4),
+        0 0 0 1px rgba(233, 187, 36, 0.3);
+      color: #000;
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Explore Products Section Animation */
+    .explore-text {
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 0.6s ease 0.2s forwards;
+    }
+
+    .explore-image {
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 0.6s ease 0.4s forwards;
+    }
+
+    .explore-image img {
+      transition: all 0.4s ease;
+      animation: floatImage 3s ease-in-out infinite;
+    }
+
+    /* Floating animation with limited boundary - faster and more visible */
+    @keyframes floatImage {
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+      }
+      25% { 
+        transform: translateY(-12px) translateX(5px) rotate(1deg);
+      }
+      50% { 
+        transform: translateY(-8px) translateX(-4px) rotate(0deg);
+      }
+      75% { 
+        transform: translateY(-15px) translateX(3px) rotate(-0.8deg);
+      }
+    }
+
+    .explore-image:hover img {
+      transform: scale(1.02);
+      filter: brightness(1.05);
+      animation-play-state: paused;
+    }
+
+    /* Form Input Effects - Subtle */
+    .enquiry-form {
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 0.6s ease 0.3s forwards;
+    }
+
+    .enquiry-form input, .enquiry-form textarea {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .enquiry-form input:focus, .enquiry-form textarea:focus {
+      border-color: #e9bb24;
+      box-shadow: 0 0 8px rgba(233, 187, 36, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .enquiry-form button {
+      transition: all 0.3s ease;
+    }
+
+    .enquiry-form button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(233, 187, 36, 0.3);
+    }
+
+    /* Contact sections animations */
+    .contact-info {
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 0.6s ease 0.1s forwards;
+    }
+
+    .shop-brief {
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 0.6s ease 0.5s forwards;
+    }
+
+    .family-photo {
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 0.6s ease 0.7s forwards;
+    }
+
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #e9bb24, #f0d04a);
+      z-index: 1000;
+      transition: width 0.1s ease;
+    }
+
+    /* Intersection Observer Animation Classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hover Effects for Interactive Elements */
+    .interactive-element {
+      transition: transform 0.3s ease;
+    }
+
+    .interactive-element:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Subtle page-wide effects */
+    .hero-swiper img {
+      transition: transform 8s ease-in-out;
+    }
+
+    .hero-swiper img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Navbar scroll effects */
+    .navbar {
+      transition: all 0.4s ease;
+    }
+
+    .navbar.scrolled {
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Section titles subtle animation */
+    .section-title {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    /* Contact Section */
+    .contact-enquiry {
+      position: relative;
+    }
+
+    /* File Input */
+    .file-input {
+      position: relative;
+    }
+
+    .file-input input[type="file"] {
+      transition: all 0.3s ease;
+    }
+
     .file-input {
   margin-bottom: 15px;
 }
@@ -132,7 +672,14 @@
   </style>
 </head>
 
-<body>
+<body class="page-content">
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- Hero Section -->
   <section class="hero" id="home">
@@ -170,7 +717,10 @@
       <div class="hero-overlay"></div>
 
       <div class="hero-text">
-        <h4 style="font-family: 'Playfair Display', serif;font-size: 2.5em;">Transforming Spaces with <br><span class="highlight" style="font-style: normal;">Exquisite Lighting </span></h4>
+        <h4 style="font-family: 'Playfair Display', serif;font-size: 2.5em;">
+          <div class="typewriter">Transforming Spaces with</div>
+          <div class="typewriter-line2"><span class="highlight" style="font-style: normal;">Exquisite Lighting</span></div>
+        </h4>
       </div>
 
       <div class="swiper-button-prev"></div>
@@ -181,9 +731,9 @@
 
 
   <!-- Projects Section -->
-  <section id="projects" class="projects">
+  <section id="projects" class="projects animate-on-scroll section-reveal">
   <div class="container">
-    <h4>Our Projects</h4>
+    <h4 class="section-title">Our Projects</h4>
 
     <div class="categories">
 
@@ -232,12 +782,12 @@
 </section>
 
 <!-- Explore Products Section -->
-<section class="explore-products" id="product">
+<section class="explore-products animate-on-scroll section-reveal" id="product">
   <div class="container explore-products-container">
     <div class="explore-text">
-      <h4>Explore Our Products</h4>
+      <h4 class="section-title">Explore Our Products</h4>
       <p>Light & Style has over 25 years of experience in designing and developing best-selling lighting and interiors ranges making them the go-to brand for stylish lighting solutions. The company's innovative designs assist in accentuating the commercial and private spaces as per individual's needs. <br><br> Passionately driven by product design but extremely motivated by customer experience, is what Light & Style is primarily about.</p>
-      <a href="products.html" class="btn">View Products</a>
+      <a href="products.html" class="btn interactive-element">View Products</a>
     </div>
     <div class="explore-image">
       <img src="images/product.jpeg" alt="Explore Products">
@@ -247,7 +797,7 @@
 
 
 <!-- Contact & Enquiry Section -->
-<section id="contact" class="contact-enquiry">
+<section id="contact" class="contact-enquiry animate-on-scroll section-reveal">
   <div class="container contact-enquiry-container">
 
     <!-- Left Column -->
@@ -269,10 +819,10 @@
           <textarea name="message" placeholder="Your Message"></textarea>
           <div class="file-input">
             <input type="file" id="attachments" name="attachments" multiple />
-            <p> Have a design in mind? Share your reference images — we’ll craft a light that’s uniquely yours.</p>
+            <p> Have a design in mind? Share your reference images — we'll craft a light that's uniquely yours.</p>
             <small>Attach up to 3 files (max 5MB each)</small>
           </div>
-          <button type="submit">Send</button>
+          <button type="submit" class="interactive-element">Send</button>
         </form>
       </div>
     </div>
@@ -312,6 +862,99 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
   <script>
+    // Loading Screen with enhanced timing
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loadingScreen').classList.add('fade-out');
+        setTimeout(function() {
+          document.getElementById('loadingScreen').style.display = 'none';
+          
+          // Start scroll animations after loading is complete
+          initScrollAnimations();
+        }, 800);
+      }, 1800);
+    });
+
+    // Enhanced Scroll Progress Bar
+    window.addEventListener('scroll', function() {
+      const scrollProgress = document.getElementById('scrollProgress');
+      const totalHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (window.pageYOffset / totalHeight) * 100;
+      scrollProgress.style.width = progress + '%';
+    });
+
+    // Smooth Scroll for Navigation with easing
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for scroll animations
+    function initScrollAnimations() {
+      const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -30px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+            
+            // Add visible class for section reveals
+            if (entry.target.classList.contains('section-reveal')) {
+              entry.target.classList.add('visible');
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with animation classes
+      document.querySelectorAll('.animate-on-scroll, .section-reveal').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Subtle parallax effect for hero
+    let ticking = false;
+    
+    function updateParallax() {
+      const scrolled = window.pageYOffset;
+      const heroText = document.querySelector('.hero-text');
+      
+      if (heroText && scrolled < window.innerHeight) {
+        const rate = scrolled * -0.3;
+        heroText.style.transform = `translateY(${rate}px)`;
+      }
+      
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+
+    // Enhanced navbar scroll effect with smooth transitions
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
     // Initialize EmailJS
     (function() {
       emailjs.init("SL67cZHfeqT4Y3D9k"); // Replace with your EmailJS public key

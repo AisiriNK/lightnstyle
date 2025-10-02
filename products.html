@@ -8,17 +8,35 @@
   <link rel="stylesheet" href="style.css" />
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
+    /* Base styles with smooth transitions */
     body {
       font-family: 'Lato', sans-serif;
       margin: 0;
       background: #111;
       color: #eee;
+      opacity: 0;
+      animation: pageLoad 0.8s ease 0.3s forwards;
     }
 
+    @keyframes pageLoad {
+      to { opacity: 1; }
+    }
+
+    /* Header animations */
     header {
       background: #000;
       color: #fff;
       padding: 15px 0;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideDown 0.6s ease 0.1s forwards;
+    }
+
+    @keyframes slideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     header .container {
@@ -34,11 +52,17 @@
     .logo {
       display: flex;
       align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
     }
 
     .logo img {
       height: 50px;
       margin-right: 10px;
+      transition: all 0.3s ease;
     }
 
     .brand-name {
@@ -46,12 +70,20 @@
       font-size: 24px;
       color: #e9bb24;
       font-weight: 700;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover .brand-name {
+      color: #f0d04a;
     }
 
     .navbar
     {
       position: fixed;
       background-color: #000;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
     }
 
     nav a {
@@ -59,11 +91,31 @@
       text-decoration: none;
       margin-left: 20px;
       font-weight: 500;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #e9bb24;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after {
+      width: 80%;
     }
 
     nav a:hover {
       color: #e9bb24;
+      background: rgba(233, 187, 36, 0.1);
     }
 
     .container {
@@ -79,30 +131,76 @@
       text-align: center;
       margin-bottom: 30px;
       color: #e9bb24;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease 0.5s forwards;
     }
 
-    /* Filters - optional future expansion */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Filters animations */
     .filters {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       margin-bottom: 30px;
-      justify-content: center;
+      justify-content: left;
       flex-wrap: wrap;
+      position: relative;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 0.6s ease 0.7s forwards;
     }
 
     .filters input,
     .filters select {
       padding: 10px 15px;
       font-size: 16px;
-      border: none;
+      border: 1px solid #444;
       border-radius: 5px;
+      background: #1a1a1a;
+      color: #eee;
+      outline: none;
+      width: 250px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    .filters input::placeholder {
+      color: #777;
+    }
+
+    .filters input:focus,
+    .filters select:focus {
+      border-color: #e9bb24;
+      box-shadow: 0 0 15px rgba(233, 187, 36, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .filters select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23d97706' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 16px;
+      padding-right: 35px;
+    }
+
+    /* Products grid animations */
     .products-grid {
       display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  gap: 30px;
+      flex-wrap: wrap;
+      justify-content: left;
+      gap: 30px;
+      opacity: 0;
+      animation: fadeIn 0.8s ease 0.9s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     .product-card {
@@ -111,12 +209,31 @@
       overflow: hidden;
       cursor: pointer;
       box-shadow: 0 6px 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       flex: 0 1 220px;
-  max-width: 300px;
-  transition: transform 0.3s, opacity 0.3s;
+      max-width: 300px;
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+      animation: cardSlideIn 0.6s ease forwards;
+      border: 2px solid transparent;
+    }
+
+    /* Staggered animation for product cards */
+    .product-card:nth-child(1) { animation-delay: 1s; }
+    .product-card:nth-child(2) { animation-delay: 1.1s; }
+    .product-card:nth-child(3) { animation-delay: 1.2s; }
+    .product-card:nth-child(4) { animation-delay: 1.3s; }
+    .product-card:nth-child(5) { animation-delay: 1.4s; }
+    .product-card:nth-child(6) { animation-delay: 1.5s; }
+    .product-card:nth-child(n+7) { animation-delay: 1.6s; }
+
+    @keyframes cardSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .product-card img {
@@ -124,12 +241,15 @@
       aspect-ratio: 3.5/4;
       object-fit: cover;
       display: block;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(0.9) contrast(1.1);
     }
 
     .product-info {
       padding: 15px;
       text-align: center;
       background: #1a1a1a;
+      transition: all 0.3s ease;
     }
 
     .product-info h4 {
@@ -137,6 +257,7 @@
       font-size: 18px;
       color: #e9bb24;
       margin: 10px 0 8px;
+      transition: all 0.3s ease;
     }
 
     .product-info p {
@@ -146,11 +267,55 @@
       line-height: 1.3;
     }
 
-    .product-card:hover {
-      transform: scale(1.05);
+    /* Enhanced hover effects */
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, rgba(233, 187, 36, 0.3), rgba(240, 208, 74, 0.3));
+      background-size: 400% 400%;
+      z-index: -1;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      animation: gradientShift 3s ease infinite;
     }
 
-    /* Modal overlay */
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(233, 187, 36, 0.2);
+      border-color: rgba(233, 187, 36, 0.3);
+    }
+
+    .product-card:hover img {
+      transform: scale(1.1);
+      filter: brightness(1.1) contrast(1.2) saturate(1.2);
+    }
+
+    .product-card:hover .product-info {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    }
+
+    .product-card:hover .product-info h4 {
+      transform: translateY(-2px);
+      text-shadow: 0 0 8px rgba(233, 187, 36, 0.5);
+    }
+
+    /* Modal overlay animations */
     .specs-overlay {
       position: fixed;
       top: 0;
@@ -163,6 +328,13 @@
       align-items: center;
       z-index: 1000;
       padding: 20px;
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .specs-overlay.show {
+      opacity: 1;
     }
 
     .specs-content {
@@ -176,6 +348,14 @@
       gap: 30px;
       flex-wrap: wrap;
       position: relative;
+      transform: scale(0.8) translateY(30px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(233, 187, 36, 0.2);
+    }
+
+    .specs-overlay.show .specs-content {
+      transform: scale(1) translateY(0);
     }
 
     .specs-image {
@@ -189,6 +369,12 @@
       object-fit: contain;
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+
+    .specs-image img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 25px rgba(233, 187, 36, 0.3);
     }
 
     .specs-details {
@@ -204,12 +390,30 @@
       font-size: 28px;
       margin-bottom: 20px;
       color: #e9bb24;
+      animation: none;
+      opacity: 1;
+      transform: none;
     }
 
     .specs-details p {
       font-size: 16px;
       margin: 8px 0;
       color: #ddd;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: slideInLeft 0.5s ease forwards;
+    }
+
+    .specs-details p:nth-child(2) { animation-delay: 0.1s; }
+    .specs-details p:nth-child(3) { animation-delay: 0.2s; }
+    .specs-details p:nth-child(4) { animation-delay: 0.3s; }
+    .specs-details p:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes slideInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     .close-overlay {
@@ -221,11 +425,193 @@
       cursor: pointer;
       font-family: Arial, sans-serif;
       font-weight: bold;
+      transition: all 0.3s ease;
+      padding: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
     }
 
+    .close-overlay:hover {
+      color: #e9bb24;
+      transform: rotate(90deg) scale(1.1);
+      background: rgba(233, 187, 36, 0.2);
+    }
+
+    /* Button animations */
+    #enquireProductBtn {
+      margin-top: 20px;
+      background: linear-gradient(135deg, #e9bb24, #f0d04a);
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideInUp 0.6s ease 0.5s forwards;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #enquireProductBtn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    #enquireProductBtn:hover::before {
+      left: 100%;
+    }
+
+    #enquireProductBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(233, 187, 36, 0.4);
+      background: linear-gradient(135deg, #f0d04a, #e9bb24);
+    }
+
+    /* Loading animation */
+    #loadingMessage {
+      text-align: center;
+      color: #e9bb24;
+      font-size: 18px;
+      margin: 40px 0;
+      opacity: 0.7;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    /* Suggestions dropdown animation */
+    .suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #222;
+      color: #eee;
+      max-height: 200px;
+      overflow-y: auto;
+      border-radius: 5px;
+      margin-top: 2px;
+      z-index: 100;
+      width: 250px;
+      display: none;
+      border: 1px solid #444;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .suggestions.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .suggestions div {
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      transform: translateX(-10px);
+      opacity: 0;
+      animation: suggestionSlideIn 0.3s ease forwards;
+    }
+
+    .suggestions div:nth-child(1) { animation-delay: 0.05s; }
+    .suggestions div:nth-child(2) { animation-delay: 0.1s; }
+    .suggestions div:nth-child(3) { animation-delay: 0.15s; }
+    .suggestions div:nth-child(4) { animation-delay: 0.2s; }
+    .suggestions div:nth-child(5) { animation-delay: 0.25s; }
+
+    @keyframes suggestionSlideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .suggestions div:hover {
+      background: #333;
+      color: #e9bb24;
+      transform: translateX(5px);
+    }
+
+    /* Contact section animations */
+    .contact-enquiry {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease 1.5s forwards;
+    }
+
+    .contact-enquiry-container {
+      opacity: 0;
+      animation: fadeIn 1s ease 2s forwards;
+    }
+
+    /* Form animations */
+    .enquiry-form input,
+    .enquiry-form textarea,
+    .enquiry-form button {
+      transition: all 0.3s ease;
+    }
+
+    .enquiry-form input:focus,
+    .enquiry-form textarea:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(233, 187, 36, 0.3);
+    }
+
+    .enquiry-form button {
+      background: linear-gradient(135deg, #e9bb24, #f0d04a);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .enquiry-form button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .enquiry-form button:hover::before {
+      left: 100%;
+    }
+
+    .enquiry-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(233, 187, 36, 0.4);
+    }
+
+    /* Mobile responsive animations */
     @media (max-width: 992px) {
       .products-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .product-card:hover {
+        transform: translateY(-5px) scale(1.02);
       }
     }
 
@@ -233,124 +619,35 @@
       .products-grid {
         grid-template-columns: 1fr;
       }
+      
       .specs-content {
         flex-direction: column;
         align-items: center;
+        padding: 20px;
       }
+      
       .specs-image img {
         max-height: 300px;
       }
+      
       .filters {
-    flex-direction: column;
-    align-items: stretch;
-  }
+        flex-direction: column;
+        align-items: stretch;
+      }
 
-  .filters input,
-  .filters select {
-    width: 100%;
-  }
+      .filters input,
+      .filters select {
+        width: 100%;
+      }
+      
+      .product-card {
+        animation-delay: 1s !important;
+      }
+      
+      h3 {
+        font-size: 28px;
+      }
     }
-    .suggestions {
-  position: absolute;
-  background: #222;
-  color: #eee;
-  max-height: 200px;
-  overflow-y: auto;
-  border-radius: 5px;
-  margin-top: 2px;
-  z-index: 100;
-  width: 250px;
-  display: none;
-}
-
-.suggestions div {
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-.suggestions div:hover {
-  background: #333;
-}
-.filters {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 30px;
-  justify-content: left;
-  flex-wrap: wrap;
-  position: relative; /* for suggestions positioning */
-}
-
-.filters input,
-.filters select {
-  padding: 10px 15px;
-  font-size: 16px;
-  border: 1px solid #444;
-  border-radius: 5px;
-  background: #1a1a1a;
-  color: #eee;
-  outline: none;
-  width: 250px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.filters input::placeholder {
-  color: #777;
-}
-
-.filters input:focus,
-.filters select:focus {
-  border-color: #e9bb24;
-  box-shadow: 0 0 5px rgba(217, 119, 6, 0.5);
-}
-
-.filters select {
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23d97706' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 16px;
-  padding-right: 35px;
-}
-
-.suggestions {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #222;
-  color: #eee;
-  max-height: 200px;
-  overflow-y: auto;
-  border-radius: 5px;
-  margin-top: 2px;
-  z-index: 100;
-  width: 250px;
-  display: none;
-  border: 1px solid #444;
-}
-
-.suggestions div {
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-.suggestions div:hover {
-  background: #333;
-  color: #e9bb24;
-}
-
-.file-input {
-  margin-bottom: 15px;
-}
-
-.file-input input[type="file"] {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.file-input small {
-  color: #666;
-  font-size: 0.85em;
-}
   </style>
 </head>
 <body>
@@ -519,8 +816,52 @@
   return array;
 }
 
-  // Display products in the grid
+  // Enhanced product card display with staggered animations
   function displayProducts(products) {
+    productsGrid.innerHTML = '';
+    
+    if (products.length === 0) {
+      productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">No products found</p>';
+      return;
+    }
+
+    products.forEach((product, index) => {
+      const productCard = document.createElement('div');
+      productCard.className = 'product-card';
+      productCard.dataset.id = product.id;
+      productCard.dataset.name = product.name;
+      productCard.dataset.category = product.category || '';
+      
+      // Add custom animation delay for staggered effect
+      productCard.style.animationDelay = `${1 + (index * 0.1)}s`;
+      
+      // Build specs string
+      const specs = [
+        product.material ? `Material: ${product.material}` : '',
+        product.wattage ? `Wattage: ${product.wattage}W` : '',
+        product.size ? `Size: ${product.size}` : '',
+        product.finish ? `Finish: ${product.finish}` : ''
+      ].filter(spec => spec !== '');
+      
+      productCard.innerHTML = `
+        <img src="${product.image_url || 'images/placeholder.jpg'}" alt="${product.name}" onerror="this.src='images/placeholder.jpg'">
+        <div class="product-info">
+          <h4>${product.name}</h4>
+        </div>
+      `;
+      
+      // Add click event for modal
+      productCard.addEventListener('click', () => showProductModal(product, specs));
+      
+      // Observe for scroll animations
+      observer.observe(productCard);
+      
+      productsGrid.appendChild(productCard);
+    });
+  }
+
+  // Display products in the grid
+  function displayProducts_old(products) {
     productsGrid.innerHTML = '';
     
     if (products.length === 0) {
@@ -581,7 +922,11 @@
       }
     });
     
-    document.getElementById('specsOverlay').style.display = 'flex';
+    // Show modal with animation
+    const overlay = document.getElementById('specsOverlay');
+    overlay.style.display = 'flex';
+    setTimeout(() => overlay.classList.add('show'), 10);
+    
     // Add event listener for Enquire button
     const enquireBtn = document.getElementById('enquireProductBtn');
     enquireBtn.onclick = function() {
@@ -606,10 +951,68 @@
 
   // Close modal
   document.getElementById('closeOverlay').addEventListener('click', () => {
-    document.getElementById('specsOverlay').style.display = 'none';
+    const overlay = document.getElementById('specsOverlay');
+    overlay.classList.remove('show');
+    setTimeout(() => overlay.style.display = 'none', 300);
   });
 
-  // Initialize page
+  // Add intersection observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, observerOptions);
+
+  // Enhanced product card display with staggered animations
+  function displayProducts(products) {
+    productsGrid.innerHTML = '';
+    
+    if (products.length === 0) {
+      productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">No products found</p>';
+      return;
+    }
+
+    products.forEach((product, index) => {
+      const productCard = document.createElement('div');
+      productCard.className = 'product-card';
+      productCard.dataset.id = product.id;
+      productCard.dataset.name = product.name;
+      productCard.dataset.category = product.category || '';
+      
+      // Add custom animation delay for staggered effect
+      productCard.style.animationDelay = `${1 + (index * 0.1)}s`;
+      
+      // Build specs string
+      const specs = [
+        product.material ? `Material: ${product.material}` : '',
+        product.wattage ? `Wattage: ${product.wattage}W` : '',
+        product.size ? `Size: ${product.size}` : '',
+        product.finish ? `Finish: ${product.finish}` : ''
+      ].filter(spec => spec !== '');
+      
+      productCard.innerHTML = `
+        <img src="${product.image_url || 'images/placeholder.jpg'}" alt="${product.name}" onerror="this.src='images/placeholder.jpg'">
+        <div class="product-info">
+          <h4>${product.name}</h4>
+        </div>
+      `;
+      
+      // Add click event for modal
+      productCard.addEventListener('click', () => showProductModal(product, specs));
+      
+      // Observe for scroll animations
+      observer.observe(productCard);
+      
+      productsGrid.appendChild(productCard);
+    });
+  }
 // Show product enquiry modal
 function showProductEnquiryModal(product) {
   document.getElementById('productEnquiryName').textContent = `Enquiry for: ${product.name}`;
@@ -705,9 +1108,39 @@ async function sendProductEnquiry(e) {
 
   return false;
 }
+  // Initialize page
   document.addEventListener('DOMContentLoaded', () => {
     loadCategories();
     loadProducts();
+    
+    // Add smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href.includes('#')) {
+          e.preventDefault();
+          const targetId = href.split('#')[1];
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          } else if (href.includes('index.html')) {
+            window.location.href = href;
+          }
+        }
+      });
+    });
+
+    // Add parallax effect to header
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const header = document.querySelector('header');
+      if (header) {
+        header.style.transform = `translateY(${scrolled * 0.1}px)`;
+      }
+    });
   });
 </script>
 </script>
