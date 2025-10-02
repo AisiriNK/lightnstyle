@@ -188,6 +188,156 @@
       background: rgba(233, 187, 36, 0.05);
     }
 
+    /* ========================================
+       MOBILE HAMBURGER MENU STYLES
+       ======================================== */
+    
+    /* Mobile menu button */
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger-line {
+      width: 25px;
+      height: 3px;
+      background: #e9bb24;
+      margin: 3px 0;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    
+    /* Hamburger animation */
+    .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    
+    .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    
+    /* Desktop navigation */
+    .desktop-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    /* Mobile navigation dropdown */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(17, 17, 17, 0.98);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(233, 187, 36, 0.3);
+      padding: 1rem;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .mobile-nav.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-nav a {
+      display: block;
+      padding: 1rem;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      border-bottom: 1px solid rgba(233, 187, 36, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+    
+    .mobile-nav a:hover {
+      color: #e9bb24;
+      background: rgba(233, 187, 36, 0.1);
+      padding-left: 1.5rem;
+    }
+    
+    /* Responsive header layout */
+    .navbar .container {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      position: relative;
+    }
+    
+    /* Mobile responsive breakpoints */
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: flex;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-nav {
+        display: block;
+      }
+      
+      .logo img {
+        height: 35px;
+      }
+      
+      .brand-name {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .navbar .container {
+        gap: 0.5rem;
+      }
+      
+      .logo img {
+        height: 30px;
+      }
+      
+      .brand-name {
+        font-size: 0.9rem;
+      }
+      
+      .mobile-menu-btn {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .hamburger-line {
+        width: 20px;
+        height: 2px;
+      }
+    }
+
     /* Logo Animation */
     .logo {
       transition: all 0.3s ease;
@@ -405,29 +555,12 @@
 
     .explore-image img {
       transition: all 0.4s ease;
-      animation: floatImage 3s ease-in-out infinite;
-    }
-
-    /* Floating animation with limited boundary - faster and more visible */
-    @keyframes floatImage {
-      0%, 100% { 
-        transform: translateY(0px) translateX(0px) rotate(0deg);
-      }
-      25% { 
-        transform: translateY(-12px) translateX(5px) rotate(1deg);
-      }
-      50% { 
-        transform: translateY(-8px) translateX(-4px) rotate(0deg);
-      }
-      75% { 
-        transform: translateY(-15px) translateX(3px) rotate(-0.8deg);
-      }
     }
 
     .explore-image:hover img {
       transform: scale(1.02);
       filter: brightness(1.05);
-      animation-play-state: paused;
+    }
     }
 
     /* Form Input Effects - Subtle */
@@ -692,12 +825,28 @@
             <img src="images/logo.jpg" alt="Brand Logo">
             <span class="brand-name">Light & Style</span>
           </div>
-          <nav>
-
+          
+          <!-- Mobile hamburger menu button -->
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          
+          <!-- Desktop navigation -->
+          <nav class="desktop-nav">
             <a class="navigation" href="#product" style="font-family: 'Playfair Display', serif; font-size: larger;">Products</a>
             <a class="navigation" href="#projects" style="font-family: 'Playfair Display', serif; font-size: larger;">Projects</a>
             <a class="navigation" href="testimonials.html" style="font-family: 'Playfair Display', serif; font-size: larger;">Testimonials</a>
             <a class="navigation" href="#contact" style="font-family: 'Playfair Display', serif; font-size: larger;">Contact us</a>
+          </nav>
+          
+          <!-- Mobile navigation dropdown -->
+          <nav class="mobile-nav" id="mobileNav">
+            <a href="#product">Products</a>
+            <a href="#projects">Projects</a>
+            <a href="testimonials.html">Testimonials</a>
+            <a href="#contact">Contact us</a>
           </nav>
         </div>
       </header>
