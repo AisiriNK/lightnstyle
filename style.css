@@ -203,39 +203,6 @@ body {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Add decorative elements to title */
-.projects h4::before,
-.projects h4::after {
-  content: '✦';
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #e9bb24;
-  font-size: 0.6em;
-  opacity: 0;
-  animation: fadeIn 1s ease 2s forwards;
-}
-
-.projects h4::before {
-  left: -40px;
-  animation: fadeIn 1s ease 2s forwards, slideInLeft 0.5s ease 2s forwards;
-}
-
-.projects h4::after {
-  right: -40px;
-  animation: fadeIn 1s ease 2s forwards, slideInRight 0.5s ease 2s forwards;
-}
-
-@keyframes slideInLeft {
-  from { transform: translateY(-50%) translateX(-20px); }
-  to { transform: translateY(-50%) translateX(0); }
-}
-
-@keyframes slideInRight {
-  from { transform: translateY(-50%) translateX(20px); }
-  to { transform: translateY(-50%) translateX(0); }
-}
-
 @keyframes fadeIn {
   to { opacity: 1; }
 }

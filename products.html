@@ -964,13 +964,13 @@
     <!-- Desktop navigation -->
     <nav class="desktop-nav">
       <a href="index.html#home" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Back to Home</a>
-      <a href="#contact" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Contact Us</a>
+      <a href="index.html#contact" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Contact Us</a>
     </nav>
     
     <!-- Mobile navigation dropdown -->
     <nav class="mobile-nav" id="mobileNav">
       <a href="index.html#home">Back to Home</a>
-      <a href="#contact">Contact Us</a>
+      <a href="index.html#contact">Contact Us</a>
     </nav>
   </div>
 </header>
@@ -1453,119 +1453,9 @@ async function sendProductEnquiry(e) {
 </script>
 
 
-<!-- Contact & Enquiry Section -->
-<section id="contact" class="contact-enquiry">
-  <div class="container contact-enquiry-container">
 
-    <!-- Left Column -->
-    <div class="contact-left">
-      <div class="shop-brief">
-        <h3>About Light & Style</h3>
-        <p>
-          Light & Style is a family-run lighting boutique in the heart of Bangalore, offering a curated selection of elegant lighting solutions for homes and businesses. With decades of experience, we pride ourselves on quality, service, and a personal touch.
-        </p>
-      </div>
-      <div class="enquiry-form">
-        <h3>Send Enquiry</h3>
-        <form id="enquiryForm" onsubmit="return sendEmail(event)" enctype="multipart/form-data">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <input type="text" name="phone" placeholder="Phone Number" />
-          <textarea name="message" placeholder="Your Message"></textarea>
-          <div class="file-input">
-            <input type="file" name="attachments[]" id="attachments" accept="image/*" multiple />
-            <small>You can attach up to 3 images (max 5MB each)</small>
-          </div>
-          <button type="submit">Send</button>
-        </form>
-      </div>
-    </div>
 
-    <!-- Right Column -->
-    <div class="contact-right">
-      <div class="contact-info">
-        <h3>Contact Us</h3>
-        <p>
-          120/5, Infantry Road, Bangalore - 560001<br>
-          Phone: 080-41130090 / 41132190<br>
-          Email: neha@lightnstyle.in
-        </p>
-      </div>
-      <div class="family-photo">
-        <h3>Meet Our Family</h3>
-        <img src="images/family.jpeg" alt="Light & Style Family">
-      </div>
-    </div>
 
-  </div>
-</section>
-
-    <script>
-      // Function to send email
-      // Function to send email (Contact Enquiry)
-async function sendEmail(e) {
-  e.preventDefault();
-
-  const form = document.getElementById('enquiryForm');
-  const submitButton = form.querySelector('button[type="submit"]');
-  const fileInput = document.getElementById('attachments');
-
-  // Validate file attachments
-  const files = fileInput.files;
-  if (files.length > 3) {
-    alert('Please select a maximum of 3 files');
-    return false;
-  }
-  for (let i = 0; i < files.length; i++) {
-    if (files[i].size > 5 * 1024 * 1024) {
-      alert('Each file must be less than 5MB');
-      return false;
-    }
-  }
-
-  // Disable the submit button while sending
-  submitButton.disabled = true;
-  submitButton.textContent = 'Sending...';
-
-  try {
-    // Build FormData
-    const formData = new FormData();
-    formData.append('name', form.name.value);
-    formData.append('email', form.email.value);
-    formData.append('phone', form.phone.value);
-    formData.append('message', form.message.value);
-
-    // Add file attachments
-    for (let i = 0; i < files.length; i++) {
-      formData.append('attachments[]', files[i]);
-    }
-
-    // Send to PHP
-    const response = await fetch('send-email.php', {
-      method: 'POST',
-      body: formData
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      throw new Error(result.error || 'Failed to send email');
-    }
-
-    alert('Thank you! Your message has been sent.');
-    form.reset();
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Sorry, there was an error sending your message: ' + error.message);
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = 'Send';
-  }
-
-  return false;
-}
-
-    </script>
 
 <script>
   // ========================================
