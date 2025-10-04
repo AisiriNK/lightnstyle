@@ -237,6 +237,13 @@
       align-items: center;
     }
     
+    /* Navigation container for desktop/mobile switching */
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
     /* Mobile navigation dropdown */
     .mobile-nav {
       display: none;
@@ -284,11 +291,11 @@
     
     /* Responsive header layout */
     .navbar .container {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 1rem;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
       position: relative;
+      gap: 1rem;
     }
     
     /* Mobile responsive breakpoints */
@@ -825,20 +832,22 @@
             <span class="brand-name">Light & Style</span>
           </div>
           
-          <!-- Mobile hamburger menu button -->
-          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </button>
-          
-          <!-- Desktop navigation -->
-          <nav class="desktop-nav">
-            <a class="navigation" href="#product" style="font-family: 'Playfair Display', serif; font-size: larger;">Products</a>
-            <a class="navigation" href="#projects" style="font-family: 'Playfair Display', serif; font-size: larger;">Projects</a>
-            <a class="navigation" href="testimonials.html" style="font-family: 'Playfair Display', serif; font-size: larger;">Testimonials</a>
-            <a class="navigation" href="#contact" style="font-family: 'Playfair Display', serif; font-size: larger;">Contact us</a>
-          </nav>
+          <div class="nav-container">
+            <!-- Desktop navigation -->
+            <nav class="desktop-nav">
+              <a class="navigation" href="#product" style="font-family: 'Playfair Display', serif; font-size: larger;">Products</a>
+              <a class="navigation" href="#projects" style="font-family: 'Playfair Display', serif; font-size: larger;">Projects</a>
+              <a class="navigation" href="testimonials.html" style="font-family: 'Playfair Display', serif; font-size: larger;">Testimonials</a>
+              <a class="navigation" href="#contact" style="font-family: 'Playfair Display', serif; font-size: larger;">Contact us</a>
+            </nav>
+            
+            <!-- Mobile hamburger menu button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </button>
+          </div>
           
           <!-- Mobile navigation dropdown -->
           <nav class="mobile-nav" id="mobileNav">
@@ -1100,6 +1109,57 @@
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Menu Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      
+      if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', function() {
+          // Toggle hamburger animation
+          mobileMenuBtn.classList.toggle('active');
+          
+          // Toggle mobile menu visibility
+          mobileNav.classList.toggle('active');
+          
+          // Prevent body scroll when menu is open
+          if (mobileNav.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = '';
+          }
+        });
+        
+        // Close mobile menu when clicking on links
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+          });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+        
+        // Handle escape key to close menu
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
       }
     });
 
