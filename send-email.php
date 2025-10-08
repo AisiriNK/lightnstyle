@@ -63,11 +63,12 @@ if (isset($_FILES['attachments'])) {
         ];
     }
 }
-$env = parse_ini_file(__DIR__ . '/.env'); // parses KEY=VALUE pairs
-$api_key = $env['BREVO_API_KEY'];
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-// Brevo API configuration
-$api_url = $env['BREVO_API_URL'];
+$api_key = $_ENV['BREVO_API_KEY'];
+$api_url = $_ENV['BREVO_API_URL'];
 
 // Prepare email data
 $email_data = [
