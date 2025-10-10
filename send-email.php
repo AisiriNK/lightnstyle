@@ -38,6 +38,13 @@ if (empty($data['name']) || empty($data['email'])) {
     exit;
 }
 
+// Validate email format
+if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Invalid email format']);
+    exit;
+}
+
 // Handle file uploads
 if (isset($_FILES['attachments'])) {
     $files = $_FILES['attachments'];
@@ -63,14 +70,37 @@ if (isset($_FILES['attachments'])) {
         ];
     }
 }
-require __DIR__ . '/vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// Since we can see the API key is already hardcoded, let's remove the Composer dependency
+// require __DIR__ . '/vendor/autoload.php';
+// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+// $dotenv->load();
 
-$api_key = $_ENV['BREVO_API_KEY'];
-$api_url = $_ENV['BREVO_API_URL'];
+$api_key = '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';
+$api_url = 'https://api.brevo.com/v3/smtp/email';
 
-// Prepare email data
+// Debug: Check if environment variables are loaded
+if (empty($api_key) || empty($api_url)) {
+    error_log("Environment variables not loaded properly");
+    http_response_code(500);
+    echo json_encode(['error' => 'Server configuration error']);
+    exit;
+}
+
+// Prepare email data with simpler structure
+$htmlContent = '<html><body style="font-family: Arial, sans-serif;">
+<h2 style="color: #e9bb24;">New Contact Form Submission</h2>
+<p><strong>Name:</strong> ' . htmlspecialchars($data['name']) . '</p>
+<p><strong>Email:</strong> ' . htmlspecialchars($data['email']) . '</p>
+<p><strong>Phone:</strong> ' . htmlspecialchars($data['phone'] ?? 'Not provided') . '</p>
+<p><strong>Message:</strong></p>
+<p>' . nl2br(htmlspecialchars($data['message'] ?? 'No message provided')) . '</p>';
+
+if (count($attachments) > 0) {
+    $htmlContent .= '<p><strong>Attachments:</strong> ' . count($attachments) . ' file(s) attached</p>';
+}
+
+$htmlContent .= '</body></html>';
+
 $email_data = [
     'sender' => [
         'name' => 'Light & Style',
@@ -83,22 +113,14 @@ $email_data = [
         ]
     ],
     'replyTo' => [
-        'email' => $_POST['email'] ?? '',
-        'name' => $_POST['name'] ?? ''
+        'email' => $data['email'],
+        'name' => $data['name']
     ],
-    'subject' => 'New Enquiry from ' . $data['name'],
-    'templateId' => 1,
-    'params' => [
-        'name' => $_POST['name'] ?? '',
-        'email' => $_POST['email'] ?? '',
-        'phone' => $_POST['phone'] ?? '',
-        'message' => $_POST['message'] ?? '',
-        'attachmentsCount' => count($attachments)
-
-    ]
+    'subject' => 'New Enquiry from ' . htmlspecialchars($data['name']),
+    'htmlContent' => $htmlContent
 ];
 
-// Add attachments if any
+// Add attachments if any (as separate property)
 if (!empty($attachments)) {
     $email_data['attachment'] = $attachments;
 }
@@ -120,9 +142,34 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
 $response = curl_exec($ch);
 $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+// Check for cURL errors before closing
+if ($response === false) {
+    $curl_error = curl_error($ch);
+    curl_close($ch);
+    http_response_code(500);
+    echo json_encode(['error' => 'Connection error: ' . $curl_error]);
+    exit;
+}
+
 curl_close($ch);
 
-// Return response to client
+// Log the response
+error_log("API Response: " . $response);
+error_log("HTTP Code: " . $http_code);
+
+// Parse and handle API response
+if ($http_code >= 400) {
+    $response_data = json_decode($response, true);
+    if ($response_data && isset($response_data['message'])) {
+        echo json_encode(['error' => 'API Error: ' . $response_data['message']]);
+    } else {
+        echo json_encode(['error' => 'Email sending failed with code: ' . $http_code]);
+    }
+    exit;
+}
+
+// Return success response
 http_response_code($http_code);
 echo $response;
 ?>

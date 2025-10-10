@@ -1167,44 +1167,6 @@
     });
   }
 
-  // Display products in the grid
-  function displayProducts_old(products) {
-    productsGrid.innerHTML = '';
-    
-    if (products.length === 0) {
-      productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">No products found</p>';
-      return;
-    }
-
-    products.forEach(product => {
-      const productCard = document.createElement('div');
-      productCard.className = 'product-card';
-      productCard.dataset.id = product.id;
-      productCard.dataset.name = product.name;
-      productCard.dataset.category = product.category || '';
-      
-      // Build specs string
-      const specs = [
-        product.material ? `Material: ${product.material}` : '',
-        product.wattage ? `Wattage: ${product.wattage}W` : '',
-        product.size ? `Size: ${product.size}` : '',
-        product.finish ? `Finish: ${product.finish}` : ''
-      ].filter(spec => spec !== '');
-      
-      productCard.innerHTML = `
-        <img src="${product.image_url || 'images/placeholder.jpg'}" alt="${product.name}" onerror="this.src='images/placeholder.jpg'">
-        <div class="product-info">
-          <h4>${product.name}</h4>
-        </div>
-      `;
-      
-      // Add click event for modal
-      productCard.addEventListener('click', () => showProductModal(product, specs));
-      
-      productsGrid.appendChild(productCard);
-    });
-  }
-
   // Show product details modal
   function showProductModal(product, specs) {
     document.getElementById('specsTitle').textContent = product.name;
@@ -1229,15 +1191,23 @@
       }
     });
     
+    // Store product data globally for the enquire button
+    window.currentProduct = product;
+    
     // Show modal with animation
     const overlay = document.getElementById('specsOverlay');
     overlay.style.display = 'flex';
     setTimeout(() => overlay.classList.add('show'), 10);
     
-    // Add event listener for Enquire button
+    // Remove any existing event listeners and add new one for Enquire button
     const enquireBtn = document.getElementById('enquireProductBtn');
-    enquireBtn.onclick = function() {
-      showProductEnquiryModal(product);
+    // Clone the button to remove all existing event listeners
+    const newEnquireBtn = enquireBtn.cloneNode(true);
+    enquireBtn.parentNode.replaceChild(newEnquireBtn, enquireBtn);
+    
+    // Add the event listener to the new button
+    newEnquireBtn.onclick = function() {
+      showProductEnquiryModal(window.currentProduct);
     };
   }
 
@@ -1277,49 +1247,6 @@
     });
   }, observerOptions);
 
-  // Enhanced product card display with staggered animations
-  function displayProducts(products) {
-    productsGrid.innerHTML = '';
-    
-    if (products.length === 0) {
-      productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">No products found</p>';
-      return;
-    }
-
-    products.forEach((product, index) => {
-      const productCard = document.createElement('div');
-      productCard.className = 'product-card';
-      productCard.dataset.id = product.id;
-      productCard.dataset.name = product.name;
-      productCard.dataset.category = product.category || '';
-      
-      // Add custom animation delay for staggered effect
-      productCard.style.animationDelay = `${1 + (index * 0.1)}s`;
-      
-      // Build specs string
-      const specs = [
-        product.material ? `Material: ${product.material}` : '',
-        product.wattage ? `Wattage: ${product.wattage}W` : '',
-        product.size ? `Size: ${product.size}` : '',
-        product.finish ? `Finish: ${product.finish}` : ''
-      ].filter(spec => spec !== '');
-      
-      productCard.innerHTML = `
-        <img src="${product.image_url || 'images/placeholder.jpg'}" alt="${product.name}" onerror="this.src='images/placeholder.jpg'">
-        <div class="product-info">
-          <h4>${product.name}</h4>
-        </div>
-      `;
-      
-      // Add click event for modal
-      productCard.addEventListener('click', () => showProductModal(product, specs));
-      
-      // Observe for scroll animations
-      observer.observe(productCard);
-      
-      productsGrid.appendChild(productCard);
-    });
-  }
 // Show product enquiry modal
 function showProductEnquiryModal(product) {
   document.getElementById('productEnquiryName').textContent = `Enquiry for: ${product.name}`;
