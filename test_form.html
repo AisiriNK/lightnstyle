@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Contact Form</title>
+</head>
+<body>
+    <h2>Test Contact Form</h2>
+    <form id="testForm" onsubmit="return testSubmit(event)">
+        <input type="text" name="name" placeholder="Name" required><br><br>
+        <input type="email" name="email" placeholder="Email" required><br><br>
+        <input type="text" name="phone" placeholder="Phone"><br><br>
+        <textarea name="message" placeholder="Message"></textarea><br><br>
+        <input type="file" name="attachments[]" multiple><br><br>
+        <button type="submit">Test Submit</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        async function testSubmit(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('testForm');
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.innerHTML = 'Sending...';
+            
+            try {
+                const formData = new FormData();
+                formData.append('name', form.name.value);
+                formData.append('email', form.email.value);
+                formData.append('phone', form.phone.value);
+                formData.append('message', form.message.value);
+                
+                const fileInput = form.querySelector('input[type="file"]');
+                for (let i = 0; i < fileInput.files.length; i++) {
+                    formData.append('attachments[]', fileInput.files[i]);
+                }
+                
+                console.log('FormData contents:');
+                for (let [key, value] of formData.entries()) {
+                    console.log(key, value);
+                }
+                
+                const response = await fetch('send-email.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = '<span style="color: green;">SUCCESS: ' + JSON.stringify(result) + '</span>';
+                } else {
+                    resultDiv.innerHTML = '<span style="color: red;">ERROR: ' + JSON.stringify(result) + '</span>';
+                }
+                
+            } catch (error) {
+                resultDiv.innerHTML = '<span style="color: red;">EXCEPTION: ' + error.message + '</span>';
+            }
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,4 +1,9 @@
 <?php
+error_log("DEBUG: send-email.php script started");
+error_log("DEBUG: REQUEST_METHOD: " . ($_SERVER['REQUEST_METHOD'] ?? 'unknown'));
+error_log("DEBUG: POST data: " . print_r($_POST, true));
+error_log("DEBUG: FILES data: " . print_r($_FILES, true));
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
@@ -55,6 +60,11 @@ if (isset($_FILES['attachments'])) {
         $fileType = is_array($files['type']) ? $files['type'][$i] : $files['type'];
         $fileTmpName = is_array($files['tmp_name']) ? $files['tmp_name'][$i] : $files['tmp_name'];
         
+        // Skip empty files
+        if (empty($fileName) || empty($fileTmpName)) {
+            continue;
+        }
+        
         // Check file size (5MB limit)
         if (filesize($fileTmpName) > 5 * 1024 * 1024) {
             http_response_code(400);
@@ -66,8 +76,63 @@ if (isset($_FILES['attachments'])) {
         $content = file_get_contents($fileTmpName);
         $attachments[] = [
             'name' => $fileName,
-            'content' => base64_encode($content)
+            'content' => base64_encode($content),
+            'type' => $fileType
         ];
+        
+        error_log("DEBUG: Added attachment - Name: $fileName, Type: $fileType, Size: " . strlen($content) . " bytes");
+    }
+}
+
+// Also check for attachments[] format (from JavaScript)
+if (isset($_FILES['attachments'])) {
+    // Already handled above
+} else {
+    // Check for attachments[] format
+    foreach ($_FILES as $key => $file) {
+        if (strpos($key, 'attachments') === 0) {
+            if (is_array($file['name'])) {
+                // Multiple files
+                for ($i = 0; $i < count($file['name']); $i++) {
+                    if (empty($file['name'][$i]) || empty($file['tmp_name'][$i])) {
+                        continue;
+                    }
+                    
+                    if (filesize($file['tmp_name'][$i]) > 5 * 1024 * 1024) {
+                        http_response_code(400);
+                        echo json_encode(['error' => "File {$file['name'][$i]} is too large. Maximum size is 5MB"]);
+                        exit;
+                    }
+                    
+                    $content = file_get_contents($file['tmp_name'][$i]);
+                    $attachments[] = [
+                        'name' => $file['name'][$i],
+                        'content' => base64_encode($content),
+                        'type' => $file['type'][$i]
+                    ];
+                    
+                    error_log("DEBUG: Added attachment (array) - Name: {$file['name'][$i]}, Type: {$file['type'][$i]}, Size: " . strlen($content) . " bytes");
+                }
+            } else {
+                // Single file
+                if (!empty($file['name']) && !empty($file['tmp_name'])) {
+                    if (filesize($file['tmp_name']) > 5 * 1024 * 1024) {
+                        http_response_code(400);
+                        echo json_encode(['error' => "File {$file['name']} is too large. Maximum size is 5MB"]);
+                        exit;
+                    }
+                    
+                    $content = file_get_contents($file['tmp_name']);
+                    $attachments[] = [
+                        'name' => $file['name'],
+                        'content' => base64_encode($content),
+                        'type' => $file['type']
+                    ];
+                    
+                    error_log("DEBUG: Added attachment (single) - Name: {$file['name']}, Type: {$file['type']}, Size: " . strlen($content) . " bytes");
+                }
+            }
+        }
     }
 }
 // Simple function to load environment variables from .env file
@@ -107,6 +172,132 @@ if (empty($api_key) || empty($api_url)) {
     exit;
 }
 
+// Function to log enquiry to file
+function logEnquiry($data, $attachments, $enquiryType = 'general', $productName = null) {
+    try {
+        error_log("DEBUG: Starting logEnquiry function");
+        
+        $logsDir = __DIR__ . '/logs';
+        if (!is_dir($logsDir)) {
+            mkdir($logsDir, 0755, true);
+            error_log("DEBUG: Created logs directory: " . $logsDir);
+        }
+        
+        $enquiryData = [
+            'id' => uniqid('ENQ_'),
+            'timestamp' => date('Y-m-d H:i:s'),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'] ?? null,
+            'message' => $data['message'] ?? null,
+            'product_name' => $productName,
+            'enquiry_type' => $enquiryType,
+            'ip_address' => $_SERVER['REMOTE_ADDR'] ?? null,
+            'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+            'attachments_count' => count($attachments),
+            'email_sent' => false,
+            'email_error' => null
+        ];
+        
+        error_log("DEBUG: Enquiry data prepared with ID: " . $enquiryData['id']);
+        
+        // Save attachment details separately (without the base64 content to save space)
+        if (!empty($attachments)) {
+            $attachmentInfo = [];
+            foreach ($attachments as $attachment) {
+                $attachmentInfo[] = [
+                    'name' => $attachment['name'],
+                    'type' => $attachment['type'] ?? 'unknown',
+                    'size' => strlen(base64_decode($attachment['content'] ?? ''))
+                ];
+            }
+            
+            $attachmentFile = $logsDir . '/attachments_' . $enquiryData['id'] . '.json';
+            file_put_contents($attachmentFile, json_encode($attachmentInfo, JSON_PRETTY_PRINT));
+            error_log("DEBUG: Saved attachment details to: " . $attachmentFile);
+        }
+        
+        // Save to daily log file
+        $logFile = $logsDir . '/enquiries_' . date('Y-m-d') . '.json';
+        error_log("DEBUG: Log file path: " . $logFile);
+        
+        $existingLogs = [];
+        
+        if (file_exists($logFile)) {
+            $existingLogs = json_decode(file_get_contents($logFile), true) ?: [];
+            error_log("DEBUG: Loaded " . count($existingLogs) . " existing logs");
+        }
+        
+        $existingLogs[] = $enquiryData;
+        
+        $jsonData = json_encode($existingLogs, JSON_PRETTY_PRINT);
+        if ($jsonData === false) {
+            error_log("DEBUG: JSON encoding failed: " . json_last_error_msg());
+            return false;
+        }
+        
+        $result = file_put_contents($logFile, $jsonData);
+        if ($result === false) {
+            error_log("DEBUG: Failed to write to log file");
+            return false;
+        }
+        
+        error_log("DEBUG: Successfully logged enquiry with ID: " . $enquiryData['id']);
+        return $enquiryData['id'];
+        
+    } catch (Exception $e) {
+        error_log("DEBUG: Exception in logEnquiry: " . $e->getMessage());
+        return false;
+    }
+}
+
+// Function to update email status
+function updateEmailStatus($enquiryId, $emailSent, $error = null) {
+    try {
+        $logsDir = __DIR__ . '/logs';
+        
+        // Search through recent log files to find the enquiry
+        $logFiles = glob($logsDir . '/enquiries_*.json');
+        
+        foreach ($logFiles as $logFile) {
+            $logs = json_decode(file_get_contents($logFile), true) ?: [];
+            
+            foreach ($logs as &$log) {
+                if ($log['id'] === $enquiryId) {
+                    $log['email_sent'] = $emailSent;
+                    $log['email_error'] = $error;
+                    $log['updated_at'] = date('Y-m-d H:i:s');
+                    
+                    file_put_contents($logFile, json_encode($logs, JSON_PRETTY_PRINT));
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    } catch (Exception $e) {
+        error_log("Failed to update email status: " . $e->getMessage());
+        return false;
+    }
+}
+
+// Extract product name and enquiry type from message
+$productName = $data['product_name'] ?? null;
+$enquiryType = strpos($data['message'] ?? '', 'Product Enquiry for:') !== false ? 'product' : 'general';
+
+error_log("DEBUG: About to log enquiry - Product: " . ($productName ?? 'none') . ", Type: " . $enquiryType);
+error_log("DEBUG: Form data: " . print_r($data, true));
+error_log("DEBUG: Attachments count: " . count($attachments));
+
+// Log the enquiry to database FIRST (before attempting to send email)
+$enquiryId = logEnquiry($data, $attachments, $enquiryType, $productName);
+
+if (!$enquiryId) {
+    error_log("WARNING: Failed to log enquiry to file, but continuing with email send");
+} else {
+    error_log("DEBUG: Enquiry logged successfully with ID: " . $enquiryId);
+}
+
 // Prepare email data with simpler structure
 $htmlContent = '<html><body style="font-family: Arial, sans-serif;">
 <h2 style="color: #e9bb24;">New Contact Form Submission</h2>
@@ -144,6 +335,10 @@ $email_data = [
 // Add attachments if any (as separate property)
 if (!empty($attachments)) {
     $email_data['attachment'] = $attachments;
+    error_log("DEBUG: Adding " . count($attachments) . " attachments to email");
+    foreach ($attachments as $i => $attachment) {
+        error_log("DEBUG: Attachment $i - Name: {$attachment['name']}, Type: {$attachment['type']}, Content size: " . strlen($attachment['content']));
+    }
 }
 
 // Log the data being sent
@@ -182,12 +377,20 @@ error_log("HTTP Code: " . $http_code);
 // Parse and handle API response
 if ($http_code >= 400) {
     $response_data = json_decode($response, true);
-    if ($response_data && isset($response_data['message'])) {
-        echo json_encode(['error' => 'API Error: ' . $response_data['message']]);
-    } else {
-        echo json_encode(['error' => 'Email sending failed with code: ' . $http_code]);
+    $errorMessage = $response_data['message'] ?? 'Email sending failed with code: ' . $http_code;
+    
+    // Update database with failure status
+    if ($enquiryId) {
+        updateEmailStatus($enquiryId, false, $errorMessage);
     }
+    
+    echo json_encode(['error' => 'API Error: ' . $errorMessage]);
     exit;
+}
+
+// Email sent successfully - update database
+if ($enquiryId) {
+    updateEmailStatus($enquiryId, true);
 }
 
 // Return success response
