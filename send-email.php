@@ -70,13 +70,34 @@ if (isset($_FILES['attachments'])) {
         ];
     }
 }
-// Since we can see the API key is already hardcoded, let's remove the Composer dependency
-// require __DIR__ . '/vendor/autoload.php';
-// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-// $dotenv->load();
+// Simple function to load environment variables from .env file
+function loadEnv($file) {
+    if (!file_exists($file)) {
+        return false;
+    }
+    
+    $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) {
+            continue; // Skip comments
+        }
+        
+        list($name, $value) = explode('=', $line, 2);
+        $name = trim($name);
+        $value = trim($value);
+        
+        if (!array_key_exists($name, $_ENV)) {
+            $_ENV[$name] = $value;
+        }
+    }
+    return true;
+}
 
-$api_key = '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';
-$api_url = 'https://api.brevo.com/v3/smtp/email';
+// Load environment variables
+loadEnv(__DIR__ . '/.env');
+
+$api_key = $_ENV['BREVO_API_KEY'] ?? '';
+$api_url = $_ENV['BREVO_API_URL'] ?? '';
 
 // Debug: Check if environment variables are loaded
 if (empty($api_key) || empty($api_url)) {
