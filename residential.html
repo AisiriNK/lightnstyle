@@ -1008,6 +1008,23 @@
         font-size: 14px;
       }
     }
+
+    @media (max-width: 600px) {
+      .specs-content {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .specs-image img {
+        display: block;
+        margin: auto;
+        max-width: 90vw;
+        max-height: 70vh;
+        object-fit: contain;
+      }
+    }
   </style>
 </head>
 <body>
