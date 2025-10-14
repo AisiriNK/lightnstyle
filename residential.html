@@ -1453,6 +1453,14 @@ Our residential lighting projects transform houses into warm, inviting homes. Fr
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
+        if (!href) return;
+        // Always force absolute path for index.html links
+        if (href.startsWith('index.html#') || href === 'index.html') {
+          e.preventDefault();
+          const absHref = '/' + href;
+          window.location.replace(absHref);
+          return;
+        }
         if (href.includes('#')) {
           e.preventDefault();
           const targetId = href.split('#')[1];
@@ -1462,8 +1470,6 @@ Our residential lighting projects transform houses into warm, inviting homes. Fr
               behavior: 'smooth',
               block: 'start'
             });
-          } else if (href.includes('index.html')) {
-            window.location.href = href;
           }
         }
       });
