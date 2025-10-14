@@ -7,6 +7,17 @@ if (!($_SESSION['admin_logged_in'] ?? false)) {
     exit;
 }
 
+// Session timeout (30 minutes)
+$session_timeout = 1800;
+if (isset($_SESSION['login_time']) && (time() - $_SESSION['login_time']) > $session_timeout) {
+    session_destroy();
+    header('Location: admin_login.php?timeout=1');
+    exit;
+}
+
+// Update last activity time
+$_SESSION['login_time'] = time();
+
 // Handle logout
 if ($_GET['action'] ?? '' === 'logout') {
     session_destroy();

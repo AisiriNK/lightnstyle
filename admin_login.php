@@ -1,18 +1,110 @@
 <?php
 session_start();
 
-// Simple admin credentials (you should change these)
-$admin_username = 'admin';
-$admin_password = 'lightstyle2024!'; // Change this password!
+// Load environment variables
+function loadEnv($path) {
+    if (!file_exists($path)) {
+        return;
+    }
+    
+    $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) {
+            continue; // Skip comments
+        }
+        
+        if (strpos($line, '=') !== false) {
+            list($name, $value) = explode('=', $line, 2);
+            $name = trim($name);
+            $value = trim($value);
+            
+            if (!array_key_exists($name, $_ENV)) {
+                $_ENV[$name] = $value;
+                putenv("$name=$value");
+            }
+        }
+    }
+}
+
+// Load environment variables
+loadEnv(__DIR__ . '/.env');
+
+// Security configuration
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 0); // Set to 1 if using HTTPS
+ini_set('session.use_strict_mode', 1);
+
+// Get security settings from environment or use defaults
+$max_attempts = (int)($_ENV['MAX_LOGIN_ATTEMPTS'] ?? 5);
+$lockout_time = (int)($_ENV['LOCKOUT_TIME'] ?? 900); // 15 minutes
+
+// Initialize session variables for security
+if (!isset($_SESSION['login_attempts'])) {
+    $_SESSION['login_attempts'] = 0;
+    $_SESSION['last_attempt_time'] = 0;
+}
+
+// Check if account is locked
+$time_since_last_attempt = time() - $_SESSION['last_attempt_time'];
+if ($_SESSION['login_attempts'] >= $max_attempts && $time_since_last_attempt < $lockout_time) {
+    $remaining_time = $lockout_time - $time_since_last_attempt;
+    $error = "Too many failed attempts. Account locked for " . ceil($remaining_time / 60) . " more minutes.";
+} else {
+    // Reset attempts if lockout period has passed
+    if ($time_since_last_attempt >= $lockout_time) {
+        $_SESSION['login_attempts'] = 0;
+    }
+}
+
+// Load admin credentials from environment variables
+$admin_username = $_ENV['ADMIN_USERNAME'] ?? 'admin';
+$admin_password = $_ENV['ADMIN_PASSWORD'] ?? 'lightstyle2024!';
+
+$admin_credentials = [
+    $admin_username => $admin_password
+];
+
+// Load custom credentials if they exist (for backward compatibility)
+$config_file = __DIR__ . '/config/admin_config.php';
+if (file_exists($config_file)) {
+    include $config_file;
+    if (isset($custom_admin_credentials)) {
+        $admin_credentials = array_merge($admin_credentials, $custom_admin_credentials);
+    }
+}
 
 // Handle login
-if ($_POST['action'] ?? '' === 'login') {
-    if ($_POST['username'] === $admin_username && $_POST['password'] === $admin_password) {
-        $_SESSION['admin_logged_in'] = true;
-        header('Location: admin_enquiries.php');
-        exit;
+if ($_POST['action'] ?? '' === 'login' && !isset($error)) {
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
+    
+    // Basic input validation
+    if (empty($username) || empty($password)) {
+        $error = 'Username and password are required';
+        $_SESSION['login_attempts']++;
+        $_SESSION['last_attempt_time'] = time();
     } else {
-        $error = 'Invalid credentials';
+        // Check credentials
+        if (isset($admin_credentials[$username]) && $admin_credentials[$username] === $password) {
+            // Successful login
+            $_SESSION['admin_logged_in'] = true;
+            $_SESSION['admin_username'] = $username;
+            $_SESSION['login_time'] = time();
+            $_SESSION['login_attempts'] = 0; // Reset attempts
+            
+            // Regenerate session ID for security
+            session_regenerate_id(true);
+            
+            header('Location: admin_enquiries.php');
+            exit;
+        } else {
+            $error = 'Invalid credentials';
+            $_SESSION['login_attempts']++;
+            $_SESSION['last_attempt_time'] = time();
+            
+            // Add delay to prevent brute force attacks
+            sleep(2);
+        }
     }
 }
 
@@ -124,11 +216,15 @@ if ($_SESSION['admin_logged_in'] ?? false) {
         </div>
 
         <div class="warning">
-            <strong>⚠️ Security Notice:</strong> Please change the default admin password in <code>admin_login.php</code>
+            <strong>⚠️ Security Notice:</strong> If this is your first login, use the default credentials and change them immediately using the password reset script.
         </div>
 
         <?php if (isset($error)): ?>
             <div class="error"><?php echo htmlspecialchars($error); ?></div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['timeout'])): ?>
+            <div class="error">Session expired. Please login again.</div>
         <?php endif; ?>
 
         <form method="POST">
@@ -146,11 +242,6 @@ if ($_SESSION['admin_logged_in'] ?? false) {
 
             <button type="submit" class="btn">Login to Admin Panel</button>
         </form>
-
-        <div style="margin-top: 20px; text-align: center; color: #666; font-size: 12px;">
-            <p>Default credentials: admin / lightstyle2024!</p>
-            <p><strong>Change these immediately!</strong></p>
-        </div>
     </div>
 </body>
 </html>

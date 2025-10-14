@@ -1,9 +1,4 @@
 <?php
-error_log("DEBUG: send-email.php script started");
-error_log("DEBUG: REQUEST_METHOD: " . ($_SERVER['REQUEST_METHOD'] ?? 'unknown'));
-error_log("DEBUG: POST data: " . print_r($_POST, true));
-error_log("DEBUG: FILES data: " . print_r($_FILES, true));
-
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
@@ -147,12 +142,15 @@ function loadEnv($file) {
             continue; // Skip comments
         }
         
-        list($name, $value) = explode('=', $line, 2);
-        $name = trim($name);
-        $value = trim($value);
-        
-        if (!array_key_exists($name, $_ENV)) {
-            $_ENV[$name] = $value;
+        if (strpos($line, '=') !== false) {
+            list($name, $value) = explode('=', $line, 2);
+            $name = trim($name);
+            $value = trim($value);
+            
+            if (!array_key_exists($name, $_ENV)) {
+                $_ENV[$name] = $value;
+                putenv("$name=$value");
+            }
         }
     }
     return true;
@@ -162,25 +160,18 @@ function loadEnv($file) {
 loadEnv(__DIR__ . '/.env');
 
 $api_key = $_ENV['BREVO_API_KEY'] ?? '';
-$api_url = $_ENV['BREVO_API_URL'] ?? '';
+$api_url = $_ENV['BREVO_API_URL'] ?? 'https://api.brevo.com/v3/smtp/email';
 
-// Debug: Check if environment variables are loaded
-if (empty($api_key) || empty($api_url)) {
-    error_log("Environment variables not loaded properly");
-    http_response_code(500);
-    echo json_encode(['error' => 'Server configuration error']);
-    exit;
-}
+// Debug: Log the API configuration
+error_log("DEBUG: API Key loaded: " . (empty($api_key) ? 'EMPTY' : 'SET (length: ' . strlen($api_key) . ')'));
+error_log("DEBUG: API URL loaded: " . (empty($api_url) ? 'EMPTY' : $api_url));
 
 // Function to log enquiry to file
 function logEnquiry($data, $attachments, $enquiryType = 'general', $productName = null) {
     try {
-        error_log("DEBUG: Starting logEnquiry function");
-        
         $logsDir = __DIR__ . '/logs';
         if (!is_dir($logsDir)) {
             mkdir($logsDir, 0755, true);
-            error_log("DEBUG: Created logs directory: " . $logsDir);
         }
         
         $enquiryData = [
@@ -345,8 +336,28 @@ if (!empty($attachments)) {
 error_log("Form data received: " . print_r($data, true));
 error_log("Email data being sent: " . print_r($email_data, true));
 
+// Validate API configuration before making the request
+if (empty($api_key)) {
+    http_response_code(500);
+    echo json_encode(['error' => 'API key not configured']);
+    exit;
+}
+
+if (empty($api_url)) {
+    http_response_code(500);
+    echo json_encode(['error' => 'API URL not configured']);
+    exit;
+}
+
 // Send request to Brevo API
 $ch = curl_init($api_url);
+
+// Check if curl_init failed
+if ($ch === false) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Connection error: Failed to initialize cURL with URL: ' . $api_url]);
+    exit;
+}
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($email_data));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

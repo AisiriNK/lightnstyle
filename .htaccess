@@ -1,0 +1,41 @@
+# Security Configuration for Light & Style Admin
+
+# Protect environment file
+<Files ".env">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+# Protect sensitive files
+<Files "reset_admin_password.php">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+<Files "admin_config.php">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+# Hide sensitive file extensions
+<FilesMatch "\.(log|json|bak|sql|env)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Prevent access to backup files
+<FilesMatch "\.(bak|backup|old|tmp|~)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Disable server signature
+ServerSignature Off
