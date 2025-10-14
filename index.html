@@ -310,7 +310,7 @@
       }
       
       .brand-name {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
       }
       
       .mobile-menu-btn {
@@ -796,7 +796,8 @@
       
       /* Hero text responsive sizing */
       .hero-text h4 {
-        font-size: 1.8em !important;
+        font-size: clamp(2.5em, 6vw, 3.2em) !important;
+        line-height: 1.2 !important;
       }
     }
     
@@ -815,11 +816,14 @@
       
       /* Hero text for small mobile screens */
       .hero-text h4 {
-        font-size: 1.3em !important;
+        font-size: clamp(2em, 8vw, 2.8em) !important;
+        line-height: 1.1 !important;
+        text-align: center !important;
       }
       
       .hero-text {
         padding: 0 1rem;
+        text-align: center;
       }
     }
   </style>
