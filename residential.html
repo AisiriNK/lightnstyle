@@ -17,6 +17,61 @@
       animation: pageLoad 0.8s ease 0.3s forwards;
     }
 
+    /* Modal centering fix for all devices */
+    .modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      padding: 0;
+      overflow: hidden;
+      transition: opacity 0.3s;
+    }
+
+    .modal img {
+      max-width: 96vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+      background: #111;
+    }
+
+    /* Prevent background scroll when modal is open */
+    body.modal-open {
+      overflow: hidden !important;
+      height: 100vh !important;
+      position: relative;
+      touch-action: none;
+    }
+
+    @media (max-width: 768px) {
+      .modal {
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal img {
+        max-width: 98vw;
+        max-height: 70vh;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .modal img {
+        max-width: 99vw;
+        max-height: 60vh;
+      }
+    }
+
     @keyframes pageLoad {
       to { opacity: 1; }
     }
@@ -1335,36 +1390,43 @@ Our residential lighting projects transform houses into warm, inviting homes. Fr
   </div>
 </section>
 
-<!-- Overlay Modal-->
-<div class="specs-overlay" id="specsOverlay">
-  <div class="specs-content">
-    <span class="close-overlay" id="closeOverlay">&times;</span>
-    <div class="specs-image">
-      <img src="" alt="" id="specsImage">
-    </div>
-  </div>
+
+<!-- Overlay Modal for product image popup -->
+<div class="modal" id="imageModal" style="display:none;">
+  <span class="close-overlay" id="closeModal" style="position:absolute;top:18px;right:28px;font-size:32px;z-index:10001;">&times;</span>
+  <img src="" alt="Product Image" id="modalImg">
 </div>
 
 
 <script>
-  // Handle product card click with animation
+
+  // Product image modal popup logic (always perfectly centered)
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const closeModal = document.getElementById('closeModal');
+
   document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', () => {
       const img = card.getAttribute('data-img');
-      document.getElementById('specsImage').src = img;
-      
-      // Show modal with animation
-      const overlay = document.getElementById('specsOverlay');
-      overlay.style.display = 'flex';
-      setTimeout(() => overlay.classList.add('show'), 10);
+      modalImg.src = img;
+      modal.style.display = 'flex';
+      document.body.classList.add('modal-open');
     });
   });
 
-  // Close modal with animation
-  document.getElementById('closeOverlay').addEventListener('click', () => {
-    const overlay = document.getElementById('specsOverlay');
-    overlay.classList.remove('show');
-    setTimeout(() => overlay.style.display = 'none', 300);
+  closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    modalImg.src = '';
+  });
+
+  // Close modal if clicking outside the image
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      document.body.classList.remove('modal-open');
+      modalImg.src = '';
+    }
   });
 
   // Add intersection observer for scroll animations
