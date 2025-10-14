@@ -777,18 +777,21 @@
   
     @media (max-width: 768px) {
       .family-carousel-container {
-        height: 320px;
+        height: auto;
+        min-height: 250px;
+      }
+      
+      .family-slide img {
+        object-fit: contain !important;
+        height: auto !important;
+        width: 100% !important;
+        border-radius: 8px;
       }
       
       .carousel-nav {
         width: 35px;
         height: 35px;
         font-size: 14px;
-      }
-      
-      .family-slide img {
-        object-fit: contain;
-        background: #000;
       }
       
       /* Hero text responsive sizing */
@@ -798,6 +801,18 @@
     }
     
     @media (max-width: 480px) {
+      .family-carousel-container {
+        height: auto;
+        min-height: 200px;
+      }
+      
+      .family-slide img {
+        object-fit: contain !important;
+        height: auto !important;
+        width: 100% !important;
+        border-radius: 8px;
+      }
+      
       /* Hero text for small mobile screens */
       .hero-text h4 {
         font-size: 1.3em !important;
@@ -805,15 +820,6 @@
       
       .hero-text {
         padding: 0 1rem;
-      }
-      
-      .family-carousel-container {
-        height: 280px;
-      }
-      
-      .family-slide img {
-        object-fit: contain;
-        background: #000;
       }
     }
   </style>
