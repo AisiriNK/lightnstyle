@@ -70,7 +70,13 @@
       font-size: 28px;
       color: #e9bb24;
       font-weight: 700;
+      transition: color 0.3s ease;
     }
+
+    .logo:hover .brand-name {
+      color: #f0d04a;
+    }
+
     .navbar {
       position: fixed;
       background-color: #000;
@@ -229,20 +235,6 @@
       }
       
       .brand-name {
-        font-size: 3rem;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      header .container {
-        gap: 0.5rem;
-      }
-      
-      .logo img {
-        height: 30px;
-      }
-      
-            .brand-name {
         font-size: clamp(1.5rem, 4vw, 2.5rem);
       }
     }
