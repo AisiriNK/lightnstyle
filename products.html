@@ -8,9 +8,14 @@
   <link rel="stylesheet" href="style.css" />
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
+    /* Global Font Override - Use Playfair Display throughout */
+    * {
+      font-family: 'Playfair Display', serif !important;
+    }
+    
     /* Base styles with smooth transitions */
     body {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Playfair Display', serif;
       margin: 0;
       background: #111;
       color: #eee;
@@ -1071,6 +1076,23 @@
   async function loadCategories() {
     try {
       const response = await fetch('products.json');
+      const contentType = response.headers.get('content-type') || '';
+
+      if (!response.ok) {
+        // Not a 2xx response: log the status and body
+        const text = await response.text();
+        console.error('Failed to fetch products.json:', response.status, text);
+        return;
+      }
+
+      if (!contentType.includes('application/json')) {
+        // Server returned HTML or something else — show it for debugging
+        const text = await response.text();
+        console.error('products.json did not return JSON. content-type:', contentType);
+        console.error('Response body:', text);
+        return;
+      }
+
       const data = await response.json();
 
       if (data.products) {
@@ -1094,6 +1116,23 @@
       productsGrid.innerHTML = '';
 
       const response = await fetch('products.json');
+      const contentType = response.headers.get('content-type') || '';
+
+      if (!response.ok) {
+        const text = await response.text();
+        console.error('Failed to fetch products.json:', response.status, text);
+        productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products: Server returned ' + response.status + '</p>';
+        return;
+      }
+
+      if (!contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('products.json did not return JSON. content-type:', contentType);
+        console.error('Response body:', text);
+        productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error: Expected JSON but got ' + contentType + '</p>';
+        return;
+      }
+
       const data = await response.json();
 
       if (data.products) {
@@ -1108,7 +1147,8 @@
         productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products</p>';
       }
     } catch (error) {
-      productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products</p>';
+      console.error('Error in loadProducts:', error);
+      productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products: ' + error.message + '</p>';
     } finally {
       loadingMessage.style.display = 'none';
     }
@@ -1151,7 +1191,10 @@
       ].filter(spec => spec !== '');
       
       productCard.innerHTML = `
-        <img src="${product.image_url || 'images/placeholder.jpg'}" alt="${product.name}" onerror="this.src='images/placeholder.jpg'">
+        <img src="${product.image_url || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDQ0Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zNWVtIj5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+Cjwvc3ZnPg=='}" 
+             alt="${product.name}" 
+             onerror="console.error('Image failed to load:', this.src, 'for product:', '${product.name}'); this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDQ0Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zNWVtIj5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+Cjwvc3ZnPg=='; this.onerror=null;"
+             onload="console.log('Image loaded successfully:', this.src, 'for product:', '${product.name}')">
         <div class="product-info">
           <h4>${product.name}</h4>
         </div>
@@ -1170,7 +1213,13 @@
   // Show product details modal
   function showProductModal(product, specs) {
     document.getElementById('specsTitle').textContent = product.name;
-    document.getElementById('specsImage').src = product.image_url || 'images/placeholder.jpg';
+    const modalImage = document.getElementById('specsImage');
+    modalImage.src = product.image_url || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDQ0Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zNWVtIj5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+Cjwvc3ZnPg==';
+    modalImage.onerror = function() {
+      console.error('Modal image failed to load:', this.src, 'for product:', product.name);
+      this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDQ0Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zNWVtIj5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+Cjwvc3ZnPg==';
+      this.onerror = null;
+    };
     
     const detailsContainer = document.getElementById('specsDetails');
     detailsContainer.innerHTML = '';

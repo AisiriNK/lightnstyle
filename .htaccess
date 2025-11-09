@@ -17,11 +17,22 @@
     Deny from all
 </Files>
 
-# Hide sensitive file extensions
-<FilesMatch "\.(log|json|bak|sql|env)$">
+# Hide sensitive file extensions (excluding products.json)
+<FilesMatch "\.(log|bak|sql|env)$">
     Order Deny,Allow
     Deny from all
 </FilesMatch>
+
+# Block all JSON files except products.json
+<FilesMatch "\.json$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+<Files "products.json">
+    Order Allow,Deny
+    Allow from all
+</Files>
 
 # Prevent access to backup files
 <FilesMatch "\.(bak|backup|old|tmp|~)$">

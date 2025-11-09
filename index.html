@@ -11,6 +11,11 @@
   <style>
     /* Enhanced Animations and Effects */
     
+    /* Global Font Override - Use Playfair Display throughout */
+    * {
+      font-family: 'Playfair Display', serif !important;
+    }
+    
     /* Loading Animation */
     .loading-screen {
       position: fixed;
@@ -565,6 +570,8 @@
       border-color: #e9bb24;
       box-shadow: 0 0 8px rgba(233, 187, 36, 0.2);
       transform: translateY(-1px);
+      background: rgba(0,0,0,0.6) !important;
+      outline: none;
     }
 
     .enquiry-form button {
@@ -576,24 +583,294 @@
       box-shadow: 0 4px 12px rgba(233, 187, 36, 0.3);
     }
 
-    /* Contact sections animations */
-    .contact-info {
-      opacity: 0;
-      transform: translateY(15px);
-      animation: fadeInUp 0.6s ease 0.1s forwards;
+    /* Force dark backgrounds for all form inputs */
+    input, textarea, input[type="text"], input[type="email"], input[type="file"], textarea {
+      background: rgba(0,0,0,0.8) !important;
+      color: #fff !important;
+      border: 0.5px solid rgba(233, 187, 36, 0.5) !important;
     }
 
-    .shop-brief {
-      opacity: 0;
-      transform: translateY(15px);
-      animation: fadeInUp 0.6s ease 0.5s forwards;
+    input:focus, textarea:focus, input[type="text"]:focus, input[type="email"]:focus {
+      background: rgba(0,0,0,0.9) !important;
+      color: #fff !important;
+      border: 0.5px solid rgba(233, 187, 36, 0.5) !important;
+      box-shadow: 0.5px solid rgba(233, 187, 36, 0.5) !important;
     }
 
-    .family-photo {
-      opacity: 0;
-      transform: translateY(15px);
-      animation: fadeInUp 0.6s ease 0.7s forwards;
+    /* Override browser autocomplete/autofill styling */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px rgba(0,0,0,0.9) inset !important;
+      -webkit-text-fill-color: #fff !important;
+      background-color: rgb0 0 8px rgba(233, 187, 36, 0.4)a(0,0,0,0.9) !important;
+      background: rgba(0,0,0,0.9) !important;
+      border: 0.5px solid rgba(233, 187, 36, 0.5) !important;
     }
+
+    /* Firefox autofill override */
+    input:-moz-autofill,
+    input:-moz-autofill:hover,
+    input:-moz-autofill:focus {
+      background-color: rgba(0,0,0,0.9) !important;
+      color: #fff !important;
+      border: 0.5px solid rgba(233, 187, 36, 0.5) !important;
+    }
+
+    /* Additional autocomplete overrides */
+    input[autocomplete]:not([autocomplete=""]) {
+      background: rgba(0,0,0,0.9) !important;
+      color: #fff !important;
+      border: 0.5px solid rgba(233, 187, 36, 0.5) !important;
+    }
+
+    /* Ensure filled inputs remain dark with gold border */
+    input:not(:placeholder-shown) {
+      background: rgba(0,0,0,0.9) !important;
+      color: #fff !important;
+      border: 0.5px solid rgba(233, 187, 36, 0.5) !important;
+    }
+
+    textarea:not(:placeholder-shown) {
+      background: rgba(0,0,0,0.9) !important;
+      color: #fff !important;
+      border: 0.5px solid rgba(233, 187, 36, 0.5) !important;
+    }
+
+    /* Placeholder styling */
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6) !important;
+      opacity: 1;
+    }
+
+    input:focus::placeholder, textarea:focus::placeholder {
+      color: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    /* Contact sections animations - Single column layout */
+    .contact-section-item {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(233, 187, 36, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    .contact-section-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(233, 187, 36, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Staggered animation delays for each section */
+    .contact-section-item:nth-child(1) { animation-delay: 0.2s; }
+    .contact-section-item:nth-child(2) { animation-delay: 0.4s; }
+    .contact-section-item:nth-child(3) { animation-delay: 0.6s; }
+    .contact-section-item:nth-child(4) { animation-delay: 0.8s; }
+
+    /* Section headers with underline effect */
+    .section-header {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      text-align: center !important;
+    }
+
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: #e9bb24;
+      transition: width 0.3s ease;
+    }
+
+    .contact-section-item:hover .section-header::after {
+      width: 100px;
+    }
+
+    /* Contact enquiry container - single column */
+    .contact-enquiry-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Mobile responsive for contact section */
+    @media (max-width: 768px) {
+      .contact-section-item {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+      }
+      
+      .section-header {
+        font-size: 1.5em !important;
+      }
+      
+      /* Contact cards container - force single column with higher specificity */
+      .contact-section-item .contact-cards-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        grid-template-columns: none !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      .contact-section-item .contact-card {
+        padding: 2rem 1.5rem !important;
+        margin: 0 !important;
+        min-height: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        flex: none !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .contact-section-item {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        overflow-x: hidden;
+      }
+      
+      .section-header {
+        font-size: 1.3em !important;
+      }
+      
+      /* Force single column layout on small screens with maximum specificity */
+      .contact-section-item .contact-cards-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+        grid-template-columns: none !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+      
+      .contact-section-item .contact-card {
+        padding: 1.5rem 1rem !important;
+        margin: 0 !important;
+        min-height: auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        flex: none !important;
+        grid-column: none !important;
+      }
+      
+      /* Reduce font sizes on mobile */
+      .contact-section-item .contact-card h4 {
+        font-size: 1.2em !important;
+      }
+      
+      .contact-section-item .contact-card p {
+        font-size: 1em !important;
+      }
+      
+      .contact-section-item .contact-card > div:first-child {
+        font-size: 2.5rem !important;
+      }
+    }
+    
+    /* Additional mobile override for very small screens */
+    @media (max-width: 400px) {
+      .contact-section-item .contact-cards-container {
+        display: block !important;
+        grid-template-columns: none !important;
+      }
+      
+      .contact-section-item .contact-card {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 1rem !important;
+        float: none !important;
+      }
+    }
+
+    /* Ultra-specific mobile overrides */
+    @media screen and (max-width: 768px) {
+      div.contact-section-item div.contact-cards-container[style*="grid"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 1.5rem !important;
+        grid-template-columns: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+      }
+      
+      div.contact-section-item div.contact-card[style*="padding"] {
+        padding: 2rem 1.5rem !important;
+        margin: 0 auto !important;
+        width: 90% !important;
+        max-width: 350px !important;
+        min-height: auto !important;
+        box-sizing: border-box !important;
+        flex: none !important;
+        grid-column: none !important;
+        display: block !important;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      div.contact-section-item div.contact-cards-container[style*="grid"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+        grid-template-columns: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        text-align: center !important;
+      }
+      
+      div.contact-section-item div.contact-card[style*="padding"] {
+        padding: 1.5rem 1rem !important;
+        margin: 0 auto !important;
+        width: 95% !important;
+        max-width: 300px !important;
+        min-height: auto !important;
+        box-sizing: border-box !important;
+        flex: none !important;
+        grid-column: none !important;
+        display: block !important;
+        text-align: center !important;
+      }
+      
+      /* Reduce font sizes on mobile */
+      div.contact-section-item div.contact-card h4 {
+        font-size: 1.2em !important;
+      }
+      
+      div.contact-section-item div.contact-card p {
+        font-size: 1em !important;
+      }
+      
+      div.contact-section-item div.contact-card > div:first-child {
+        font-size: 2.5rem !important;
+      }
+    }
+
+    /* Removed old contact section styles */
 
     /* Scroll Progress Bar */
     .scroll-progress {
@@ -719,7 +996,31 @@
     object-fit: cover;
     border-radius: 8px;
   }
-  
+  .contact-section-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-cards-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column on mobile */
+  gap: 2rem;
+  justify-items: center;
+  width: 100%;
+  max-width: 400px; /* Prevents stretching too wide */
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .contact-cards-container {
+    grid-template-columns: repeat(3, 1fr); /* Back to 3 columns for desktop */
+    max-width: 100%;
+  }
+}
+
   .carousel-nav {
     position: absolute;
     top: 50%;
@@ -970,63 +1271,82 @@
   </div>
 </section>
 
-
+<br>
 <!-- Contact & Enquiry Section -->
-<section id="contact" class="contact-enquiry animate-on-scroll section-reveal">
+<section class="contact-enquiry animate-on-scroll section-reveal">
   <div class="container contact-enquiry-container">
 
-    <!-- Left Column -->
-    <div class="contact-left">
-      <div class="contact-info">
-        <h3>Contact Us</h3>
-        <p>
-          120/5, Infantry Road, Bangalore - 560001<br>
-          Phone: 080-41130090 / 41132190<br>
-          Email: neha@lightnstyle.in
-        </p>
-      </div>
-      <div class="enquiry-form">
-        <h3>Send Enquiry</h3>
-        <form id="enquiryForm" onsubmit="return sendEmail(event)">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <input type="text" name="phone" placeholder="Phone Number" />
-          <textarea name="message" placeholder="Your Message"></textarea>
-          <div class="file-input">
-            <input type="file" id="attachments" name="attachments[]" multiple />
-            <p> Have a design in mind? Share your reference images — we'll craft a light that's uniquely yours.</p>
-            <small>Attach up to 3 files (max 5MB each)</small>
+    <!-- About Light & Style -->
+    <div class="contact-section-item">
+      <h3 class="section-header" style="font-family: 'Playfair Display', serif; color: #e9bb24; font-size: 2em;">About Light & Style</h3>
+      <p style="text-align: justify; font-family: 'Playfair Display', serif; line-height: 1.6; font-size: 1.1em;">
+        Sushil Bhandari has embarked on this journey in the lighting industry for over 2 decades beginning from the grassroots level and ascending to a level of expertise in the details of lighting products. Moving forward, he brought in his brother Hitesh and together they built a team to cater the needs of Architects and the top builders of Karnataka. The journey has been marked by a relentless pursuit of excellence couples with a deep rooted passion for lighting solutions and designs. We strive to give the most innovative solutions in one of the fastest evolving industries in the world.
+      </p>
+    </div>
+
+    <!-- Meet Our Family -->
+    <div class="contact-section-item">
+      <h3 class="section-header" style="font-family: 'Playfair Display', serif; color: #e9bb24; font-size: 2em;">Meet Our Family</h3>
+      <div class="family-carousel-container">
+        <div class="family-carousel" id="familyCarousel">
+          <div class="family-slide">
+            <img src="images/family2.jpeg" alt="Light & Style Family - Photo 1">
           </div>
-          <button type="submit" class="interactive-element">Send</button>
-        </form>
+          <div class="family-slide">
+            <img src="images/family3.jpeg" alt="Light & Style Family - Photo 2">
+          </div>
+        </div>
+        <button class="carousel-nav prev" onclick="previousSlide()">&#8249;</button>
+        <button class="carousel-nav next" onclick="nextSlide()">&#8250;</button>
+      </div>
+      <div class="carousel-dots">
+        <span class="carousel-dot active" onclick="currentSlide(1)"></span>
+        <span class="carousel-dot" onclick="currentSlide(2)"></span>
       </div>
     </div>
 
-    <!-- Right Column -->
-    <div class="contact-right">
-      <div class="shop-brief">
-        <h3>About Light & Style</h3>
-        <p style="text-align: justify;">
-          Sushil Bhandari has embarked on this journey in the lighting industry for over 2 decades beginning from the grassroots level and ascending to a level of expertise in the details of lighting products. Moving forward, he brought in his brother Hitesh and together they built a team to cater the needs of Architects and the top builders of Karnataka. The journey has been marked by a relentless pursuit of excellence couples with a deep rooted passion for lighting solutions and designs. We strive to give the most innovative solutions in one of the fastest evolving industries in the world.
-        </p>
-      </div>
-      <div class="family-photo">
-        <h3>Meet Our Family</h3>
-        <div class="family-carousel-container">
-          <div class="family-carousel" id="familyCarousel">
-            <div class="family-slide">
-              <img src="images/family2.jpeg" alt="Light & Style Family - Photo 1">
-            </div>
-            <div class="family-slide">
-              <img src="images/family3.jpeg" alt="Light & Style Family - Photo 2">
-            </div>
-          </div>
-          <button class="carousel-nav prev" onclick="previousSlide()">&#8249;</button>
-          <button class="carousel-nav next" onclick="nextSlide()">&#8250;</button>
+    <!-- Send Enquiry -->
+    <div class="contact-section-item" section id="contact">
+      <h3 class="section-header" style="font-family: 'Playfair Display', serif; color: #e9bb24; font-size: 2em;">Send Enquiry</h3>
+      <form id="enquiryForm" onsubmit="return sendEmail(event)">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+          <input type="text" name="name" placeholder="Your Name" required style="font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important;" />
+          <input type="email" name="email" placeholder="Your Email" required style="font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important;" />
         </div>
-        <div class="carousel-dots">
-          <span class="carousel-dot active" onclick="currentSlide(1)"></span>
-          <span class="carousel-dot" onclick="currentSlide(2)"></span>
+        <input type="text" name="phone" placeholder="Phone Number" style="font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important; width: 100%; margin-bottom: 1rem;" />
+        <textarea name="message" placeholder="Your Message" style="font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important; width: 100%; min-height: 120px; margin-bottom: 1rem; resize: vertical;"></textarea>
+        <div class="file-input" style="margin-bottom: 1.5rem;">
+          <input type="file" id="attachments" name="attachments[]" multiple style="padding: 8px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important; width: 100%;" />
+          <p style="font-family: 'Playfair Display', serif; margin: 0.5rem 0; color: #e9bb24; font-style: italic;">Have a design in mind? Share your reference images — we'll craft a light that's uniquely yours.</p>
+          <small style="font-family: 'Playfair Display', serif; color: #999;">Attach up to 3 files (max 5MB each)</small>
+        </div>
+        <button type="submit" class="interactive-element" style="font-family: 'Playfair Display', serif; background: linear-gradient(135deg, #e9bb24, #f0d04a); color: #000; padding: 14px 30px; border: none; border-radius: 6px; font-weight: 600; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease;">Send Enquiry</button>
+      </form>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="contact-section-item" >
+      <h3 class="section-header" style="font-family: 'Playfair Display', serif; color: #e9bb24; font-size: 2em; margin-bottom: 2rem; ">Contact Us</h3>
+      <div class="contact-cards-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; font-family: 'Playfair Display', serif; max-width: 100%; margin: 0;">
+        <div class="contact-card" style="padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.15), rgba(240, 208, 74, 0.08)); border-radius: 15px; border: 1px solid rgba(233, 187, 36, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); min-height: 100px;" onmouseover="this.style.transform='translateY(-8px) scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(233, 187, 36, 0.25)'; this.style.borderColor='rgba(233, 187, 36, 0.5)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'; this.style.borderColor='rgba(233, 187, 36, 0.3)'">
+          <div style="font-size: 3rem; margin-bottom: 1.2rem; color: #e9bb24; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">📍</div>
+          <h4 style="color: #e9bb24; margin-bottom: 1.2rem; font-size: 1.5em; font-weight: 600; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Address</h4>
+          <p style="line-height: 1.7; color: #fff; margin: 0; font-size: 1.1em;">120/5, Infantry Road<br>Bangalore - 560001</p>
+        </div>
+        <div class="contact-card" style="padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.15), rgba(240, 208, 74, 0.08)); border-radius: 15px; border: 1px solid rgba(233, 187, 36, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); min-height: 100px;" onmouseover="this.style.transform='translateY(-8px) scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(233, 187, 36, 0.25)'; this.style.borderColor='rgba(233, 187, 36, 0.5)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'; this.style.borderColor='rgba(233, 187, 36, 0.3)'">
+          <div style="font-size: 3rem; margin-bottom: 1.2rem; color: #e9bb24; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">📞</div>
+          <h4 style="color: #e9bb24; margin-bottom: 1.2rem; font-size: 1.5em; font-weight: 600; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Phone</h4>
+          <p style="line-height: 1.7; color: #fff; margin: 0; font-size: 1.1em;">
+            <a href="tel:08041130090" style="color: #fff; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#e9bb24'; this.style.textShadow='0 0 5px rgba(233, 187, 36, 0.5)'" onmouseout="this.style.color='#fff'; this.style.textShadow='none'">080-41130090</a><br>
+            <a href="tel:08041132190" style="color: #fff; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#e9bb24'; this.style.textShadow='0 0 5px rgba(233, 187, 36, 0.5)'" onmouseout="this.style.color='#fff'; this.style.textShadow='none'">080-41132190</a>
+          </p>
+        </div>
+        <div class="contact-card" style="padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.15), rgba(240, 208, 74, 0.08)); border-radius: 15px; border: 1px solid rgba(233, 187, 36, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); min-height: 100px;" onmouseover="this.style.transform='translateY(-8px) scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(233, 187, 36, 0.25)'; this.style.borderColor='rgba(233, 187, 36, 0.5)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'; this.style.borderColor='rgba(233, 187, 36, 0.3)'">
+          <div style="font-size: 3rem; margin-bottom: 1.2rem; color: #e9bb24; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">✉️</div>
+          <h4 style="color: #e9bb24; margin-bottom: 1.2rem; font-size: 1.5em; font-weight: 600; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Email</h4>
+          <p style="line-height: 1.7; color: #fff; margin: 0; font-size: 1.1em;">
+            <a href="mailto:neha@lightnstyle.in" style="color: #fff; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#e9bb24'; this.style.textShadow='0 0 5px rgba(233, 187, 36, 0.5)'" onmouseout="this.style.color='#fff'; this.style.textShadow='none'">neha@lightnstyle.in</a>
+          </p>
         </div>
       </div>
     </div>
@@ -1186,6 +1506,39 @@
       emailjs.init("SL67cZHfeqT4Y3D9k"); // Replace with your EmailJS public key
     })();
 
+    // Mobile Contact Cards Layout Fix
+    function fixMobileContactLayout() {
+      const container = document.querySelector('.contact-cards-container');
+      const cards = document.querySelectorAll('.contact-card');
+      
+      if (window.innerWidth <= 768 && container) {
+        // Force mobile layout with JavaScript
+        container.style.cssText = 'display: flex !important; flex-direction: column !important; gap: 1.5rem !important; align-items: center !important; width: 100% !important; max-width: 100% !important; margin: 0 auto !important; padding: 0 !important;';
+        
+        cards.forEach(card => {
+          if (window.innerWidth <= 480) {
+            card.style.cssText = card.style.cssText.replace(/padding: [^;]+;/, 'padding: 1.5rem 1rem !important;') + ' width: 95% !important; max-width: 300px !important; margin: 0 auto !important; box-sizing: border-box !important; text-align: center !important;';
+          } else {
+            card.style.cssText = card.style.cssText.replace(/padding: [^;]+;/, 'padding: 2rem 1.5rem !important;') + ' width: 90% !important; max-width: 350px !important; margin: 0 auto !important; box-sizing: border-box !important; text-align: center !important;';
+          }
+        });
+      } else if (container) {
+        // Reset to desktop layout
+        container.style.cssText = 'display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; font-family: "Playfair Display", serif; max-width: 100%; margin: 0;';
+        
+        cards.forEach(card => {
+          // Reset to original desktop styles
+          const originalStyle = 'padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.15), rgba(240, 208, 74, 0.08)); border-radius: 15px; border: 1px solid rgba(233, 187, 36, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); min-height: 100px;';
+          card.style.cssText = originalStyle;
+        });
+      }
+    }
+
+    // Apply mobile layout fix on load and resize
+    window.addEventListener('load', fixMobileContactLayout);
+    window.addEventListener('resize', fixMobileContactLayout);
+    document.addEventListener('DOMContentLoaded', fixMobileContactLayout);
+
     // Function to send email
     async function sendEmail(e) {
       e.preventDefault();
@@ -1316,19 +1669,19 @@
   </script>
 
 <!-- Footer -->
-<footer style="background: #000; color: #fff; text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid rgba(233, 187, 36, 0.3);">
+<footer style="background: #000; color: #fff; text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid rgba(233, 187, 36, 0.3); font-family: 'Playfair Display', serif;">
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2rem; margin-bottom: 1rem;">
       <div style="display: flex; align-items: center; gap: 0.5rem;">
         <img src="images/logo.jpg" alt="Light & Style Logo" style="height: 30px;">
         <span style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #e9bb24; font-weight: 700;">Light & Style</span>
       </div>
-      <div style="font-size: 0.9rem; color: #ccc;">
+      <div style="font-size: 0.9rem; color: #ccc; font-family: 'Playfair Display', serif;">
         120/5, Infantry Road, Bangalore - 560001 | Phone: 080-41130090 / 41132190
       </div>
     </div>
     <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1rem;">
-      <p style="margin: 0; font-size: 0.9rem; color: #aaa;">
+      <p style="margin: 0; font-size: 0.9rem; color: #aaa; font-family: 'Playfair Display', serif;">
         © 2024 Light & Style. All rights reserved.
       </p>
     </div>
