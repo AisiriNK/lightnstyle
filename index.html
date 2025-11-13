@@ -914,6 +914,25 @@
       transform: scale(1.02);
     }
 
+    /* Hero carousel responsive image control */
+    .mobile-hero {
+      display: none !important;
+    }
+
+    .desktop-hero {
+      display: block !important;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-hero {
+        display: block !important;
+      }
+
+      .desktop-hero {
+        display: none !important;
+      }
+    }
+
     /* Navbar scroll effects */
     .navbar {
       transition: all 0.4s ease;
@@ -1179,14 +1198,24 @@
       </header>
 
       <div class="swiper hero-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="images/hero1.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/hero9.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/hero3.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/hero11.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/hero5.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/hero6.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/hero7.jpeg" alt=""></div>
+        <div class="swiper-wrapper" id="heroSwiperWrapper">
+          <!-- Desktop images -->
+          <div class="swiper-slide desktop-hero"><img src="images/hero1.jpeg" alt=""></div>
+          <div class="swiper-slide desktop-hero"><img src="images/hero9.jpeg" alt=""></div>
+          <div class="swiper-slide desktop-hero"><img src="images/hero3.jpeg" alt=""></div>
+          <div class="swiper-slide desktop-hero"><img src="images/hero11.jpeg" alt=""></div>
+          <div class="swiper-slide desktop-hero"><img src="images/hero5.jpeg" alt=""></div>
+          <div class="swiper-slide desktop-hero"><img src="images/hero6.jpeg" alt=""></div>
+          <div class="swiper-slide desktop-hero"><img src="images/hero7.jpeg" alt=""></div>
+          
+          <!-- Mobile images (hidden by default) -->
+          <div class="swiper-slide mobile-hero"><img src="images/hero-mobile1.jpeg" alt=""></div>
+          <div class="swiper-slide mobile-hero"><img src="images/hero-mobile2.jpeg" alt=""></div>
+          <div class="swiper-slide mobile-hero"><img src="images/hero-mobile3.jpeg" alt=""></div>
+          <div class="swiper-slide mobile-hero"><img src="images/hero-mobile4.jpeg" alt=""></div>
+          <div class="swiper-slide mobile-hero"><img src="images/hero-mobile5.jpeg" alt=""></div>
+          <div class="swiper-slide mobile-hero"><img src="images/hero-mobile6.jpeg" alt=""></div>
+          <div class="swiper-slide mobile-hero"><img src="images/hero-mobile7.jpeg" alt=""></div>
         </div>
       </div>
 
@@ -1357,6 +1386,46 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
   <script>
+    // Hero Carousel Responsive Control
+    let heroSwiper = null;
+
+    function initHeroSwiper() {
+      // Destroy existing swiper if it exists
+      if (heroSwiper) {
+        heroSwiper.destroy(true, true);
+      }
+
+      // Initialize new swiper
+      heroSwiper = new Swiper('.hero-swiper', {
+        loop: true,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        speed: 1000,
+      });
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', initHeroSwiper);
+
+    // Reinitialize on window resize to handle orientation changes
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        initHeroSwiper();
+      }, 250);
+    });
+
     // Loading Screen with enhanced timing
     window.addEventListener('load', function() {
       setTimeout(function() {
