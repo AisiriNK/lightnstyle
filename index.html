@@ -707,35 +707,23 @@
     /* Mobile responsive for contact section */
     @media (max-width: 768px) {
       .contact-section-item {
-        padding: 1.5rem 0 !important;
+        padding: 1.5rem 0.5rem !important;
       }
       
       .section-header {
         font-size: 1.5em !important;
-        padding: 0 1rem;
-      }
-      
-      .contact-card {
-        padding: 2rem 1.5rem !important;
-        min-height: auto !important;
+        padding: 0 0.5rem;
       }
     }
     
     @media (max-width: 480px) {
+      .contact-section-item {
+        padding: 1.5rem 0.25rem !important;
+      }
+      
       .section-header {
         font-size: 1.3em !important;
-      }
-      
-      .contact-cards-container {
-        padding: 0.5rem 1rem !important;
-        gap: 0.75rem !important;
-      }
-      
-      .contact-card {
-        padding: 1.5rem 1rem !important;
-        width: 240px !important;
-        min-width: 240px !important;
-        max-width: 240px !important;
+        padding: 0 0.25rem;
       }
     }
     
@@ -876,21 +864,15 @@
   padding: 1.5rem 0;
 }
 
-/* Mobile-first: Horizontal scrolling by default */
+/* Contact cards container - Desktop grid, Mobile horizontal scroll */
 .contact-cards-container {
-  display: flex !important;
-  flex-direction: row !important;
-  gap: 1rem !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
-  padding: 1rem !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  -webkit-overflow-scrolling: touch !important;
-  scroll-behavior: smooth !important;
-  scroll-snap-type: x mandatory !important;
-  grid-template-columns: none !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .contact-cards-container::-webkit-scrollbar {
@@ -912,35 +894,77 @@
 }
 
 .contact-card {
-  flex-shrink: 0 !important;
-  width: 250px !important;
-  min-width: 250px !important;
-  max-width: 250px !important;
-  scroll-snap-align: center !important;
+  width: 100%;
+  min-width: auto;
+  max-width: 100%;
 }
 
-/* Desktop: Grid layout */
+/* Desktop: More spacing */
 @media (min-width: 769px) {
   .contact-cards-container {
-    display: grid !important;
-    flex-direction: initial !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    max-width: 1200px !important;
-    gap: 2.5rem !important;
-    overflow-x: visible !important;
-    overflow-y: visible !important;
-    padding: 0 2rem !important;
+    max-width: 1200px;
+    gap: 2.5rem;
+    padding: 0 2rem;
   }
   
   .contact-section-item {
     padding: 3rem 2rem;
   }
+}
+
+/* Mobile: Horizontal scrolling layout */
+@media (max-width: 768px) {
+  .contact-cards-container {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    gap: 1rem !important;
+    padding: 0.5rem !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+  }
   
   .contact-card {
-    width: 100% !important;
-    min-width: auto !important;
-    max-width: 100% !important;
-    flex-shrink: 1 !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: center !important;
+    padding: 2rem 1.5rem !important;
+  }
+  
+  .contact-card h4 {
+    font-size: 1.3em !important;
+  }
+  
+  .contact-card div:first-child {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-cards-container {
+    gap: 0.75rem !important;
+    padding: 0.25rem !important;
+  }
+  
+  .contact-card {
+    min-width: 260px !important;
+    max-width: 260px !important;
+    padding: 1.8rem 1.2rem !important;
+  }
+  
+  .contact-card h4 {
+    font-size: 1.2em !important;
+  }
+  
+  .contact-card div:first-child {
+    font-size: 2.2rem !important;
+  }
+  
+  .contact-card p {
+    font-size: 0.95em !important;
   }
 }
 
@@ -1242,8 +1266,8 @@
     </div>
 
     <!-- Contact Us -->
-    <div class="contact-section-item" >
-      <h3 class="section-header" style="font-family: 'Playfair Display', serif; color: #e9bb24; font-size: 2em; margin-bottom: 2rem; ">Contact Us</h3>
+    <div class="contact-section-item">
+      <h3 class="section-header" style="font-family: 'Playfair Display', serif; color: #e9bb24; font-size: 2em;">Contact Us</h3>
       <div class="contact-cards-container" style="font-family: 'Playfair Display', serif;">
         <div class="contact-card" style="padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.15), rgba(240, 208, 74, 0.08)); border-radius: 15px; border: 1px solid rgba(233, 187, 36, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); min-height: 100px;" onmouseover="this.style.transform='translateY(-8px) scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(233, 187, 36, 0.25)'; this.style.borderColor='rgba(233, 187, 36, 0.5)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'; this.style.borderColor='rgba(233, 187, 36, 0.3)'">
           <div style="font-size: 3rem; margin-bottom: 1.2rem; color: #e9bb24; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">📍</div>
@@ -1502,38 +1526,8 @@
       emailjs.init("SL67cZHfeqT4Y3D9k"); // Replace with your EmailJS public key
     })();
 
-    // Mobile Contact Cards Layout Fix
-    function fixMobileContactLayout() {
-      const container = document.querySelector('.contact-cards-container');
-      const cards = document.querySelectorAll('.contact-card');
-      
-      if (window.innerWidth <= 768 && container) {
-        // Force mobile layout with JavaScript
-        container.style.cssText = 'display: flex !important; flex-direction: column !important; gap: 1.5rem !important; align-items: center !important; width: 100% !important; max-width: 100% !important; margin: 0 auto !important; padding: 0 !important;';
-        
-        cards.forEach(card => {
-          if (window.innerWidth <= 480) {
-            card.style.cssText = card.style.cssText.replace(/padding: [^;]+;/, 'padding: 1.5rem 1rem !important;') + ' width: 95% !important; max-width: 300px !important; margin: 0 auto !important; box-sizing: border-box !important; text-align: center !important;';
-          } else {
-            card.style.cssText = card.style.cssText.replace(/padding: [^;]+;/, 'padding: 2rem 1.5rem !important;') + ' width: 90% !important; max-width: 350px !important; margin: 0 auto !important; box-sizing: border-box !important; text-align: center !important;';
-          }
-        });
-      } else if (container) {
-        // Reset to desktop layout
-        container.style.cssText = 'display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; font-family: "Playfair Display", serif; max-width: 100%; margin: 0;';
-        
-        cards.forEach(card => {
-          // Reset to original desktop styles
-          const originalStyle = 'padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.15), rgba(240, 208, 74, 0.08)); border-radius: 15px; border: 1px solid rgba(233, 187, 36, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); min-height: 100px;';
-          card.style.cssText = originalStyle;
-        });
-      }
-    }
-
-    // Apply mobile layout fix on load and resize
-    window.addEventListener('load', fixMobileContactLayout);
-    window.addEventListener('resize', fixMobileContactLayout);
-    document.addEventListener('DOMContentLoaded', fixMobileContactLayout);
+    // No additional JavaScript needed for contact cards layout
+    // CSS handles horizontal scrolling on mobile automatically
 
     // Function to send email
     async function sendEmail(e) {
