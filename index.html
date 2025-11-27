@@ -668,6 +668,16 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
+    .contact-us-section {
+      width: 100%;
+      min-width: 700px;
+      min-height: 620px;
+      height: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+
     /* Staggered animation delays for each section */
     .contact-section-item:nth-child(1) { animation-delay: 0.2s; }
     .contact-section-item:nth-child(2) { animation-delay: 0.4s; }
@@ -707,23 +717,102 @@
     /* Mobile responsive for contact section */
     @media (max-width: 768px) {
       .contact-section-item {
-        padding: 1.5rem 0.5rem !important;
+        padding: 1.5rem 1rem !important;
+        margin-bottom: 2rem;
       }
       
       .section-header {
         font-size: 1.5em !important;
         padding: 0 0.5rem;
       }
+
+      .contact-us-section {
+        min-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+      }
+
+      .contact-us-section > div {
+        padding: 0.5rem !important;
+      }
+
+      .contact-us-section > div > div {
+        padding: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      .contact-us-section p {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+      }
+
+      .contact-us-section span {
+        font-size: 1.1em !important;
+      }
+
+      /* About section mobile */
+      .contact-section-item p {
+        text-align: left !important;
+        font-size: 1rem !important;
+        padding: 0 0.5rem;
+      }
+
+      /* Family carousel mobile */
+      .family-carousel-container {
+        height: auto !important;
+        min-height: 200px !important;
+      }
+
+      /* Enquiry form mobile */
+      #enquiryForm input,
+      #enquiryForm textarea {
+        font-size: 16px !important;
+      }
+
+      #enquiryForm button {
+        width: 100%;
+        padding: 16px !important;
+        font-size: 1.1em !important;
+      }
     }
     
     @media (max-width: 480px) {
       .contact-section-item {
-        padding: 1.5rem 0.25rem !important;
+        padding: 1rem 0.5rem !important;
+        margin-bottom: 1.5rem;
       }
       
       .section-header {
         font-size: 1.3em !important;
         padding: 0 0.25rem;
+      }
+
+      .contact-us-section > div > div {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .contact-us-section > div > div > div:first-child {
+        font-size: 1.5rem !important;
+        margin-right: 1rem !important;
+        min-width: 40px !important;
+      }
+
+      .contact-us-section p {
+        font-size: 0.95rem !important;
+      }
+
+      .contact-us-section span {
+        font-size: 1em !important;
+      }
+
+      .contact-section-item p {
+        font-size: 0.95rem !important;
+        padding: 0 0.25rem;
+      }
+
+      #enquiryForm > div {
+        grid-template-columns: 1fr !important;
       }
     }
     
@@ -1094,7 +1183,7 @@
       <header class="navbar">
         <div class="container">
           <div class="logo">
-            <img src="images/logo.jpg" alt="Brand Logo">
+            <img src="images/light-and-style-lighting-solutions-bangalore-logo.jpg" alt="Brand Logo">
             <span class="brand-name">Light & Style</span>
           </div>
           
@@ -1167,7 +1256,7 @@
       <a href="decorative.html" class="category-link">
         <div class="category">
           <div class="category-images">
-            <img src="images/decorative.jpeg" alt="Decorative">
+            <img src="images/decorative-chandelier-pendant-lights-bangalore.jpeg" alt="Decorative">
           </div>
           <h3 style="font-family: 'Playfair Display', serif;font-size: 1.3em;">Decorative</h3>
         </div>
@@ -1176,7 +1265,7 @@
       <a href="commercial.html" class="category-link">
         <div class="category">
           <div class="category-images">
-            <img src="images/commercial.png" alt="Commercial">
+            <img src="images/commercial-office-showroom-lighting-bangalore.png" alt="Commercial">
           </div>
           <h3 style="font-family: 'Playfair Display', serif; font-size: 1.3em;">Commercial</h3>
         </div>
@@ -1188,7 +1277,7 @@
       <a href="outdoor.html" class="category-link">
         <div class="category">
           <div class="category-images">
-            <img src="images/outdoor.jpeg" alt="Outdoor">
+            <img src="images/outdoor-garden-facade-terrace-lighting-bangalore.jpeg" alt="Outdoor">
           </div>
           <h3 style="font-family: 'Playfair Display', serif; font-size: 1.3em;">Outdoor</h3>
         </div>
@@ -1207,7 +1296,7 @@
       <a href="products.html" class="btn interactive-element">View Products</a>
     </div>
     <div class="explore-image">
-      <img src="images/product.jpeg" alt="Explore Products">
+      <img src="images/lighting-products-catalog-bangalore.jpeg" alt="Explore Products">
     </div>
   </div>
 </section>
@@ -1231,10 +1320,10 @@
       <div class="family-carousel-container">
         <div class="family-carousel" id="familyCarousel">
           <div class="family-slide">
-            <img src="images/family2.jpeg" alt="Light & Style Family - Photo 1">
+            <img src="images/light-and-style-team-bangalore.jpeg" alt="Light & Style Family - Photo 1">
           </div>
           <div class="family-slide">
-            <img src="images/family3.jpeg" alt="Light & Style Family - Photo 2">
+            <img src="images/lighting-design-professionals-bangalore.jpeg" alt="Light & Style Family - Photo 2">
           </div>
         </div>
         <button class="carousel-nav prev" onclick="previousSlide()">&#8249;</button>
@@ -1266,29 +1355,41 @@
     </div>
 
     <!-- Contact Us -->
-    <div class="contact-section-item">
+    <div class="contact-section-item contact-us-section">
       <h3 class="section-header" style="font-family: 'Playfair Display', serif; color: #e9bb24; font-size: 2em;">Contact Us</h3>
-      <div class="contact-cards-container" style="font-family: 'Playfair Display', serif;">
-        <div class="contact-card" style="padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.15), rgba(240, 208, 74, 0.08)); border-radius: 15px; border: 1px solid rgba(233, 187, 36, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); min-height: 100px;" onmouseover="this.style.transform='translateY(-8px) scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(233, 187, 36, 0.25)'; this.style.borderColor='rgba(233, 187, 36, 0.5)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'; this.style.borderColor='rgba(233, 187, 36, 0.3)'">
-          <div style="font-size: 3rem; margin-bottom: 1.2rem; color: #e9bb24; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">📍</div>
-          <h4 style="color: #e9bb24; margin-bottom: 1.2rem; font-size: 1.5em; font-weight: 600; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Address</h4>
-          <p style="line-height: 1.7; color: #fff; margin: 0; font-size: 1.1em;">120/5, Infantry Road<br>Bangalore - 560001</p>
+      <div style="font-family: 'Playfair Display', serif; padding: 1.4em 1.2em 1.2em 1.2em;">
+        
+        <!-- Address -->
+        <div style="display: flex; align-items: flex-start; margin-bottom: 2.5rem; padding: 2rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.08), rgba(240, 208, 74, 0.04)); border-radius: 12px; border-left: 4px solid #e9bb24; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(233, 187, 36, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+          <div style="font-size: 1.8rem; margin-right: 1.5rem; color: #e9bb24; min-width: 60px; text-align: center; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">📍</div>
+          <div>
+            <p style="color: #fff; margin: 0; line-height: 1.6; font-size: 1.1em;"><span style="color: #e9bb24; font-weight: 600; font-size: 1.2em;">Address:</span> 120/5, Infantry Road, Bangalore - 560001</p>
+          </div>
         </div>
-        <div class="contact-card" style="padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.15), rgba(240, 208, 74, 0.08)); border-radius: 15px; border: 1px solid rgba(233, 187, 36, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); min-height: 100px;" onmouseover="this.style.transform='translateY(-8px) scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(233, 187, 36, 0.25)'; this.style.borderColor='rgba(233, 187, 36, 0.5)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'; this.style.borderColor='rgba(233, 187, 36, 0.3)'">
-          <div style="font-size: 3rem; margin-bottom: 1.2rem; color: #e9bb24; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">📞</div>
-          <h4 style="color: #e9bb24; margin-bottom: 1.2rem; font-size: 1.5em; font-weight: 600; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Phone</h4>
-          <p style="line-height: 1.7; color: #fff; margin: 0; font-size: 1.1em;">
-            <a href="tel:08041130090" style="color: #fff; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#e9bb24'; this.style.textShadow='0 0 5px rgba(233, 187, 36, 0.5)'" onmouseout="this.style.color='#fff'; this.style.textShadow='none'">080-41130090</a><br>
-            <a href="tel:08041132190" style="color: #fff; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#e9bb24'; this.style.textShadow='0 0 5px rgba(233, 187, 36, 0.5)'" onmouseout="this.style.color='#fff'; this.style.textShadow='none'">080-41132190</a>
-          </p>
+
+        <!-- Phone -->
+        <div style="display: flex; align-items: flex-start; margin-bottom: 2.5rem; padding: 2rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.08), rgba(240, 208, 74, 0.04)); border-radius: 12px; border-left: 4px solid #e9bb24; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(233, 187, 36, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+          <div style="font-size: 1.8rem; margin-right: 1.5rem; color: #e9bb24; min-width: 60px; text-align: center; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">📞</div>
+          <div>
+            <p style="color: #fff; margin: 0; line-height: 1.8; font-size: 1.1em;">
+              <span style="color: #e9bb24; font-weight: 600; font-size: 1.2em;">Phone:</span> 
+              <a href="tel:08041130090" style="color: #fff; text-decoration: none; transition: all 0.3s ease; margin-left: 0.5rem;" onmouseover="this.style.color='#e9bb24'; this.style.textShadow='0 0 5px rgba(233, 187, 36, 0.5)'" onmouseout="this.style.color='#fff'; this.style.textShadow='none'">080-41130090</a> / 
+              <a href="tel:08041132190" style="color: #fff; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#e9bb24'; this.style.textShadow='0 0 5px rgba(233, 187, 36, 0.5)'" onmouseout="this.style.color='#fff'; this.style.textShadow='none'">080-41132190</a>
+            </p>
+          </div>
         </div>
-        <div class="contact-card" style="padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.15), rgba(240, 208, 74, 0.08)); border-radius: 15px; border: 1px solid rgba(233, 187, 36, 0.3); text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); min-height: 100px;" onmouseover="this.style.transform='translateY(-8px) scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(233, 187, 36, 0.25)'; this.style.borderColor='rgba(233, 187, 36, 0.5)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'; this.style.borderColor='rgba(233, 187, 36, 0.3)'">
-          <div style="font-size: 3rem; margin-bottom: 1.2rem; color: #e9bb24; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">✉️</div>
-          <h4 style="color: #e9bb24; margin-bottom: 1.2rem; font-size: 1.5em; font-weight: 600; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Email</h4>
-          <p style="line-height: 1.7; color: #fff; margin: 0; font-size: 1.1em;">
-            <a href="mailto:neha@lightnstyle.in" style="color: #fff; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.color='#e9bb24'; this.style.textShadow='0 0 5px rgba(233, 187, 36, 0.5)'" onmouseout="this.style.color='#fff'; this.style.textShadow='none'">neha@lightnstyle.in</a>
-          </p>
+
+        <!-- Email -->
+        <div style="display: flex; align-items: flex-start; margin-bottom: 2rem; padding: 2rem; background: linear-gradient(135deg, rgba(233, 187, 36, 0.08), rgba(240, 208, 74, 0.04)); border-radius: 12px; border-left: 4px solid #e9bb24; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(233, 187, 36, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+          <div style="font-size: 1.8rem; margin-right: 1.5rem; color: #e9bb24; min-width: 60px; text-align: center; text-shadow: 0 0 10px rgba(233, 187, 36, 0.3);">✉️</div>
+          <div>
+            <p style="color: #fff; margin: 0; line-height: 1.6; font-size: 1.1em;">
+              <span style="color: #e9bb24; font-weight: 600; font-size: 1.2em;">Email:</span> 
+              <a href="mailto:neha@lightnstyle.in" style="color: #fff; text-decoration: none; transition: all 0.3s ease; margin-left: 0.5rem;" onmouseover="this.style.color='#e9bb24'; this.style.textShadow='0 0 5px rgba(233, 187, 36, 0.5)'" onmouseout="this.style.color='#fff'; this.style.textShadow='none'">neha@lightnstyle.in</a>
+            </p>
+          </div>
         </div>
+
       </div>
     </div>
 
@@ -1303,23 +1404,23 @@
 
     // Define desktop and mobile hero images
     const desktopHeroImages = [
-      'images/hero1.jpeg',
-      'images/hero2.jpeg',
-      'images/hero3.jpeg',
-      'images/hero4.jpeg',
-      'images/hero5.jpeg',
-      'images/hero6.jpeg',
-      'images/hero7.jpeg'
+      'images/luxury-chandelier-lighting-showroom-bangalore.jpeg',
+      'images/decorative-chandelier-villa-lighting-bangalore.jpeg',
+      'images/luxury-living-room-lighting-design-bangalore.jpeg',
+      'images/ceiling-lights-home-decoration-bangalore.jpeg',
+      'images/modern-pendant-lights-residential-bangalore.jpeg',
+      'images/designer-wall-lights-commercial-bangalore.jpeg',
+      'images/outdoor-garden-lighting-landscape-bangalore.jpeg'
     ];
 
     const mobileHeroImages = [
-      'images/hero-mobile1.jpeg',
-      'images/hero-mobile2.jpeg',
-      'images/hero-mobile3.jpeg',
-      'images/hero-mobile4.jpeg',
-      'images/hero-mobile1.jpeg',
-      'images/hero-mobile2.jpeg',
-      'images/hero-mobile3.jpeg'
+      'images/mobile-chandelier-lighting-display-bangalore.jpeg',
+      'images/mobile-luxury-living-room-lights-bangalore.jpeg',
+      'images/mobile-decorative-villa-lighting-bangalore.jpeg',
+      'images/mobile-ceiling-lights-home-bangalore.jpeg',
+      'images/mobile-pendant-lights-residential-bangalore.jpeg',
+      'images/mobile-wall-lights-commercial-bangalore.jpeg',
+      'images/mobile-outdoor-garden-lighting-bangalore.jpeg'
     ];
 
     function initHeroSwiper() {
@@ -1663,7 +1764,7 @@
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2rem; margin-bottom: 1rem;">
       <div style="display: flex; align-items: center; gap: 0.5rem;">
-        <img src="images/logo.jpg" alt="Light & Style Logo" style="height: 30px;">
+        <img src="images/light-and-style-lighting-solutions-bangalore-logo.jpg" alt="Light & Style Logo" style="height: 30px;">
         <span style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #e9bb24; font-weight: 700;">Light & Style</span>
       </div>
       <div style="font-size: 0.9rem; color: #ccc; font-family: 'Playfair Display', serif;">
