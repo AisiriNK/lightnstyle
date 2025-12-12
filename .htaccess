@@ -6,16 +6,7 @@
     Deny from all
 </Files>
 
-# Protect sensitive files
-<Files "reset_admin_password.php">
-    Order Deny,Allow
-    Deny from all
-</Files>
-
-<Files "admin_config.php">
-    Order Deny,Allow
-    Deny from all
-</Files>
+# No additional config file protection needed
 
 # Hide sensitive file extensions (excluding products.json)
 <FilesMatch "\.(log|bak|sql|env)$">
@@ -53,3 +44,70 @@
 
 # Disable server signature
 ServerSignature Off
+
+# Prevent directory listing
+Options -Indexes
+
+# Enable GZIP compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Browser caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # JSON (products.json should not be cached)
+    ExpiresByType application/json "access plus 0 seconds"
+</IfModule>
+
+# Force HTTPS (uncomment after SSL is configured)
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# Protect logs directory (alternative method)
+<FilesMatch "^(enquiries_.*\.json|attachments_.*\.json)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# PHP security settings (for Apache with PHP module)
+<IfModule mod_php7.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log logs/php_errors.log
+</IfModule>
+
+# Set default charset
+AddDefaultCharset UTF-8
