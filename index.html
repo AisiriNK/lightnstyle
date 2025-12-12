@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="description" content="Light & Style is a premium lighting store in Bangalore offering designer chandeliers and lamps, pendant lights, wall lights, and commercial lighting solutions." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Light & Style</title>
+  <meta name="keywords" content="lighting store Bangalore, chandeliers, decorative lights, Light & Style">
+  <title>Light & Style | Lighting Store in Bangalore</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style.css" />
@@ -103,6 +105,12 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInText {
+      to {
+        opacity: 1;
       }
     }
 
@@ -659,6 +667,7 @@
       border-radius: 12px;
       border: 1px solid rgba(233, 187, 36, 0.1);
       transition: all 0.4s ease;
+      min-width: 800px;
     }
 
     .contact-section-item:hover {
@@ -1133,7 +1142,7 @@
       
       /* Hero text responsive sizing */
       .hero-text h4 {
-        font-size: clamp(2.5em, 6vw, 3.2em) !important;
+        font-size: clamp(1.8em, 5vw, 2.5em) !important;
         line-height: 1.2 !important;
       }
     }
@@ -1153,7 +1162,7 @@
       
       /* Hero text for small mobile screens */
       .hero-text h4 {
-        font-size: clamp(2em, 8vw, 2.8em) !important;
+        font-size: clamp(1.5em, 6vw, 2em) !important;
         line-height: 1.1 !important;
         text-align: center !important;
       }
@@ -1223,7 +1232,7 @@
       <div class="hero-overlay"></div>
 
       <div class="hero-text">
-        <h4 style="font-family: 'Playfair Display', serif; font-size: 3.5em; font-weight: normal;">
+        <h4 style="font-family: 'Playfair Display', serif; font-size: 2.5em; font-weight: normal; opacity: 0; animation: fadeInText 1s ease 2s forwards;">
           <div>Transforming Spaces with</div>
           <div><span class="highlight" style="font-style: normal;">Exquisite Lighting</span></div>
         </h4>
@@ -1292,8 +1301,7 @@
   <div class="container explore-products-container">
     <div class="explore-text">
       <h4 class="section-title">Explore Our Products</h4>
-      <p>Light & Style has over 25 years of experience in designing and developing best-selling lighting and interiors ranges making them the go-to brand for stylish lighting solutions. The company's innovative designs assist in accentuating the commercial and private spaces as per individual's needs. <br><br> Passionately driven by product design but extremely motivated by customer experience, is what Light & Style is primarily about.</p>
-      <a href="products.html" class="btn interactive-element">View Products</a>
+      <p style="text-align: justify;">Light & Style, a premium lighting brand in India, brings over 25 years of expertise in designing and developing best-selling lighting and interior ranges. With innovative concepts and designer chandeliers & lamps, the brand has become the go-to choice for elevating both commercial and private spaces.<br><br> Driven by creativity and backed by experience, Light & Style continues to deliver exceptional modern LED lighting fixtures that enhance ambience and meet individual needs.</p>      <a href="products.html" class="btn interactive-element" style="font-size: 1.1em;">View Products</a>
     </div>
     <div class="explore-image">
       <img src="images/lighting-products-catalog-bangalore.jpeg" alt="Explore Products">
@@ -1340,11 +1348,11 @@
       <h3 class="section-header" style="font-family: 'Playfair Display', serif; color: #e9bb24; font-size: 2em;">Send Enquiry</h3>
       <form id="enquiryForm" onsubmit="return sendEmail(event)">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-          <input type="text" name="name" placeholder="Your Name" required style="font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important;" />
-          <input type="email" name="email" placeholder="Your Email" required style="font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important;" />
+          <input type="text" name="name" placeholder="Your Name" required style="font-size: medium; font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important;" />
+          <input type="email" name="email" placeholder="Your Email" required style="font-size: medium; font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important;" />
         </div>
-        <input type="text" name="phone" placeholder="Phone Number" style="font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important; width: 100%; margin-bottom: 1rem;" />
-        <textarea name="message" placeholder="Your Message" style="font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important; width: 100%; min-height: 120px; margin-bottom: 1rem; resize: vertical;"></textarea>
+        <input type="text" name="phone" placeholder="Phone Number" style="font-size: medium; font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important; width: 100%; margin-bottom: 1rem;" />
+        <textarea name="message" placeholder="Your Message" style="font-size: medium; font-family: 'Playfair Display', serif; padding: 12px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important; width: 100%; min-height: 120px; margin-bottom: 1rem; resize: vertical;"></textarea>
         <div class="file-input" style="margin-bottom: 1.5rem;">
           <input type="file" id="attachments" name="attachments[]" multiple style="padding: 8px; border: 2px solid #e9bb24; border-radius: 6px; background: rgba(0,0,0,0.8) !important; color: #fff !important; width: 100%;" />
           <p style="font-family: 'Playfair Display', serif; margin: 0.5rem 0; color: #e9bb24; font-style: italic;">Have a design in mind? Share your reference images — we'll craft a light that's uniquely yours.</p>

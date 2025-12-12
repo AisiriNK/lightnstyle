@@ -992,6 +992,127 @@
         font-size: 10px;
       }
     }
+
+    /* Category Cards Styling */
+    .categories-section {
+      margin: 40px 0;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.3s forwards;
+      margin-top: 0;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .category-card {
+      background: #222;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+      position: relative;
+      text-decoration: none;
+      display: block;
+    }
+
+    .category-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, rgba(233, 187, 36, 0.3), rgba(240, 208, 74, 0.3));
+      background-size: 400% 400%;
+      z-index: -1;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    .category-card:hover::before {
+      opacity: 1;
+    }
+
+    .category-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(233, 187, 36, 0.3);
+      border-color: rgba(233, 187, 36, 0.4);
+    }
+
+    .category-card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .category-card:hover .category-card-image {
+      transform: scale(1.1);
+      filter: brightness(1.1) contrast(1.2);
+    }
+
+    .category-card-title {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3em;
+      color: #e9bb24;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .category-card:hover .category-card-title {
+      background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+      text-shadow: 0 0 10px rgba(233, 187, 36, 0.5);
+    }
+
+    /* Responsive category cards */
+    @media (max-width: 1200px) {
+      .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      
+      .category-card-image {
+        height: 150px;
+      }
+      
+      .category-card-title {
+        padding: 15px;
+        font-size: 1.1em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      
+      .category-card-image {
+        height: 120px;
+      }
+      
+      .category-card-title {
+        padding: 12px;
+        font-size: 1em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1012,37 +1133,66 @@
     
     <!-- Desktop navigation -->
     <nav class="desktop-nav">
-      <a href="./" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Back to Home</a>
-      <a href="./#contact" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Contact Us</a>
+      <a href="index.html" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Back to Home</a>
+      <a href="index.html#contact" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Contact Us</a>
     </nav>
     
     <!-- Mobile navigation dropdown -->
     <nav class="mobile-nav" id="mobileNav">
-      <a href="./">Back to Home</a>
-      <a href="./#contact">Contact Us</a>
+      <a href="index.html">Back to Home</a>
+      <a href="index.html#contact">Contact Us</a>
     </nav>
   </div>
 </header>
 
 <!-- Page Title Section -->
-<section style="background: #111; padding: 20px 0; text-align: center;">
+<section style="background: #111; padding: 20px 0 0 0; text-align: center;">
   <h1 style="margin: 0; font-size: clamp(22px, 5vw, 32px); color: #e9bb24; font-family: 'Playfair Display', serif; font-weight: normal;">
     Our Lighting Products
   </h1>
 </section>
-
+<h2 style="margin-left: 45px; margin-bottom: 0; font-size: clamp(22px, 5vw, 28px); color: #e9bb24; font-family: 'Playfair Display', serif; font-weight: normal;">
+    Categories
+  </h2>
 <section class="category-detail">
   <div class="container">
-   <!-- <h3>Products</h3> -->
-
-    
-    <div class="filters" style="justify-content: space-between; align-items: center;">
-      <select id="categorySelect">
-        <option value="">All Categories</option>
-        <!-- Categories will be loaded dynamically -->
-      </select>
-      <!--<button id="exploreMoreBtn" class="btn" style="margin-left:auto; background:#e9bb24; color:#fff; padding:10px 22px; border-radius:6px; font-weight:600; font-size:16px; cursor:pointer;">Explore More</button> -->
+    <!-- Category Cards Section -->
+    <div class="categories-section">
+      <div class="categories-grid">
+        <a href="category-chandeliers.html" class="category-card">
+          <img src="images/crystal-chandelier-luxury-homes-bangalore.jpeg" alt="Chandeliers" class="category-card-image">
+          <div class="category-card-title">Chandeliers</div>
+        </a>
+        
+        <a href="category-pendant.html" class="category-card">
+          <img src="images/modern-pendant-lights-residential-bangalore.jpeg" alt="Pendant Lights" class="category-card-image">
+          <div class="category-card-title">Pendant Lights</div>
+        </a>
+        
+        <a href="category-wall.html" class="category-card">
+          <img src="images/products/colorful-resin-wall-light-hct2614-bangalore.jpg" alt="Wall Lights" class="category-card-image">
+          <div class="category-card-title">Wall Lights</div>
+        </a>
+        
+        <a href="category-ceiling.html" class="category-card">
+          <img src="images/products/decorative-ceiling-fixture-lm9253-bangalore.jpeg" alt="Ceiling Lights" class="category-card-image">
+          <div class="category-card-title">Ceiling Lights</div>
+        </a>
+        
+        <a href="category-floor.html" class="category-card">
+          <img src="images/products/classic-floor-lamp-gl-157-bangalore.jpeg" alt="Floor Lamps" class="category-card-image">
+          <div class="category-card-title">Floor Lamps</div>
+        </a>
+        
+        <a href="category-table.html" class="category-card">
+          <img src="images/products/bedside-table-lamp-als264-bangalore.jpeg" alt="Table Lamps" class="category-card-image">
+          <div class="category-card-title">Table Lamps</div>
+        </a>
+      </div>
     </div>
+<h2 style="margin: 0; font-size: clamp(22px, 5vw, 28px); color: #e9bb24; font-family: 'Playfair Display', serif; font-weight: normal;">
+    All Products
+  </h2>
 <!-- Catalogue Overlay -->
 <div id="catalogueOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:2000; justify-content:center; align-items:center;">
   <div style="background:#222; color:#fff; border-radius:12px; padding:40px 30px; max-width:500px; width:90%; box-shadow:0 8px 32px rgba(0,0,0,0.5); position:relative;">
@@ -1114,53 +1264,31 @@
   //});
 
   // Close enquiry modal
-  document.getElementById('closeEnquiryModal').addEventListener('click', function() {
-    document.getElementById('productEnquiryModal').style.display = 'none';
-  });
+  const closeEnquiryModal = document.getElementById('closeEnquiryModal');
+  if (closeEnquiryModal) {
+    closeEnquiryModal.addEventListener('click', function() {
+      document.getElementById('productEnquiryModal').style.display = 'none';
+    });
+  }
+  
   let allProducts = [];
-  const categorySelect = document.getElementById('categorySelect');
-  const productsGrid = document.getElementById('productsGrid');
-  const loadingMessage = document.getElementById('loadingMessage');
 
   // Load categories from database
   async function loadCategories() {
-    try {
-      const response = await fetch('products.json');
-      const contentType = response.headers.get('content-type') || '';
-
-      if (!response.ok) {
-        // Not a 2xx response: log the status and body
-        const text = await response.text();
-        console.error('Failed to fetch products.json:', response.status, text);
-        return;
-      }
-
-      if (!contentType.includes('application/json')) {
-        // Server returned HTML or something else — show it for debugging
-        const text = await response.text();
-        console.error('products.json did not return JSON. content-type:', contentType);
-        console.error('Response body:', text);
-        return;
-      }
-
-      const data = await response.json();
-
-      if (data.products) {
-        const categories = [...new Set(data.products.map(p => p.category))];
-        categories.forEach(category => {
-          const option = document.createElement('option');
-          option.value = category;
-          option.textContent = category;
-          categorySelect.appendChild(option);
-        });
-      }
-    } catch (error) {
-      console.error('Error loading categories:', error);
-    }
+    // Categories are now displayed as cards, no dropdown needed
+    return;
   }
 
   // Load products from database
   async function loadProducts(search = '', category = '') {
+    const productsGrid = document.getElementById('productsGrid');
+    const loadingMessage = document.getElementById('loadingMessage');
+    
+    if (!productsGrid || !loadingMessage) {
+      console.error('Required elements not found');
+      return;
+    }
+    
     try {
       loadingMessage.style.display = 'block';
       productsGrid.innerHTML = '';
@@ -1310,27 +1438,17 @@
     };
   }
 
-  // Filter products based on search and category
-  function filterProducts() {
-    const selectedCategory = categorySelect.value;
-    const filteredProducts = allProducts.filter(product => {
-      const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
-      return matchesCategory;
-    });
-    displayProducts(filteredProducts);
-  }
-
-  // Handle live suggestions
-
-  // Handle category change
-  categorySelect.addEventListener('change', filterProducts);
+  // Category filtering handled by individual category pages
 
   // Close modal
-  document.getElementById('closeOverlay').addEventListener('click', () => {
-    const overlay = document.getElementById('specsOverlay');
-    overlay.classList.remove('show');
-    setTimeout(() => overlay.style.display = 'none', 300);
-  });
+  const closeOverlay = document.getElementById('closeOverlay');
+  if (closeOverlay) {
+    closeOverlay.addEventListener('click', () => {
+      const overlay = document.getElementById('specsOverlay');
+      overlay.classList.remove('show');
+      setTimeout(() => overlay.style.display = 'none', 300);
+    });
+  }
 
   // Add intersection observer for scroll animations
   const observerOptions = {
@@ -1474,21 +1592,11 @@ async function sendProductEnquiry(e) {
         header.style.transform = `translateY(${scrolled * 0.1}px)`;
       }
     });
-  });
-</script>
-</script>
-
-
-
-
-
-
-<script>
-  // ========================================
-  // MOBILE HAMBURGER MENU FUNCTIONALITY
-  // ========================================
-  
-  document.addEventListener('DOMContentLoaded', function() {
+    
+    // ========================================
+    // MOBILE HAMBURGER MENU FUNCTIONALITY
+    // ========================================
+    
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
     
