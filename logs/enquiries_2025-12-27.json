@@ -1,0 +1,34 @@
+[
+    {
+        "id": "ENQ_6950030a71834",
+        "timestamp": "2025-12-27 17:02:18",
+        "name": "Aisiri NK",
+        "email": "Aisiri.NingappaKrishnamurthy@commscope.com",
+        "phone": "7282928272",
+        "message": "Hi, test1",
+        "product_name": null,
+        "enquiry_type": "general",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "attachments_count": 0,
+        "email_sent": true,
+        "email_error": null,
+        "updated_at": "2025-12-27 17:02:20"
+    },
+    {
+        "id": "ENQ_695003c745bee",
+        "timestamp": "2025-12-27 17:05:27",
+        "name": "Aisiri NK",
+        "email": "swethamb56@gmail.com",
+        "phone": "45343",
+        "message": "Test4",
+        "product_name": null,
+        "enquiry_type": "general",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "attachments_count": 3,
+        "email_sent": true,
+        "email_error": null,
+        "updated_at": "2025-12-27 17:05:29"
+    }
+]

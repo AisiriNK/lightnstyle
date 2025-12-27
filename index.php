@@ -1326,7 +1326,7 @@
       <div class="family-carousel-container">
         <div class="family-carousel" id="familyCarousel">
           <div class="family-slide">
-            <img src="images/light-and-style-team-bangalore.jpeg" alt="Light & Style Family - Photo 1">
+            <img src="images/lighting-showroom-staff-bangalore.jpeg" alt="Light & Style Family - Photo 1">
           </div>
           <div class="family-slide">
             <img src="images/lighting-design-professionals-bangalore.jpeg" alt="Light & Style Family - Photo 2">

@@ -156,8 +156,15 @@ function loadEnv($file) {
     return true;
 }
 
-// Load environment variables
-loadEnv(__DIR__ . '/.env');
+// Load environment variables: prefer one directory above public_html, fallback to current dir
+$parentEnv = dirname(__DIR__) . '/.env';
+if (loadEnv($parentEnv)) {
+    error_log("DEBUG: Loaded .env from parent directory: " . $parentEnv);
+} elseif (loadEnv(__DIR__ . '/.env')) {
+    error_log("DEBUG: Loaded .env from current directory: " . __DIR__ . '/.env');
+} else {
+    error_log("DEBUG: .env not found in parent or current directory: " . $parentEnv);
+}
 
 $api_key = $_ENV['BREVO_API_KEY'] ?? '';
 $api_url = $_ENV['BREVO_API_URL'] ?? 'https://api.brevo.com/v3/smtp/email';

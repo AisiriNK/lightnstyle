@@ -1132,14 +1132,14 @@
     
     <!-- Desktop navigation -->
     <nav class="desktop-nav">
-      <a href="index.html" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Back to Home</a>
-      <a href="index.html#contact" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Contact Us</a>
+      <a href="index.php" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Back to Home</a>
+      <a href="index.php#contact" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Contact Us</a>
     </nav>
     
     <!-- Mobile navigation dropdown -->
     <nav class="mobile-nav" id="mobileNav">
-      <a href="index.html">Back to Home</a>
-      <a href="index.html#contact">Contact Us</a>
+      <a href="index.php">Back to Home</a>
+      <a href="index.php#contact">Contact Us</a>
     </nav>
   </div>
 </header>
@@ -1292,19 +1292,19 @@
       loadingMessage.style.display = 'block';
       productsGrid.innerHTML = '';
 
-      const response = await fetch('products.json');
+      const response = await fetch('products.php');
       const contentType = response.headers.get('content-type') || '';
 
       if (!response.ok) {
         const text = await response.text();
-        console.error('Failed to fetch products.json:', response.status, text);
+        console.error('Failed to fetch products.php:', response.status, text);
         productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error loading products: Server returned ' + response.status + '</p>';
         return;
       }
 
       if (!contentType.includes('application/json')) {
         const text = await response.text();
-        console.error('products.json did not return JSON. content-type:', contentType);
+        console.error('products.php did not return JSON. content-type:', contentType);
         console.error('Response body:', text);
         productsGrid.innerHTML = '<p style="text-align: center; color: #ccc;">Error: Expected JSON but got ' + contentType + '</p>';
         return;
@@ -1408,13 +1408,21 @@
       detailsContainer.appendChild(categoryP);
     }
     
-    // Add all specs
+    // Add all specs (support string or object formats)
     specs.forEach(spec => {
-      if (spec) {
-        const p = document.createElement('p');
-        p.innerHTML = `<strong>${spec.split(':')[0]}:</strong> ${spec.split(':')[1]}`;
-        detailsContainer.appendChild(p);
+      if (!spec) return;
+      const p = document.createElement('p');
+      if (typeof spec === 'string') {
+        const parts = spec.split(':');
+        if (parts.length > 1) {
+          p.innerHTML = `<strong>${parts[0].trim()}:</strong> ${parts.slice(1).join(':').trim()}`;
+        } else {
+          p.textContent = spec;
+        }
+      } else if (spec && typeof spec === 'object') {
+        p.innerHTML = `<strong>${spec.spec_name}:</strong> ${spec.spec_value}`;
       }
+      detailsContainer.appendChild(p);
     });
     
     // Store product data globally for the enquire button
@@ -1576,7 +1584,7 @@ async function sendProductEnquiry(e) {
               behavior: 'smooth',
               block: 'start'
             });
-          } else if (href.includes('index.html')) {
+          } else if (href.includes('index.php')) {
             window.location.href = href;
           }
         }

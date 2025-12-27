@@ -629,13 +629,13 @@
     <!-- Desktop navigation -->
     <nav class="desktop-nav">
       <a href="products.html" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Back to Products</a>
-      <a href="index.html#contact" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Contact Us</a>
+      <a href="index.php#contact" style="font-family: 'Playfair Display', serif; font-size: 1.2em;">Contact Us</a>
     </nav>
     
     <!-- Mobile navigation dropdown -->
     <nav class="mobile-nav" id="mobileNav">
       <a href="products.html">Back to Products</a>
-      <a href="index.html#contact">Contact Us</a>
+      <a href="index.php#contact">Contact Us</a>
     </nav>
   </div>
 </header>
@@ -700,7 +700,7 @@
 
   async function loadProducts() {
     try {
-      const response = await fetch('products.json');
+      const response = await fetch('products.php');
       const data = await response.json();
       
       allProducts = data.products.filter(p => p.category === 'Pendant Light');
@@ -774,7 +774,16 @@
     
     specs.forEach(spec => {
       const p = document.createElement('p');
-      p.innerHTML = `<strong>${spec.spec_name}:</strong> ${spec.spec_value}`;
+      if (typeof spec === 'string') {
+        const parts = spec.split(':');
+        if (parts.length > 1) {
+          p.innerHTML = `<strong>${parts[0].trim()}:</strong> ${parts.slice(1).join(':').trim()}`;
+        } else {
+          p.textContent = spec;
+        }
+      } else if (spec && typeof spec === 'object') {
+        p.innerHTML = `<strong>${spec.spec_name}:</strong> ${spec.spec_value}`;
+      }
       detailsContainer.appendChild(p);
     });
     
@@ -851,6 +860,18 @@
       
       formData.append('product_name', window.currentProduct.name);
       
+      // Convert product image URL into actual file and attach it (if available)
+      if (window.currentProduct.image_url) {
+        try {
+          const resp = await fetch(window.currentProduct.image_url);
+          const blob = await resp.blob();
+          const imgFile = new File([blob], "product-image.jpg", { type: blob.type });
+          formData.append('attachments[]', imgFile);
+        } catch (err) {
+          console.error("Failed to fetch product image:", err);
+        }
+      }
+
       for (let i = 0; i < files.length; i++) {
         formData.append('attachments[]', files[i]);
       }

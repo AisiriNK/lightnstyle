@@ -1,0 +1,6 @@
+# robots.txt for Light & Style
+# Allow all user agents and point to sitemap
+User-agent: *
+Disallow:
+
+Sitemap: http://lightnstyle.in/sitemap.xml

@@ -8,6 +8,14 @@
 
 # No additional config file protection needed
 
+# Redirect old index.html to index.php (301 permanent)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Redirect any direct request for index.html to index.php at site root
+    RewriteCond %{THE_REQUEST} /index\.html [NC]
+    RewriteRule ^index\.html$ /index.php [R=301,L]
+</IfModule>
+
 # Hide sensitive file extensions (excluding products.json)
 <FilesMatch "\.(log|bak|sql|env)$">
     Order Deny,Allow
@@ -20,9 +28,10 @@
     Deny from all
 </FilesMatch>
 
+# Deny direct public access to products.json (serve via backend only)
 <Files "products.json">
-    Order Allow,Deny
-    Allow from all
+    Order Deny,Allow
+    Deny from all
     <IfModule mod_headers.c>
         Header set Content-Type "application/json; charset=UTF-8"
     </IfModule>
