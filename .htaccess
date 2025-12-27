@@ -1,5 +1,10 @@
 # Security Configuration for Light & Style Admin
 
+# Allow sitemap.xml explicitly
+<Files "sitemap.xml">
+    Require all granted
+</Files>
+
 # Protect environment file
 <Files ".env">
     Order Deny,Allow

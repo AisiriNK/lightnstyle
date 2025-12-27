@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDC2D3N8SF"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BDC2D3N8SF');
+  </script>
   <meta name="description" content="Light & Style is a premium lighting store in Bangalore offering designer chandeliers and lamps, pendant lights, wall lights, and commercial lighting solutions." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="keywords" content="lighting store Bangalore, chandeliers, decorative lights, Light & Style">
