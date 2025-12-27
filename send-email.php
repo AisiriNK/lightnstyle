@@ -318,7 +318,7 @@ $email_data = [
     ],
     'to' => [
         [
-            'email' => 'aisirink27@gmail.com',
+            'email' => 'neha@lightnstyle.in',
             'name' => 'Light & Style'
         ]
     ],
